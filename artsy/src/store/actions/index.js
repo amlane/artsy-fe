@@ -21,6 +21,7 @@ export const loginUser = user => dispatch => {
     axios
         .post("https://artsy-be.herokuapp.com/api/auth/login", user)
         .then(response => {
+            console.log(response)
             window.localStorage.setItem('token', response.data.token);
             return dispatch({ type: 'LOGIN_SUCCESS', payload: user })
         }
