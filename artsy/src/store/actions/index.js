@@ -10,21 +10,25 @@ export const registerUser = user => dispatch => {
         .then(response => {
             console.log(response)
             window.localStorage.setItem('token', response.data.token);
-            return dispatch({ type: 'LOGIN_SUCCESS', payload: user })
+            return dispatch({ type: REGISTER_USER, payload: response.data.user })
         }
         )
         .catch(error => console.log(error.message));
 }
 
 export const loginUser = user => dispatch => {
-    dispatch({ type: LOGIN_USER })
+    console.log('user', user)
+    return dispatch({ type: LOGIN_USER, payload: user })
+}
+
+export const GET_USER_INFO = "GET_USER_INFO"
+
+export const getUserInfo = id => dispatch => {
+    console.log(id, 'id')
+    dispatch({ type: GET_USER_INFO })
     axios
-        .post("https://artsy-be.herokuapp.com/api/auth/login", user)
+        .get(`https://artsy-be.herokuapp.com/api/users/${id}`)
         .then(response => {
-            console.log(response)
-            window.localStorage.setItem('token', response.data.token);
-            return dispatch({ type: 'LOGIN_SUCCESS', payload: user })
-        }
-        )
-        .catch(error => console.log(error.message));
+            return dispatch({ type: GET_USER_INFO, payload: response.data.user })
+        }).catch(error => console.log(error.message))
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios'
 
 import { loginUser } from '../store/actions';
 
@@ -16,7 +17,16 @@ function SignIn(props) {
 
     const submitForm = e => {
         e.preventDefault();
-        props.loginUser(user)
+        axios
+            .post("https://artsy-be.herokuapp.com/api/auth/login", user)
+            .then(response => {
+                window.localStorage.setItem('token', response.data.token);
+                props.loginUser(response.data.user)
+
+            }
+            ).then(() => props.history.push('/dashboard'))
+            .catch(error => console.log(error.message));
+
         setUser({
             email: '',
             password: ''
