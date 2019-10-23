@@ -1,18 +1,19 @@
 import React from 'react';
-import { Route } from "react-router-dom"
-import SignIn from "./components/SignIn"
-import Register from "./components/Register"
-import NavBar from "./components/NavBar"
-import Dashboard from "./components/Dashboard"
-
+import logo from './logo.svg';
+import './App.css';
+import { Route } from "react-router-dom";
+import Login from './components/Login';
+import UserDashboard from "./components/UserDashboard"
 
 function App() {
   return (
+
     <div className="App">
-      <NavBar />
-      <Route path="/register" component={Register} />
-      <Route path="/signin" component={SignIn} />
-      <Route path="/dashboard" component={Dashboard} />
+      <header className="App-header">
+        <p>Artsy</p>
+      </header>
+      <Route exact path="/" component={Login} />
+      <Route path="/user" component={UserDashboard} />
     </div>
   );
 }
