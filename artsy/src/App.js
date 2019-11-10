@@ -1,19 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+
 import { Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute"
+
 import Login from './components/Login';
 import UserDashboard from "./components/UserDashboard"
+import NavBar from "./components/NavBar"
 
 function App() {
   return (
 
     <div className="App">
       <header className="App-header">
-        <p>Artsy</p>
+        <NavBar />
       </header>
       <Route exact path="/" component={Login} />
-      <Route path="/user" component={UserDashboard} />
+      <PrivateRoute path="/user" component={UserDashboard} />
     </div>
   );
 }

@@ -1,33 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-class UserDashboard extends React.Component {
-    state = {
-        user: null
-    }
+import AddNewPost from "./AddNewPost"
+import MyPhotos from "./MyPhotos"
 
-    componentDidMount = () => {
-        const id = localStorage.getItem("userid")
-        Axios.get(`https://artsy-be.herokuapp.com/api/users/${id}`)
-            .then(res => {
-                console.log("res", res.data)
-                this.setState({
-                    user: res.data.user
+import jwt_decode from "jwt-decode"
+import "../index.css"
+
+function UserDashboard() {
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        console.log("testing")
+        getUserData();
+    }, [])
+
+    const getUserData = () => {
+        var token = localStorage.getItem("token");
+        if (token) {
+            var decoded = jwt_decode(token);
+
+            Axios.get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
+                .then(res => {
+                    console.log("res", res.data)
+                    setUser(res.data.user)
                 })
-            })
-            .catch(err => {
-                console.log({ err })
-            })
+                .catch(err => {
+                    console.log({ err })
+                })
+        } else {
+            console.log("no user")
+        }
     }
 
-    render() {
-        if (!this.state.user) return <p>loading user...</p>;
-        return (
-            <div>
-                <p>{this.state.user.email}</p>
+    if (!user) return <p>loading user...</p>;
+    return (
+        <>
+            <div className="user-card">
+                <img className="profile-pic" src={user.avatar_url} alt={user.username} />
+                <p>{user.email}</p>
             </div>
-        )
-    }
+            <AddNewPost getUserData={getUserData} />
+            <MyPhotos user={user} />
+        </>
+    )
 }
 
 export default UserDashboard;

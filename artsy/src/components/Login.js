@@ -3,7 +3,7 @@ import axios from "axios";
 
 class Login extends React.Component {
     state = {
-        email: "amanda",
+        email: "amanda@email.com",
         password: "1234"
     }
 
@@ -20,7 +20,6 @@ class Login extends React.Component {
             .then(res => {
                 console.log(res.data)
                 localStorage.setItem("token", res.data.token)
-                localStorage.setItem("userid", res.data.user.id)
                 this.props.history.push("/user")
             })
             .catch(err => {
