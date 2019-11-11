@@ -23,12 +23,12 @@ function Home() {
                 backgroundSize: 'cover'
             }}>
                 <div style={{ position: "absolute", top: '28%', right: '15%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <h1>Are you Artsy?</h1>
-                    <Button variant="info">Get Started</Button>
+                    <h1 style={{ fontSize: "64px" }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
+                    <Button variant="outline-info" size="lg">Get Started</Button>
                 </div>
             </Jumbotron>
             <Container>
-                <Row className="justify-content-sm-center" style={{ display: "flex", justifyContent: "center" }}>
+                <Row>
                     {photos.map(photo => {
                         return (
                             <Col xs={10} md={8} lg={6} xl={4} key={photo.id}>

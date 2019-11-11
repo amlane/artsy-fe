@@ -15,10 +15,12 @@ body::-webkit-scrollbar {
 }
 
 .App {
-  max-width: 1400px;
   margin: 0 auto;
 }
-
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 nav a {
   color: #000;
 }
@@ -26,9 +28,4 @@ nav a {
 nav a:hover {
   text-decoration: none;
   color: #17A2B8;
-}
-
-.add-new-post {
-  display: flex;
-  flex-direction: column;
 }

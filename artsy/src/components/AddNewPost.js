@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 import jwt_decode from "jwt-decode"
 
@@ -50,7 +50,7 @@ function AddNewPost({ getUserData }) {
 
     return (
         <>
-            <Button variant="info" onClick={handleShow}>
+            <Button variant="info" onClick={handleShow} style={{ float: "right" }}>
                 New Post
             </Button>
 
@@ -60,37 +60,37 @@ function AddNewPost({ getUserData }) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <form onSubmit={handleSubmit} className="add-new-post">
-                        <label>Photo:</label>
-                        <input
+                    <Form onSubmit={handleSubmit} className="add-new-post">
+                        <Form.Label>Photo:</Form.Label>
+                        <Form.Control
                             type="text"
                             name="photo_url"
                             value={newPost.photo_url}
                             required
                             onChange={e => setNewPost({ ...newPost, photo_url: e.target.value })}
                         />
-                        <label>Title:</label>
-                        <input
+                        <Form.Label>Title:</Form.Label>
+                        <Form.Control
                             type="text"
                             name="title"
                             value={newPost.title}
                             required
                             onChange={e => setNewPost({ ...newPost, title: e.target.value })}
                         />
-                        <label>description:</label>
-                        <input
+                        <Form.Label>description:</Form.Label>
+                        <Form.Control
                             type="text"
                             name="description"
                             value={newPost.description}
                             onChange={e => setNewPost({ ...newPost, description: e.target.value })}
                         />
-                    </form>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button type="submit" variant="secondary" onClick={handleClose}>
                         Close
             </Button>
-                    <Button variant="primary" onClick={(e) => handleSubmit(e)}>
+                    <Button variant="info" onClick={(e) => handleSubmit(e)}>
                         Add Item
             </Button>
                 </Modal.Footer>

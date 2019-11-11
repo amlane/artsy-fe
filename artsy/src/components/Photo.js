@@ -26,7 +26,7 @@ function Photo({ photo, getUserData }) {
     return (
         <>
             <Col xs={10} md={8} lg={6} xl={4}>
-                <Card onClick={handleShow} style={{ marginBottom: "15px" }}>
+                <Card onClick={handleShow} style={{ marginBottom: "15px", cursor: "pointer" }}>
                     <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '15rem', objectFit: 'cover' }} />
                     <Card.Body>
                         <Card.Title>{photo.title}</Card.Title>

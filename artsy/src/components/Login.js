@@ -6,7 +6,7 @@ function Login(props) {
     const [show, setShow] = useState(true);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     const [user, setUser] = useState({
         email: "amanda@email.com",

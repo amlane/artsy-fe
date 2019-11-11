@@ -13,7 +13,6 @@ function UserDashboard() {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        console.log("testing")
         getUserData();
     }, [])
 
@@ -35,13 +34,16 @@ function UserDashboard() {
     }
 
     if (!user) return <p>loading user...</p>;
+    console.log(user)
     return (
         <>
-            <Jumbotron>
+            <Jumbotron style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
                 <Image roundedCircle style={{ height: '150px' }} src={user.avatar_url} alt={user.username} />
+                <h2>{user.username}</h2>
                 <p>{user.email}</p>
+                <p>{user.location}</p>
+                <p>{user.created_at}</p>
             </Jumbotron>
-            <AddNewPost getUserData={getUserData} />
             <MyPhotos user={user} getUserData={getUserData} />
         </>
     )
