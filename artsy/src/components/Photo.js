@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "./axiosWithAuth";
 
-import { Card, Modal, Button } from 'react-bootstrap';
+import { Card, Modal, Button, Col } from 'react-bootstrap';
 
 function Photo({ photo, getUserData }) {
     const [show, setShow] = useState(false);
@@ -25,16 +25,17 @@ function Photo({ photo, getUserData }) {
 
     return (
         <>
-            <Card onClick={handleShow} key={photo.id} style={{ width: '18rem', height: 'auto', margin: '10px' }}>
-                <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '15rem', objectFit: 'cover' }} />
-                <Card.Body>
-                    <Card.Title>{photo.title}</Card.Title>
-                </Card.Body>
-            </Card>
-
+            <Col xs={10} md={8} lg={6} xl={4}>
+                <Card onClick={handleShow} style={{ marginBottom: "15px" }}>
+                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '15rem', objectFit: 'cover' }} />
+                    <Card.Body>
+                        <Card.Title>{photo.title}</Card.Title>
+                    </Card.Body>
+                </Card>
+            </Col>
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header>
-                    <img src={photo.photo_url} style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }} />
+                    <img src={photo.photo_url} style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }} alt={photo.title} />
                 </Modal.Header>
                 <Modal.Body>
                     <Modal.Title>{photo.title}</Modal.Title>

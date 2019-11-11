@@ -5,31 +5,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #F8F9FA;
+  -ms-overflow-style: none;
+  
 }
 
-.user-card {
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  background: #1C93B9;
-  color: white;
-  margin: 50px;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-.profile-pic {
-  height: 150px;
-  border-radius: 50%;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
+.App {
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+nav a {
+  color: #000;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: #17A2B8;
 }
 
 .add-new-post {

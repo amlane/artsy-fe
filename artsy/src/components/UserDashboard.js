@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
+import { Jumbotron, Image } from "react-bootstrap";
+
 import AddNewPost from "./AddNewPost"
 import MyPhotos from "./MyPhotos"
 
@@ -35,10 +37,10 @@ function UserDashboard() {
     if (!user) return <p>loading user...</p>;
     return (
         <>
-            <div className="user-card">
-                <img className="profile-pic" src={user.avatar_url} alt={user.username} />
+            <Jumbotron>
+                <Image roundedCircle style={{ height: '150px' }} src={user.avatar_url} alt={user.username} />
                 <p>{user.email}</p>
-            </div>
+            </Jumbotron>
             <AddNewPost getUserData={getUserData} />
             <MyPhotos user={user} getUserData={getUserData} />
         </>

@@ -51,8 +51,8 @@ function AddNewPost({ getUserData }) {
     return (
         <>
             <Button variant="info" onClick={handleShow}>
-                Add Item
-        </Button>
+                New Post
+            </Button>
 
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>

@@ -1,18 +1,19 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
 import Photo from "./Photo";
 
 function MyPhotos({ user, getUserData }) {
     return (
-        <div>
+        <Container>
             <h2>My Photos</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <Row>
                 {user.photos.map(photo => {
                     return (
-                        <Photo photo={photo} getUserData={getUserData} />
+                        <Photo key={photo.id} photo={photo} getUserData={getUserData} />
                     )
                 })}
-            </div>
-        </div>
+            </Row>
+        </Container>
     )
 }
 
