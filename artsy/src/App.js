@@ -6,6 +6,7 @@ import { Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute"
 
 import Login from './components/Login';
+import Home from "./components/Home";
 import UserDashboard from "./components/UserDashboard"
 import NavBar from "./components/NavBar"
 
@@ -16,6 +17,7 @@ function App() {
       <header className="App-header">
         <NavBar />
       </header>
+      <Route exact path="/" component={Home} />
       <Route exact path="/" component={Login} />
       <PrivateRoute path="/user" component={UserDashboard} />
     </div>

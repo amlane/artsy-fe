@@ -11,9 +11,13 @@ function NavBar(props) {
 
     return (
         <nav>
-            <h1>Artsy</h1>
-            <Link to="/">Login/SignUp</Link>
-            <p onClick={logout}>Log out</p>
+            <Link to="/">Artsy</Link>
+            <Link to="/user">Dashboard</Link>
+            {localStorage.getItem("token") ? (
+                <p onClick={logout}>Log out</p>
+            ) : (
+                    <Link to="/">Login/SignUp</Link>
+                )}
         </nav>
     )
 }

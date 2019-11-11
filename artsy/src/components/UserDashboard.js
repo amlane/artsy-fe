@@ -22,7 +22,6 @@ function UserDashboard() {
 
             Axios.get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
                 .then(res => {
-                    console.log("res", res.data)
                     setUser(res.data.user)
                 })
                 .catch(err => {
@@ -41,7 +40,7 @@ function UserDashboard() {
                 <p>{user.email}</p>
             </div>
             <AddNewPost getUserData={getUserData} />
-            <MyPhotos user={user} />
+            <MyPhotos user={user} getUserData={getUserData} />
         </>
     )
 }

@@ -30,10 +30,13 @@ function AddNewPost({ getUserData }) {
             user_id: decoded.subject
         }
 
+        if (newPost.title === "" || newPost.photo_url === "") return;
+
         axios.post("https://artsy-be.herokuapp.com/api/photos", requestBody)
             .then(res => {
                 console.log(res)
                 getUserData();
+                handleClose();
                 setNewPost({
                     photo_url: "",
                     title: "",
@@ -47,7 +50,7 @@ function AddNewPost({ getUserData }) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="info" onClick={handleShow}>
                 Add Item
         </Button>
 
@@ -63,6 +66,7 @@ function AddNewPost({ getUserData }) {
                             type="text"
                             name="photo_url"
                             value={newPost.photo_url}
+                            required
                             onChange={e => setNewPost({ ...newPost, photo_url: e.target.value })}
                         />
                         <label>Title:</label>
@@ -70,6 +74,7 @@ function AddNewPost({ getUserData }) {
                             type="text"
                             name="title"
                             value={newPost.title}
+                            required
                             onChange={e => setNewPost({ ...newPost, title: e.target.value })}
                         />
                         <label>description:</label>

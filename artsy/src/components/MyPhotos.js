@@ -1,19 +1,14 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import Photo from "./Photo";
 
-function MyPhotos({ user }) {
+function MyPhotos({ user, getUserData }) {
     return (
         <div>
             <h2>My Photos</h2>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {user.photos.map(photo => {
                     return (
-                        <Card key={photo.id} style={{ width: '18rem', height: 'auto', margin: '10px' }}>
-                            <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '15rem', objectFit: 'cover' }} />
-                            <Card.Body>
-                                <Card.Title>{photo.title}</Card.Title>
-                            </Card.Body>
-                        </Card>
+                        <Photo photo={photo} getUserData={getUserData} />
                     )
                 })}
             </div>
