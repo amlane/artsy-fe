@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Modal, Button, Form, Nav } from "react-bootstrap";
 
-function Login(props) {
+function Register(props) {
     const [show, setShow] = useState(true);
 
     const handleClose = () => {
@@ -11,21 +11,22 @@ function Login(props) {
     }
     // const handleShow = () => setShow(true);
 
-    const [user, setUser] = useState({
-        email: "amanda@email.com",
-        password: "1234"
+    const [newUser, setNewUser] = useState({
+        email: "",
+        password: "",
+        username: ""
     })
 
     const handleChange = e => {
-        setUser({
-            ...user,
+        setNewUser({
+            ...newUser,
             [e.target.name]: e.target.value
         })
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        axios.post("https://artsy-be.herokuapp.com/api/auth/login", user)
+        axios.post("https://artsy-be.herokuapp.com/api/auth/register", newUser)
             .then(res => {
                 console.log(res.data)
                 localStorage.setItem("token", res.data.token)
@@ -40,31 +41,38 @@ function Login(props) {
         <>
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Log in</Modal.Title>
+                    <Modal.Title>Sign Up</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
+                        <Form.Label>name</Form.Label>
+                        <Form.Control
+                            type="username"
+                            onChange={handleChange}
+                            value={newUser.username}
+                            name="username"
+                        />
                         <Form.Label>email</Form.Label>
                         <Form.Control
                             type="email"
                             onChange={handleChange}
-                            value={user.email}
+                            value={newUser.email}
                             name="email"
                         />
                         <Form.Label>password</Form.Label>
                         <Form.Control
                             type="password"
                             onChange={handleChange}
-                            value={user.password}
+                            value={newUser.password}
                             name="password"
                         />
                     </Form>
                     <Button block size="lg" style={{ marginTop: '20px' }} variant="info" onClick={(e) => handleSubmit(e)}>
-                        Login
+                        Get Started
                    </Button>
                 </Modal.Body>
                 <Modal.Footer>
-                    <p>New to Artsy? Sign up <Nav.Link style={{ display: 'inline', padding: '0' }} href="/register">here</Nav.Link>.</p>
+                    <p>Already Artsy? Log in <Nav.Link style={{ display: 'inline', padding: '0' }} href="/login">here</Nav.Link>.</p>
                 </Modal.Footer>
             </Modal>
         </>
@@ -72,4 +80,4 @@ function Login(props) {
 }
 
 
-export default Login;
+export default Register;

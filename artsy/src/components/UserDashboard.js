@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-
+import moment from "moment";
 import { Jumbotron, Image } from "react-bootstrap";
 
 import AddNewPost from "./AddNewPost"
@@ -42,7 +42,7 @@ function UserDashboard() {
                 <h2>{user.username}</h2>
                 <p>{user.email}</p>
                 <p>{user.location}</p>
-                <p>{user.created_at}</p>
+                <p>Joined Artsy {moment(user.created_at).fromNow()}</p>
             </Jumbotron>
             <MyPhotos user={user} getUserData={getUserData} />
         </>

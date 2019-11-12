@@ -24,7 +24,7 @@ function Home() {
             }}>
                 <div style={{ position: "absolute", top: '28%', right: '15%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <h1 style={{ fontSize: "64px" }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
-                    <Button variant="outline-info" size="lg">Get Started</Button>
+                    <Button variant="outline-info" size="lg" href="/register">Get Started</Button>
                 </div>
             </Jumbotron>
             <Container>
