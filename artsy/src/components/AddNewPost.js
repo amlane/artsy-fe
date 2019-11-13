@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { axiosWithAuth } from "./axiosWithAuth";
 
 import { Modal, Button, Form } from 'react-bootstrap';

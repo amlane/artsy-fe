@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
+import designer from "../assets/designer.svg"
+import camera from "../assets/camera.svg";
+import post_image from "../assets/image_post.svg";
 
 function Home() {
     const [photos, setPhotos] = useState([])
@@ -18,14 +21,37 @@ function Home() {
     if (!photos) return <h1>Loading photos...</h1>
     return (
         <div>
-            <Jumbotron style={{
-                backgroundImage: 'url("https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80")', height: '450px', backgroundRepeat: 'no-repeat', objectFit: 'cover', backgroundPosition: 'center',
-                backgroundSize: 'cover'
-            }}>
-                <div style={{ position: "absolute", top: '28%', right: '15%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <h1 style={{ fontSize: "64px" }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
-                    <Button variant="outline-info" size="lg" href="/register">Get Started</Button>
-                </div>
+            <Jumbotron style={{ textAlign: 'center' }}>
+                <h1 style={{ marginBottom: "30px" }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
+                <Container>
+                    <Row style={{}}>
+                        <Col>
+                            <Image
+                                src={designer}
+                                alt="designer"
+                                style={{ width: '80%' }}
+                            />
+                            <h3 style={{ marginTop: '20px' }}>Create your art</h3>
+                        </Col>
+                        <Col>
+                            <Image
+                                src={camera}
+                                alt="camera"
+                                style={{ width: '80%' }}
+                            />
+                            <h3 style={{ marginTop: '20px' }}>Snap a photo</h3>
+                        </Col>
+                        <Col>
+                            <Image
+                                src={post_image}
+                                alt="posting an image"
+                                style={{ width: '70%' }}
+                            />
+                            <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
+                        </Col>
+                    </Row>
+                </Container>
+                <Button style={{ marginTop: '30px', backgroundColor: '#1C93B9' }} variant="info" size="lg" href="/register">Get Started</Button>
             </Jumbotron>
             <Container>
                 <Row>
