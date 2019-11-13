@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "./axiosWithAuth";
 
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Image } from 'react-bootstrap';
 
 function AddNewPost({ getUserData }) {
 
@@ -44,6 +44,20 @@ function AddNewPost({ getUserData }) {
             })
     }
 
+    function checkUploadResult(result) {
+        if (result.event === 'success') {
+            setNewPost({ ...newPost, photo_url: result.info.secure_url })
+        }
+    }
+
+    function uploadWidget() {
+        window.cloudinary.openUploadWidget({ cloud_name: process.env.REACT_APP_CLOUD_NAME, upload_preset: process.env.REACT_APP_UPLOAD_PRESET },
+            function (error, result) {
+                console.log("Result", result);
+                checkUploadResult(result)
+            });
+    }
+
     return (
         <>
             <Button variant="info" onClick={handleShow} style={{ float: "right" }}>
@@ -57,14 +71,18 @@ function AddNewPost({ getUserData }) {
 
                 <Modal.Body>
                     <Form onSubmit={handleSubmit} className="add-new-post">
-                        <Form.Label>Photo:</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="photo_url"
-                            value={newPost.photo_url}
-                            required
-                            onChange={e => setNewPost({ ...newPost, photo_url: e.target.value })}
-                        />
+                        {newPost.photo_url ? (
+                            <>
+                                <Form.Label>Image Preview:</Form.Label>
+                                <Image
+                                    src={newPost.photo_url}
+                                    alt="image preview"
+                                    style={{ display: "block", width: "60%" }}
+                                />
+                            </>
+                        ) : <Button variant="info" onClick={uploadWidget} block>
+                                Add a Photo
+                            </Button>}
                         <Form.Label>Title:</Form.Label>
                         <Form.Control
                             type="text"
