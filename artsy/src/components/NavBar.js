@@ -11,7 +11,7 @@ function Navigation(props) {
     }
 
     return (
-        <Navbar variant="light" bg="light">
+        <Navbar variant="light" style={{ backgroundColor: "#E9ECEF" }}>
             <Navbar.Brand style={{ fontFamily: 'Megrim, cursive', fontSize: '64px' }}><Link to="/">Artsy</Link></Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
@@ -20,7 +20,7 @@ function Navigation(props) {
             </Nav>
             <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-secondary">Search</Button>
+                <Button variant="outline-info" style={{}}>Search</Button>
             </Form>
             <Nav>
                 {localStorage.getItem("token") ? (

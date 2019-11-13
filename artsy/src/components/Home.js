@@ -22,7 +22,7 @@ function Home() {
     return (
         <div>
             <Jumbotron style={{ textAlign: 'center' }}>
-                <h1 style={{ marginBottom: "30px" }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
+                <h1 style={{ marginBottom: "30px", fontWeight: 'lighter' }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
                 <Container>
                     <Row style={{}}>
                         <Col>
@@ -58,20 +58,19 @@ function Home() {
                     {photos.map(photo => {
                         return (
                             <Col xs={10} md={8} lg={6} xl={4} key={photo.id}>
-                                <Card style={{ marginBottom: "15px" }}>
-                                    <Card.Header style={{ display: 'flex', alignItems: 'center' }}>
-                                        <Image
-                                            roundedCircle
-                                            src={photo.avatar_url}
-                                            alt={photo.username}
-                                            style={{ height: '55px', margin: '5px' }}
-                                        />
-                                        <p style={{ margin: "5px" }}>{photo.username}</p>
-                                    </Card.Header>
-                                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '275px', objectFit: 'cover' }} />
-                                    <Card.Body>
-
-                                        <Card.Title>{photo.title}</Card.Title>
+                                <Card border="light" style={{ marginBottom: "15px" }}>
+                                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '200px', objectFit: 'cover' }} />
+                                    <Card.Body style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                        <div style={{ display: "flex" }}>
+                                            <Image
+                                                roundedCircle
+                                                src={photo.avatar_url}
+                                                alt={photo.username}
+                                                style={{ height: '40px', marginRight: '5px' }}
+                                            />
+                                            <p style={{ margin: "5px" }}>{photo.username}</p>
+                                        </div>
+                                        <span styles={{ alignSelf: 'flex-end' }}>{photo.likes} likes</span>
                                     </Card.Body>
                                 </Card>
                             </Col>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Modal, Button, Form, Nav } from "react-bootstrap";
+import Loader from "react-loader-spinner";
 
 function Register(props) {
     const [show, setShow] = useState(true);
@@ -16,6 +17,7 @@ function Register(props) {
         password: "",
         username: ""
     })
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
 
     const handleChange = e => {
         setNewUser({
@@ -26,11 +28,13 @@ function Register(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        setIsLoggingIn(true)
         axios.post("https://artsy-be.herokuapp.com/api/auth/register", newUser)
             .then(res => {
                 console.log(res.data)
                 localStorage.setItem("token", res.data.token)
                 props.history.push("/user")
+                setIsLoggingIn(false)
             })
             .catch(err => {
                 console.log({ err })
@@ -68,8 +72,8 @@ function Register(props) {
                         />
                     </Form>
                     <Button block size="lg" style={{ marginTop: '20px' }} variant="info" onClick={(e) => handleSubmit(e)}>
-                        Get Started
-                   </Button>
+                        {isLoggingIn ? <Loader type="ThreeDots" color="#fff" height={30} width={30} /> : "Get Started"}
+                    </Button>
                 </Modal.Body>
                 <Modal.Footer>
                     <p>Already Artsy? Log in <Nav.Link style={{ display: 'inline', padding: '0' }} href="/login">here</Nav.Link>.</p>
