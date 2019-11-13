@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { axiosWithAuth } from "./axiosWithAuth";
 
 import { Modal, Button, Form } from 'react-bootstrap';
-
-import jwt_decode from "jwt-decode"
 
 function AddNewPost({ getUserData }) {
 
@@ -21,18 +20,16 @@ function AddNewPost({ getUserData }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        var token = localStorage.getItem("token");
-        var decoded = jwt_decode(token);
+
         const requestBody = {
             photo_url: newPost.photo_url,
             title: newPost.title,
-            description: newPost.description,
-            user_id: decoded.subject
+            description: newPost.description
         }
 
         if (newPost.title === "" || newPost.photo_url === "") return;
 
-        axios.post("https://artsy-be.herokuapp.com/api/photos", requestBody)
+        axiosWithAuth().post("https://artsy-be.herokuapp.com/api/photos", requestBody)
             .then(res => {
                 console.log(res)
                 getUserData();

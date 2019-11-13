@@ -3,7 +3,6 @@ import Axios from "axios";
 import moment from "moment";
 import { Jumbotron, Image } from "react-bootstrap";
 
-import AddNewPost from "./AddNewPost"
 import MyPhotos from "./MyPhotos"
 
 import jwt_decode from "jwt-decode"
