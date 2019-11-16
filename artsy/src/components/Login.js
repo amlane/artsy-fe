@@ -63,7 +63,7 @@ function Login(props) {
                             name="password"
                         />
                     </Form>
-                    <Button block size="lg" style={{ marginTop: '20px' }} variant="info" onClick={(e) => handleSubmit(e)}>
+                    <Button block size="lg" style={{ marginTop: '20px', backgroundColor: '#1C93B9' }} variant="info" onClick={(e) => handleSubmit(e)}>
                         {isLoggingIn ? <Loader type="ThreeDots" color="#fff" height={30} width={30} /> : "Login"}
                     </Button>
                 </Modal.Body>

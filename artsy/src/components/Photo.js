@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "./axiosWithAuth";
+import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
 import { Card, Modal, Button, Col } from 'react-bootstrap';
 

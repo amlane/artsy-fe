@@ -48,30 +48,33 @@ function Register(props) {
                     <Modal.Title>Sign Up</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <Form.Label>email</Form.Label>
+                    <Form.Control
+                        type="email"
+                        onChange={handleChange}
+                        value={newUser.email}
+                        name="email"
+                    />
+                    <Form.Label>password</Form.Label>
+                    <Form.Control
+                        type="password"
+                        onChange={handleChange}
+                        value={newUser.password}
+                        name="password"
+                    />
                     <Form onSubmit={handleSubmit}>
-                        <Form.Label>name</Form.Label>
+                        <Form.Label>username</Form.Label>
                         <Form.Control
                             type="username"
                             onChange={handleChange}
                             value={newUser.username}
                             name="username"
                         />
-                        <Form.Label>email</Form.Label>
-                        <Form.Control
-                            type="email"
-                            onChange={handleChange}
-                            value={newUser.email}
-                            name="email"
-                        />
-                        <Form.Label>password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            onChange={handleChange}
-                            value={newUser.password}
-                            name="password"
-                        />
+                        <Form.Text className="text-muted">
+                            Your username can include spaces, letters, numbers, punctuations and special characters.
+                        </Form.Text>
                     </Form>
-                    <Button block size="lg" style={{ marginTop: '20px' }} variant="info" onClick={(e) => handleSubmit(e)}>
+                    <Button block size="lg" style={{ marginTop: '20px', backgroundColor: '#1C93B9' }} variant="info" onClick={(e) => handleSubmit(e)}>
                         {isLoggingIn ? <Loader type="ThreeDots" color="#fff" height={30} width={30} /> : "Get Started"}
                     </Button>
                 </Modal.Body>

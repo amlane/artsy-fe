@@ -3,13 +3,14 @@ import React from 'react';
 import './App.css';
 
 import { Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute"
+import PrivateRoute from "./components/Authentication/PrivateRoute"
 
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from "./components/Home";
-import UserDashboard from "./components/UserDashboard"
-import Navigation from "./components/NavBar"
+import UserDashboard from "./components/UserDashboard";
+import Navigation from "./components/NavBar";
+import EditProfile from "./components/EditProfile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <PrivateRoute path="/user" component={UserDashboard} />
+      <PrivateRoute path="/edit-profile" component={EditProfile} />
     </div>
   );
 }

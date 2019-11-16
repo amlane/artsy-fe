@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "./axiosWithAuth";
+import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
-import { Modal, Button, Form, Image } from 'react-bootstrap';
+import { Modal, Button, Form, Image, Figure } from 'react-bootstrap';
 
 function AddNewPost({ getUserData }) {
 
@@ -61,12 +61,14 @@ function AddNewPost({ getUserData }) {
     return (
         <>
             <Button variant="info" onClick={handleShow} style={{ float: "right" }}>
-                New Post
+                Add New Post
             </Button>
 
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Item</Modal.Title>
+                    <Modal.Title>
+                        Add New Post
+                    </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -80,9 +82,17 @@ function AddNewPost({ getUserData }) {
                                     style={{ display: "block", width: "60%" }}
                                 />
                             </>
-                        ) : <Button variant="info" onClick={uploadWidget} block>
-                                Add a Photo
-                            </Button>}
+                        ) : (
+                                <Figure style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Figure.Image
+                                        width={`60%`}
+                                        alt="Upload an image"
+                                        src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg"
+                                        onClick={uploadWidget}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                </Figure>
+                            )}
                         <Form.Label>Title:</Form.Label>
                         <Form.Control
                             type="text"

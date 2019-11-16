@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
+import Loader from "react-loader-spinner";
+
 import designer from "../assets/designer.svg"
 import camera from "../assets/camera.svg";
 import post_image from "../assets/image_post.svg";
@@ -11,14 +13,13 @@ function Home() {
     useEffect(() => {
         axios.get("https://artsy-be.herokuapp.com/api/photos")
             .then(res => {
-                console.log(res)
                 setPhotos(res.data.photos)
             })
             .catch(err => {
                 console.log({ err })
             })
     }, [])
-    if (!photos) return <h1>Loading photos...</h1>
+    if (!photos) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
         <div>
             <Jumbotron style={{ textAlign: 'center' }}>
@@ -66,7 +67,7 @@ function Home() {
                                                 roundedCircle
                                                 src={photo.avatar_url}
                                                 alt={photo.username}
-                                                style={{ height: '40px', marginRight: '5px' }}
+                                                style={{ height: '40px', width: '40px', objectFit: 'cover', marginRight: '5px' }}
                                             />
                                             <p style={{ margin: "5px" }}>{photo.username}</p>
                                         </div>
