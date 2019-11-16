@@ -62,7 +62,7 @@ function Home() {
                     {photos.map(photo => {
                         return (
                             <Col xs={10} md={8} lg={6} xl={4} key={photo.id}>
-                                <Card border="light" style={{ marginBottom: "15px" }}>
+                                <Card style={{ marginBottom: "15px" }}>
                                     <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '200px', objectFit: 'cover' }} />
                                     <Card.Body style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <div style={{ display: "flex" }}>
@@ -70,7 +70,7 @@ function Home() {
                                                 roundedCircle
                                                 src={photo.avatar_url}
                                                 alt={photo.username}
-                                                style={{ height: '40px', width: '40px', objectFit: 'cover', marginRight: '5px' }}
+                                                style={{ height: '40px', width: '40px', objectFit: 'cover', marginRight: '5px', objectPosition: 'center' }}
                                             />
                                             <p style={{ margin: "5px" }}>{photo.username}</p>
                                         </div>

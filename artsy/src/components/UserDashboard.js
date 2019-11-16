@@ -33,12 +33,12 @@ function UserDashboard() {
     return (
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
             <Card style={{ width: '18rem', margin: '3% 0 0 3%' }}>
-                <Card.Img variant="top" rounded style={{ height: '260px', width: '100%', objectFit: 'cover' }} src={user.avatar_url} alt={user.username} />
+                <Card.Img variant="top" rounded style={{ height: '260px', width: '100%', objectFit: 'cover', objectPosition: 'center' }} src={user.avatar_url} alt={user.username} />
                 <Card.Body>
                     <Card.Title>{user.username}</Card.Title>
-                    <Card.Text><i style={{ paddingRight: '5px' }} className="fas fa-envelope"></i>{user.email}</Card.Text>
-                    <Card.Text><i style={{ paddingRight: '5px' }} className="fas fa-map-marker-alt"></i>{user.location}</Card.Text>
                     <Card.Text><i style={{ paddingRight: '5px' }} className="fas fa-palette"></i>Joined Artsy {moment(user.created_at).fromNow()}</Card.Text>
+                    <Card.Text><i style={{ paddingRight: '5px' }} className="fas fa-map-marker-alt"></i>{user.location}</Card.Text>
+                    <Card.Text><i style={{ paddingRight: '5px' }} className="fas fa-envelope"></i>{user.email}</Card.Text>
                     <Card.Subtitle>About the Artist</Card.Subtitle>
                     <Card.Text>{user.about}</Card.Text>
                     <Button variant="outline-secondary" href="/edit-profile">Edit Profile</Button>

@@ -12,7 +12,7 @@ function Navigation(props) {
 
     return (
         <Navbar variant="light" style={{ backgroundColor: "#E9ECEF" }}>
-            <Navbar.Brand style={{ fontFamily: 'Megrim, cursive', fontSize: '64px' }}><Link to="/">Artsy</Link></Navbar.Brand>
+            <Navbar.Brand style={{ fontFamily: 'Megrim, cursive', fontSize: '64px', margin: '0 3% 0 3%' }}><Link to="/">Artsy</Link></Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/user">Dashboard</Nav.Link>
@@ -22,7 +22,7 @@ function Navigation(props) {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-info" style={{}}>Search</Button>
             </Form>
-            <Nav>
+            <Nav style={{ margin: '0 3% 0 3%' }}>
                 {localStorage.getItem("token") ? (
                     <Nav.Link onClick={logout}>Log out</Nav.Link>
                 ) : (

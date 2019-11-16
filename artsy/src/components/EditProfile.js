@@ -24,7 +24,8 @@ function EditProfile(props) {
                 setInputValue({
                     username: res.data.user.username !== null ? res.data.user.username : "",
                     location: res.data.user.location !== null ? res.data.user.location : "",
-                    about: res.data.user.about !== null ? res.data.user.about : ""
+                    about: res.data.user.about !== null ? res.data.user.about : "",
+                    avatar_url: res.data.user.avatar_url
                 })
             })
             .catch(err => {
@@ -47,30 +48,14 @@ function EditProfile(props) {
     const handleSubmit = e => {
         e.preventDefault();
         console.log(inputValue)
-        if (inputValue.avatar_url === "") {
-            const requestBody = {
-                username: inputValue.username,
-                location: inputValue.location,
-                about: inputValue.about
-            }
-            axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, requestBody)
-                .then(res => {
-                    console.log(res)
-                    props.history.push("/user")
-                })
-                .catch(err => {
-                    console.log({ err })
-                })
-        } else {
-            axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
-                .then(res => {
-                    console.log(res)
-                    props.history.push("/user")
-                })
-                .catch(err => {
-                    console.log({ err })
-                })
-        }
+        axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
+            .then(res => {
+                console.log(res)
+                props.history.push("/user")
+            })
+            .catch(err => {
+                console.log({ err })
+            })
     }
 
     function checkUploadResult(result) {
@@ -88,83 +73,81 @@ function EditProfile(props) {
     }
 
     return (
-        <Form style={{ width: '60%', margin: '20px auto' }}>
-            {inputValue.avatar_url ? (
-                <Figure style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Form.Label>Profile Pic Preview:</Form.Label>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10%' }}>
+
+                <Figure style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'column' }}>
+                    <Form.Label style={{ textAlign: 'center', cursor: 'pointer' }} onClick={uploadWidget}><i className="far fa-images"></i> Edit profile picture</Form.Label>
                     <Image
                         src={inputValue.avatar_url}
                         alt="image preview"
-                        style={{ display: "block", width: "30%" }}
+                        style={{ height: '350px', width: '65%', objectFit: 'cover', objectPosition: 'center', cursor: 'pointer' }}
+                        onClick={uploadWidget}
                     />
+                    <Form.Text className="text-muted">
+                        Here is a preview of what your new profile picture will look like.
+                   </Form.Text>
                 </Figure>
-            ) : (
-                    <Figure style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Figure.Image
-                            width={`30%`}
-                            alt="Upload an image"
-                            src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg"
-                            onClick={uploadWidget}
-                            style={{ cursor: 'pointer' }}
-                        />
-                    </Figure>
-                )}
-            <Row>
-                <Col>
-                    <Form.Group controlId="formUsername">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Username"
-                            name="username"
-                            value={inputValue.username}
-                            onChange={handleChange}
-                        />
-                        <Form.Text className="text-muted">
-                            Your username can include spaces, letters, numbers, punctuations and special characters.
+            </div>
+            <Form style={{ width: '60%', marginRight: '10%' }}>
+
+                <Row>
+                    <Col>
+                        <Form.Group controlId="formUsername">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Username"
+                                name="username"
+                                value={inputValue.username}
+                                onChange={handleChange}
+                            />
+                            <Form.Text className="text-muted">
+                                Your username can include spaces, letters, numbers, punctuations and special characters.
+                        </Form.Text>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlId="formLocation">
+                            <Form.Label>Location</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Location"
+                                name="location"
+                                value={inputValue.location}
+                                onChange={handleChange}
+                            />
+                            <Form.Text className="text-muted">
+                                Example: "Eugene, Oregon"
                 </Form.Text>
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="formLocation">
-                        <Form.Label>Location</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Location"
-                            name="location"
-                            value={inputValue.location}
-                            onChange={handleChange}
-                        />
-                        <Form.Text className="text-muted">
-                            Example: "Eugene, Oregon"
-                </Form.Text>
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Form.Group controlId="formUsername">
-                <Form.Label>About</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    rows="5"
-                    placeholder="Tell us about yourself..."
-                    name="about"
-                    value={inputValue.about}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Row>
-                <Col>
-                    <Button block onClick={handleSubmit} style={{ backgroundColor: '#1C93B9', marginRight: '20px' }} variant="info" type="submit">
-                        Submit
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Form.Group controlId="formUsername">
+                    <Form.Label>About</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows="5"
+                        placeholder="Tell us about yourself..."
+                        name="about"
+                        value={inputValue.about}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Row>
+                    <Col>
+                        <Button block onClick={handleSubmit} style={{ backgroundColor: '#1C93B9', marginRight: '20px' }} variant="info" type="submit">
+                            Submit
             </Button>
-                </Col>
-                <Col>
-                    <Button block onClick={() => { props.history.push("/user") }} variant="outline-secondary" type="submit">
-                        Cancel
+                    </Col>
+                    <Col>
+                        <Button block onClick={() => { props.history.push("/user") }} variant="outline-secondary" type="submit">
+                            Cancel
             </Button>
-                </Col>
-            </Row>
-        </Form>
+                    </Col>
+                </Row>
+            </Form>
+        </div>
     )
 }
 

@@ -13,8 +13,8 @@ function Login(props) {
     // const handleShow = () => setShow(true);
 
     const [user, setUser] = useState({
-        email: "amanda@email.com",
-        password: "1234"
+        email: "",
+        password: ""
     });
     const [isLoggingIn, setIsLoggingIn] = useState(false);
 
