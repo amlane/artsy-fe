@@ -152,9 +152,18 @@ function EditProfile(props) {
                     onChange={handleChange}
                 />
             </Form.Group>
-            <Button onClick={handleSubmit} style={{ backgroundColor: '#1C93B9' }} variant="info" type="submit">
-                Submit
+            <Row>
+                <Col>
+                    <Button block onClick={handleSubmit} style={{ backgroundColor: '#1C93B9', marginRight: '20px' }} variant="info" type="submit">
+                        Submit
             </Button>
+                </Col>
+                <Col>
+                    <Button block onClick={() => { props.history.push("/user") }} variant="outline-secondary" type="submit">
+                        Cancel
+            </Button>
+                </Col>
+            </Row>
         </Form>
     )
 }

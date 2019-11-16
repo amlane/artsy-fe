@@ -5,7 +5,7 @@ import Photo from "./Photo";
 
 function MyPhotos({ user, getUserData }) {
     return (
-        <Container>
+        <Container style={{ marginTop: '25px' }}>
             <AddNewPost getUserData={getUserData} />
             <h2>My Posts</h2>
             <Row>

@@ -19,41 +19,44 @@ function Home() {
                 console.log({ err })
             })
     }, [])
-    if (!photos) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
+    if (photos.length === 0) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
         <div>
-            <Jumbotron style={{ textAlign: 'center' }}>
-                <h1 style={{ marginBottom: "30px", fontWeight: 'lighter' }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
-                <Container>
-                    <Row style={{}}>
-                        <Col>
-                            <Image
-                                src={designer}
-                                alt="designer"
-                                style={{ width: '80%' }}
-                            />
-                            <h3 style={{ marginTop: '20px' }}>Create your art</h3>
-                        </Col>
-                        <Col>
-                            <Image
-                                src={camera}
-                                alt="camera"
-                                style={{ width: '80%' }}
-                            />
-                            <h3 style={{ marginTop: '20px' }}>Snap a photo</h3>
-                        </Col>
-                        <Col>
-                            <Image
-                                src={post_image}
-                                alt="posting an image"
-                                style={{ width: '70%' }}
-                            />
-                            <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
-                        </Col>
-                    </Row>
-                </Container>
-                <Button style={{ marginTop: '30px', backgroundColor: '#1C93B9' }} variant="info" size="lg" href="/register">Get Started</Button>
-            </Jumbotron>
+            {!localStorage.getItem("token") ? (
+                <Jumbotron style={{ textAlign: 'center' }}>
+                    <h1 style={{ marginBottom: "30px", fontWeight: 'lighter' }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
+                    <Container>
+                        <Row style={{}}>
+                            <Col>
+                                <Image
+                                    src={designer}
+                                    alt="designer"
+                                    style={{ width: '80%' }}
+                                />
+                                <h3 style={{ marginTop: '20px' }}>Create your art</h3>
+                            </Col>
+                            <Col>
+                                <Image
+                                    src={camera}
+                                    alt="camera"
+                                    style={{ width: '80%' }}
+                                />
+                                <h3 style={{ marginTop: '20px' }}>Snap a photo</h3>
+                            </Col>
+                            <Col>
+                                <Image
+                                    src={post_image}
+                                    alt="posting an image"
+                                    style={{ width: '70%' }}
+                                />
+                                <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Button style={{ marginTop: '30px', backgroundColor: '#1C93B9' }} variant="info" size="lg" href="/register">Get Started</Button>
+                </Jumbotron>
+            ) : null}
+
             <Container>
                 <Row>
                     {photos.map(photo => {
@@ -71,7 +74,7 @@ function Home() {
                                             />
                                             <p style={{ margin: "5px" }}>{photo.username}</p>
                                         </div>
-                                        <span styles={{ alignSelf: 'flex-end' }}>{photo.likes} likes</span>
+                                        <span styles={{ alignSelf: 'flex-end' }}>{photo.likes} <i className="fas fa-star" style={{ color: "#D4AF43" }}></i></span>
                                     </Card.Body>
                                 </Card>
                             </Col>
