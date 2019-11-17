@@ -33,7 +33,7 @@ function Register(props) {
             .then(res => {
                 console.log(res.data)
                 localStorage.setItem("token", res.data.token)
-                props.history.push("/user")
+                props.history.push("/user/posts")
                 setIsLoggingIn(false)
             })
             .catch(err => {

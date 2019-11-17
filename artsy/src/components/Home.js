@@ -15,17 +15,19 @@ function Home() {
     const [userFavorites, setUserFavorites] = useState(null)
     const [favsID, setFavsID] = useState(null);
 
-    var token = localStorage.getItem("token");
-    var decoded = jwt_decode(token);
 
     const getUserData = () => {
-        Axios.get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
-            .then(res => {
-                setUserFavorites(res.data.user.favorites)
-            })
-            .catch(err => {
-                console.log({ err })
-            })
+        var token = localStorage.getItem("token");
+        if (token) {
+            var decoded = jwt_decode(token);
+            Axios.get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
+                .then(res => {
+                    setUserFavorites(res.data.user.favorites)
+                })
+                .catch(err => {
+                    console.log({ err })
+                })
+        }
     }
 
     useEffect(() => {
@@ -72,7 +74,7 @@ function Home() {
 
 
     console.log(userFavorites)
-    if (!photos || !favsID) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
+    if (!photos) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
         <div>
             {!localStorage.getItem("token") ? (
@@ -130,7 +132,7 @@ function Home() {
                                     <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '150px', objectFit: 'cover', objectPosition: 'center' }} />
                                     <Card.Body style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                                         {}
-                                        <span onClick={() => favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}>{photo.likes} <i className="fas fa-star" style={{ color: favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer" }}></i></span>
+                                        <span onClick={() => favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}>{photo.likes} <i className="fas fa-star" style={{ color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer" }}></i></span>
                                     </Card.Body>
                                 </Card>
                             </Col>
