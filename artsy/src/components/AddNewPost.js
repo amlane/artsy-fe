@@ -1,36 +1,29 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
-
 import { Modal, Button, Form, Image, Figure } from 'react-bootstrap';
+import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
 
 function AddNewPost({ getUserData }) {
 
     const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-
     const [newPost, setNewPost] = useState({
         photo_url: "",
         title: "",
         description: ""
     })
 
+    const [uploadWidget] = useCloudinaryWidget(newPost, setNewPost, "photo_url")
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const handleSubmit = e => {
         e.preventDefault();
-
-        const requestBody = {
-            photo_url: newPost.photo_url,
-            title: newPost.title,
-            description: newPost.description
-        }
-
         if (newPost.title === "" || newPost.photo_url === "") return;
 
-        axiosWithAuth().post("https://artsy-be.herokuapp.com/api/photos", requestBody)
+        axiosWithAuth().post("https://artsy-be.herokuapp.com/api/photos", newPost)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 getUserData();
                 handleClose();
                 setNewPost({
@@ -44,19 +37,6 @@ function AddNewPost({ getUserData }) {
             })
     }
 
-    function checkUploadResult(result) {
-        if (result.event === 'success') {
-            setNewPost({ ...newPost, photo_url: result.info.secure_url })
-        }
-    }
-
-    function uploadWidget() {
-        window.cloudinary.openUploadWidget({ cloud_name: process.env.REACT_APP_CLOUD_NAME, upload_preset: process.env.REACT_APP_UPLOAD_PRESET },
-            function (error, result) {
-                console.log("Result", result);
-                checkUploadResult(result)
-            });
-    }
 
     return (
         <>

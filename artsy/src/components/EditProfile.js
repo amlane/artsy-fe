@@ -3,7 +3,7 @@ import Axios from "axios";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom";
-
+import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Figure, Image } from "react-bootstrap";
 
 function EditProfile(props) {
@@ -14,6 +14,7 @@ function EditProfile(props) {
         about: "",
         avatar_url: ""
     })
+    const [uploadWidget] = useCloudinaryWidget(inputValue, setInputValue, "avatar_url")
 
     var token = localStorage.getItem("token");
     var decoded = jwt_decode(token);
@@ -47,7 +48,7 @@ function EditProfile(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(inputValue)
+        // console.log(inputValue)
         axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
             .then(res => {
                 console.log(res)
@@ -58,19 +59,19 @@ function EditProfile(props) {
             })
     }
 
-    function checkUploadResult(result) {
-        if (result.event === 'success') {
-            setInputValue({ ...inputValue, avatar_url: result.info.secure_url })
-        }
-    }
+    // function checkUploadResult(result) {
+    //     if (result.event === 'success') {
+    //         setInputValue({ ...inputValue, avatar_url: result.info.secure_url })
+    //     }
+    // }
 
-    function uploadWidget() {
-        window.cloudinary.openUploadWidget({ cloud_name: process.env.REACT_APP_CLOUD_NAME, upload_preset: process.env.REACT_APP_UPLOAD_PRESET },
-            function (error, result) {
-                console.log("Result", result);
-                checkUploadResult(result)
-            });
-    }
+    // function uploadWidget() {
+    //     window.cloudinary.openUploadWidget({ cloud_name: process.env.REACT_APP_CLOUD_NAME, upload_preset: process.env.REACT_APP_UPLOAD_PRESET },
+    //         function (error, result) {
+    //             // console.log("Result", result);
+    //             checkUploadResult(result)
+    //         });
+    // }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
