@@ -2,15 +2,34 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
 import Loader from "react-loader-spinner";
+import jwt_decode from "jwt-decode"
+import Axios from "axios";
 
 import designer from "../assets/designer.svg"
 import camera from "../assets/camera.svg";
 import post_image from "../assets/image_post.svg";
+import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
 function Home() {
-    const [photos, setPhotos] = useState([])
+    const [photos, setPhotos] = useState(null)
+    const [userFavorites, setUserFavorites] = useState(null)
+    const [favsID, setFavsID] = useState(null);
+
+    var token = localStorage.getItem("token");
+    var decoded = jwt_decode(token);
+
+    const getUserData = () => {
+        Axios.get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
+            .then(res => {
+                setUserFavorites(res.data.user.favorites)
+            })
+            .catch(err => {
+                console.log({ err })
+            })
+    }
 
     useEffect(() => {
+        getUserData();
         axios.get("https://artsy-be.herokuapp.com/api/photos")
             .then(res => {
                 setPhotos(res.data.photos)
@@ -19,7 +38,41 @@ function Home() {
                 console.log({ err })
             })
     }, [])
-    if (photos.length === 0) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
+
+    useEffect(() => {
+        if (userFavorites) {
+            const favs = userFavorites.map(favs => {
+                return favs.id
+            })
+            setFavsID(favs)
+        }
+    }, [userFavorites])
+
+    const addLike = (id) => {
+        axiosWithAuth().post(`https://artsy-be.herokuapp.com/api/photos/${id}/like`)
+            .then(res => {
+                setPhotos(res.data.photos)
+                getUserData();
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const unLike = (id) => {
+        axiosWithAuth().delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike`)
+            .then(res => {
+                setPhotos(res.data.photos)
+                getUserData();
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    console.log(userFavorites)
+    if (!photos || !favsID) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
         <div>
             {!localStorage.getItem("token") ? (
@@ -61,10 +114,9 @@ function Home() {
                 <Row>
                     {photos.map(photo => {
                         return (
-                            <Col xs={10} md={8} lg={6} xl={4} key={photo.id}>
-                                <Card style={{ marginBottom: "15px" }}>
-                                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '200px', objectFit: 'cover' }} />
-                                    <Card.Body style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Col xl={3} key={photo.id}>
+                                <Card style={{ marginBottom: "15px", border: '1px solid #E9ECEF' }}>
+                                    <Card.Header style={{}}>
                                         <div style={{ display: "flex" }}>
                                             <Image
                                                 roundedCircle
@@ -74,7 +126,11 @@ function Home() {
                                             />
                                             <p style={{ margin: "5px" }}>{photo.username}</p>
                                         </div>
-                                        <span styles={{ alignSelf: 'flex-end' }}>{photo.likes} <i className="fas fa-star" style={{ color: "#D4AF43" }}></i></span>
+                                    </Card.Header>
+                                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '150px', objectFit: 'cover', objectPosition: 'center' }} />
+                                    <Card.Body style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                                        {}
+                                        <span onClick={() => favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}>{photo.likes} <i className="fas fa-star" style={{ color: favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer" }}></i></span>
                                     </Card.Body>
                                 </Card>
                             </Col>

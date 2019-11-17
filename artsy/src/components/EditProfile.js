@@ -52,26 +52,12 @@ function EditProfile(props) {
         axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
             .then(res => {
                 console.log(res)
-                props.history.push("/user")
+                props.history.push("/user/posts")
             })
             .catch(err => {
                 console.log({ err })
             })
     }
-
-    // function checkUploadResult(result) {
-    //     if (result.event === 'success') {
-    //         setInputValue({ ...inputValue, avatar_url: result.info.secure_url })
-    //     }
-    // }
-
-    // function uploadWidget() {
-    //     window.cloudinary.openUploadWidget({ cloud_name: process.env.REACT_APP_CLOUD_NAME, upload_preset: process.env.REACT_APP_UPLOAD_PRESET },
-    //         function (error, result) {
-    //             // console.log("Result", result);
-    //             checkUploadResult(result)
-    //         });
-    // }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -142,7 +128,7 @@ function EditProfile(props) {
             </Button>
                     </Col>
                     <Col>
-                        <Button block onClick={() => { props.history.push("/user") }} variant="outline-secondary" type="submit">
+                        <Button block onClick={() => { props.history.push("/user/posts") }} variant="outline-secondary" type="submit">
                             Cancel
             </Button>
                     </Col>

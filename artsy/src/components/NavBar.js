@@ -15,7 +15,7 @@ function Navigation(props) {
             <Navbar.Brand style={{ fontFamily: 'Megrim, cursive', fontSize: '64px', margin: '0 3% 0 3%' }}><Link to="/">Artsy</Link></Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/user">Dashboard</Nav.Link>
+                <Nav.Link href="/user/posts">Dashboard</Nav.Link>
                 <Nav.Link href="/">Discover</Nav.Link>
             </Nav>
             <Form inline>

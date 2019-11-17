@@ -3,9 +3,6 @@ import Axios from "axios";
 import Loader from "react-loader-spinner";
 import moment from "moment";
 import { Button, Card } from "react-bootstrap";
-
-import MyPhotos from "./MyPhotos"
-
 import jwt_decode from "jwt-decode"
 import "../index.css"
 
@@ -29,10 +26,14 @@ function UserDashboard() {
             })
     }
 
-    if (!user) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
+    if (!user) return <Loader type="TailSpin" color="#1C93B9" height={100} width={100} style={{ marginLeft: '145px', marginTop: '145px' }} />;
     return (
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
-            <Card style={{ width: '18rem', margin: '3% 0 0 3%' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', width: '25%' }}>
+            <Card style={{ width: '18rem', margin: '0 0 0 3%', border: '1px solid #E9ECEF' }}>
+                <Card.Header>
+                    <Button variant="outline-secondary" href="/user/posts" block>My Posts</Button>
+                    <Button variant="outline-secondary" href="/user/favorites" block>My Favorites</Button>
+                </Card.Header>
                 <Card.Img variant="top" rounded style={{ height: '260px', width: '100%', objectFit: 'cover', objectPosition: 'center' }} src={user.avatar_url} alt={user.username} />
                 <Card.Body>
                     <Card.Title>{user.username}</Card.Title>
@@ -44,7 +45,6 @@ function UserDashboard() {
                     <Button variant="outline-secondary" href="/edit-profile">Edit Profile</Button>
                 </Card.Body>
             </Card>
-            <MyPhotos user={user} getUserData={getUserData} />
         </div>
     )
 }

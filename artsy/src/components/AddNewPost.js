@@ -40,8 +40,8 @@ function AddNewPost({ getUserData }) {
 
     return (
         <>
-            <Button variant="info" onClick={handleShow} style={{ float: "right" }}>
-                Add New Post
+            <Button variant="info" onClick={handleShow} style={{ marginBottom: '10px' }}>
+                Add a Post
             </Button>
 
             <Modal show={show} onHide={handleClose} centered>
