@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import { Modal, Button, Form, Image, Figure } from 'react-bootstrap';
 import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
+import { getUser } from "../actions";
 
 function AddNewPost() {
-
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const [newPost, setNewPost] = useState({
         photo_url: "",
@@ -25,6 +27,7 @@ function AddNewPost() {
             .then(res => {
                 // console.log(res)
                 handleClose();
+                dispatch(getUser());
                 setNewPost({
                     photo_url: "",
                     title: "",
