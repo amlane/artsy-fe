@@ -22,7 +22,9 @@ function UserDashboard() {
     return (
         <>
             <Jumbotron className="user-dashboard">
-                <img className="avatar" src={user.avatar_url} alt={user.username} />
+                <section>
+                    <img className="avatar" src={user.avatar_url} alt={user.username} />
+                </section>
                 <section>
                     <header>
                         <h1>{user.username}</h1>

@@ -12,7 +12,7 @@ function MyPhotos() {
     if (!user) return <Loader type="ThreeDots" color="#1C93B9" height={150} width={150} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '15vh' }} />;
 
     return (
-        <Container style={{ marginTop: '25px' }}>
+        <Container style={{ marginTop: '25px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
             <AddNewPost />
             <Row>
                 {user && user.photos.map(photo => {

@@ -89,7 +89,7 @@ function Home(props) {
                     {photos.map(photo => {
                         return (
                             <Col xl={7} key={photo.id}>
-                                <Card style={{ marginBottom: "15px", border: '1px solid #E9ECEF' }}>
+                                <Card style={{ marginBottom: "15px", border: '1px solid #E9ECEF', maxWidth: '600px' }}>
                                     <Card.Header style={{}}>
                                         <div style={{ display: "flex" }}>
                                             <Image

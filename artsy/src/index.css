@@ -87,6 +87,7 @@ nav .fas:hover {
 
 .dashboard-nav {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   border-top: 1px solid silver;
   width: 80%;
@@ -103,4 +104,32 @@ nav .fas:hover {
 
 .dashboard-nav a.active {
   border-top: 1px solid;
+}
+
+@media only screen and (max-width: 600px) {
+  /* navigation */
+  nav {
+    flex-direction: column;
+  }
+
+  /* user-dashboard */
+  .user-dashboard {
+    flex-direction: column;
+    width: 90%;
+    align-items: flex-start;
+  }
+  .user-dashboard section header {
+    flex-direction: row;
+    width: 90%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .user-dashboard section .main{
+    flex-direction: column;
+  }
+  .user-dashboard .avatar {
+    height: 100px;
+    width: 100px;
+  }
+
 }
