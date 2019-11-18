@@ -9,7 +9,7 @@ function HomeHero() {
     return (
         <>
             {!localStorage.getItem("token") ? (
-                <Jumbotron style={{ textAlign: 'center' }}>
+                <Jumbotron style={{ textAlign: 'center', background: "#fafafa" }}>
                     <h1 style={{ marginBottom: "30px", fontWeight: 'lighter' }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
                     <Container>
                         <Row style={{}}>
