@@ -22,21 +22,22 @@ function UserDashboard() {
     return (
         <>
             <Jumbotron className="user-dashboard">
-                <section>
+                <header>
                     <img className="avatar" src={user.avatar_url} alt={user.username} />
-                </section>
+                    <Button className="mobile" variant="outline-secondary" href="/edit-profile">Edit Profile</Button>
+                </header>
                 <section>
-                    <header>
+                    <div>
                         <h1>{user.username}</h1>
-                        <Button variant="outline-secondary" href="/edit-profile">Edit Profile</Button>
-                    </header>
+                        <Button className="desktop" variant="outline-secondary" href="/edit-profile">Edit Profile</Button>
+                    </div>
+                    {/* <h2>About the Artist</h2> */}
+                    <p>{user.about}</p>
                     <div className="main">
                         <p><i className="fas fa-palette"></i>{user.photos.length} posts</p>
                         <p><i className="fas fa-paint-brush"></i>Joined {moment(user.created_at).fromNow()}</p>
                         <p><i className="fas fa-map-marker-alt"></i>{user.location}</p>
                     </div>
-                    <h2>About the Artist</h2>
-                    <p>{user.about}</p>
                 </section>
             </Jumbotron>
             <nav className="dashboard-nav">
