@@ -9,36 +9,31 @@ function HomeHero() {
     return (
         <>
             {!localStorage.getItem("token") ? (
-                <Jumbotron style={{ textAlign: 'center', background: "#fafafa" }}>
-                    <h1 style={{ marginBottom: "30px", fontWeight: 'lighter' }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
-                    <Container>
-                        <Row style={{}}>
-                            <Col>
-                                <Image
-                                    src={designer}
-                                    alt="designer"
-                                    style={{ width: '80%' }}
-                                />
-                                <h3 style={{ marginTop: '20px' }}>Create your art</h3>
-                            </Col>
-                            <Col>
-                                <Image
-                                    src={camera}
-                                    alt="camera"
-                                    style={{ width: '80%' }}
-                                />
-                                <h3 style={{ marginTop: '20px' }}>Snap a photo</h3>
-                            </Col>
-                            <Col>
-                                <Image
-                                    src={post_image}
-                                    alt="posting an image"
-                                    style={{ width: '70%' }}
-                                />
-                                <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
-                            </Col>
-                        </Row>
-                    </Container>
+                <Jumbotron className="home-hero">
+                    <h1>Are you <span>Artsy?</span></h1>
+                    <section className="container">
+                        <div>
+                            <img
+                                src={designer}
+                                alt="designer"
+                            />
+                            <h3 style={{ marginTop: '20px' }}>Create your art</h3>
+                        </div>
+                        <div>
+                            <img
+                                src={camera}
+                                alt="camera"
+                            />
+                            <h3 style={{ marginTop: '20px' }}>Snap a photo</h3>
+                        </div>
+                        <div>
+                            <img
+                                src={post_image}
+                                alt="posting an image"
+                            />
+                            <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
+                        </div>
+                    </section>
                     <Button style={{ marginTop: '30px', backgroundColor: '#1C93B9' }} variant="info" size="lg" href="/register">Get Started</Button>
                 </Jumbotron>
             ) : null}

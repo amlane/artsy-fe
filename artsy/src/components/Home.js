@@ -90,7 +90,7 @@ function Home(props) {
                         return (
                             <Col xl={7} key={photo.id}>
                                 <Card style={{ marginBottom: "15px", border: '1px solid #E9ECEF', maxWidth: '600px' }}>
-                                    <Card.Header style={{}}>
+                                    <Card.Header style={{ background: '#fff' }}>
                                         <div style={{ display: "flex" }}>
                                             <Image
                                                 roundedCircle
@@ -105,7 +105,7 @@ function Home(props) {
                                     <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                                         <span onClick={() => localStorage.getItem("token") && favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}><i className="fas fa-star" style={{ color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer", fontSize: '24px', paddingBottom: '10px' }}></i></span>
                                         <span>{photo.likes} likes</span>
-                                        <span style={{ color: 'silver', fontSize: '12px', textTransform: 'uppercase', padding: '10px 0' }}>{moment(photo.created_at).fromNow()}</span>
+                                        <span style={{ width: '100%', color: 'silver', fontSize: '12px', textTransform: 'uppercase', padding: '10px 0', borderTop: '1px solid silver', marginTop: '5%' }}>{moment(photo.created_at).fromNow()}</span>
                                     </Card.Body>
                                 </Card>
                             </Col>
