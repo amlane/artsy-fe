@@ -15,7 +15,7 @@ function MyPhotos() {
         <Container style={{ marginTop: '25px' }}>
             <AddNewPost />
             <Row>
-                {user.photos && user.photos.map(photo => {
+                {user && user.photos.map(photo => {
                     return (
                         <Photo key={photo.id} photo={photo} />
                     )

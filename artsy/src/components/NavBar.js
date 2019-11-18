@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Link, NavLink, withRouter } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 import "../index.css"
 
 function Navigation(props) {
@@ -11,25 +11,25 @@ function Navigation(props) {
     }
 
     return (
-        <Navbar variant="light" style={{ backgroundColor: "#E9ECEF" }}>
-            <Navbar.Brand style={{ fontFamily: 'Megrim, cursive', fontSize: '64px', margin: '0 3% 0 3%' }}><Link to="/">Artsy</Link></Navbar.Brand>
-            <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/user/posts">Dashboard</Nav.Link>
-                <Nav.Link href="/">Discover</Nav.Link>
-            </Nav>
-            <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-info" style={{}}>Search</Button>
-            </Form>
-            <Nav style={{ margin: '0 3% 0 3%' }}>
-                {localStorage.getItem("token") ? (
-                    <Nav.Link onClick={logout}>Log out</Nav.Link>
-                ) : (
-                        <Nav.Link href="/login">Login/SignUp</Nav.Link>
-                    )}
-            </Nav>
-        </Navbar >
+        <nav variant="light" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "#fff", borderBottom: '1px solid silver' }}>
+            <Link to="/" style={{ fontFamily: 'Megrim, cursive', fontSize: '64px', margin: '0 3% 0 3%' }}>Artsy</Link>
+            <form style={{}}>
+                <input type="text" placeholder="Search" className="search-input" />
+                <button><i className="fas fa-search"></i></button>
+            </form>
+            <div style={{ display: 'flex', width: '25%' }}>
+                <NavLink style={{ fontSize: "30px", color: "gray", padding: '0 15px' }} to="/"><i className="fas fa-users"></i></NavLink>
+                <NavLink style={{ fontSize: "30px", color: "gray", padding: '0 15px' }} to="/"><i className="fas fa-star"></i></NavLink>
+                <NavLink style={{ fontSize: "30px", color: "gray", padding: '0 15px' }} to="/user/posts"><i className="fas fa-user"></i></NavLink>
+                <div style={{ marginLeft: '15px' }}>
+                    {localStorage.getItem("token") ? (
+                        <Nav.Link onClick={logout}>Log out</Nav.Link>
+                    ) : (
+                            <Nav.Link href="/login">Login/SignUp</Nav.Link>
+                        )}
+                </div>
+            </div>
+        </nav >
     )
 }
 

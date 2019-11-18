@@ -3,7 +3,10 @@ import {
 } from "../actions";
 
 const initialState = {
-    user: {}
+    user: {
+        photos: [],
+        favorites: []
+    }
 }
 
 function reducer(state = initialState, action) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
@@ -17,9 +18,6 @@ function EditProfile(props) {
     })
     const [uploadWidget] = useCloudinaryWidget(inputValue, setInputValue, "avatar_url")
 
-    var token = localStorage.getItem("token");
-    var decoded = jwt_decode(token);
-
     useEffect(() => {
         console.log("checking")
         if (user.username) {
@@ -32,7 +30,6 @@ function EditProfile(props) {
         }
     }, [user])
 
-
     const handleChange = e => {
         setInputValue({
             ...inputValue,
@@ -42,6 +39,9 @@ function EditProfile(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        var token = localStorage.getItem("token");
+        var decoded = jwt_decode(token);
+
         axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
             .then(res => {
                 console.log(res)
@@ -52,7 +52,7 @@ function EditProfile(props) {
             })
     }
     console.log("editprofile", user)
-    if (!user.username) return <h1>Loading</h1>;
+    if (!user.username) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10%' }}>

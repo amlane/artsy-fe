@@ -5,6 +5,7 @@ import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode"
 import Axios from "axios";
 import HomeHero from "./HomeHero";
+import moment from "moment"
 
 
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
@@ -79,14 +80,15 @@ function Home(props) {
 
     //console.log(userFavorites)
     if (!photos) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
+    console.log(photos)
     return (
         <div>
             <HomeHero />
-            <Container>
-                <Row>
+            <Container style={{ marginTop: '45px' }}>
+                <Row style={{ display: 'flex', justifyContent: 'center' }}>
                     {photos.map(photo => {
                         return (
-                            <Col xl={3} key={photo.id}>
+                            <Col xl={7} key={photo.id}>
                                 <Card style={{ marginBottom: "15px", border: '1px solid #E9ECEF' }}>
                                     <Card.Header style={{}}>
                                         <div style={{ display: "flex" }}>
@@ -99,14 +101,16 @@ function Home(props) {
                                             <p style={{ margin: "5px" }}>{photo.username}</p>
                                         </div>
                                     </Card.Header>
-                                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '150px', objectFit: 'cover', objectPosition: 'center' }} />
-                                    <Card.Body style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                                        <span onClick={() => localStorage.getItem("token") && favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}>{photo.likes} <i className="fas fa-star" style={{ color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer" }}></i></span>
+                                    <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '550px', objectFit: 'cover', objectPosition: 'center' }} />
+                                    <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                        <span onClick={() => localStorage.getItem("token") && favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}><i className="fas fa-star" style={{ color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer", fontSize: '24px', paddingBottom: '10px' }}></i></span>
+                                        <span>{photo.likes} likes</span>
+                                        <span style={{ color: 'silver', fontSize: '12px', textTransform: 'uppercase', padding: '10px 0' }}>{moment(photo.created_at).fromNow()}</span>
                                     </Card.Body>
                                 </Card>
                             </Col>
                         )
-                    })}
+                    }).reverse()}
                 </Row>
             </Container>
         </div>

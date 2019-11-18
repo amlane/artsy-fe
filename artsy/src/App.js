@@ -36,11 +36,9 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      <div style={{ display: "flex" }}>
-        <PrivateRoute path="/user" component={UserDashboard} />
-        <PrivateRoute exact path="/user/posts" component={MyPhotos} />
-        <PrivateRoute exact path="/user/favorites" component={MyFavorites} />
-      </div>
+      <PrivateRoute path="/user" component={UserDashboard} />
+      <PrivateRoute exact path="/user/posts" component={MyPhotos} />
+      <PrivateRoute exact path="/user/favorites" component={MyFavorites} />
       <PrivateRoute path="/edit-profile" component={EditProfile} />
     </div>
   );
