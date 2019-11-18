@@ -1,5 +1,5 @@
 import React from "react";
-import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
+import { Jumbotron, Button } from 'react-bootstrap';
 // photos
 import designer from "../assets/designer.svg"
 import camera from "../assets/camera.svg";
@@ -29,7 +29,7 @@ function HomeHero() {
                         <div>
                             <img
                                 src={post_image}
-                                alt="posting an image"
+                                alt="sharing a post"
                             />
                             <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
                         </div>

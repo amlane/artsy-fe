@@ -12,11 +12,7 @@ function Navigation(props) {
 
     return (
         <nav variant="light" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "#fff", borderBottom: '1px solid silver' }}>
-            <Link to="/" style={{ fontFamily: 'Megrim, cursive', fontSize: '64px', margin: '0 3% 0 3%' }}>Artsy</Link>
-            <form style={{}}>
-                <input type="text" placeholder="Search" className="search-input" />
-                <button><i className="fas fa-search"></i></button>
-            </form>
+            <Link to="/" className="title">Artsy</Link>
             <div style={{ display: 'flex', width: '25%', justifyContent: 'center' }}>
                 <NavLink style={{ fontSize: "30px", color: "gray", padding: '0 15px' }} to="/"><i className="fas fa-palette"></i></NavLink>
                 <NavLink style={{ fontSize: "30px", color: "gray", padding: '0 15px' }} to="/"><i className="fas fa-users"></i></NavLink>
@@ -29,6 +25,10 @@ function Navigation(props) {
                         )}
                 </div>
             </div>
+            <form className="nav-search">
+                <button><i className="fas fa-search"></i></button>
+                <input type="text" placeholder="Search" className="search-input" />
+            </form>
         </nav >
     )
 }

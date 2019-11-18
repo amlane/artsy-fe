@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { getUser } from "../actions";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
 import { Card, Modal, Button, Col } from 'react-bootstrap';
 
 function Photo({ photo }) {
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -15,6 +18,7 @@ function Photo({ photo }) {
             .delete(`https://artsy-be.herokuapp.com/api/photos/${id}`)
             .then(res => {
                 console.log(res);
+                dispatch(getUser())
                 handleClose();
             })
             .catch(err => {

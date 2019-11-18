@@ -20,7 +20,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("App rendered")
     var token = localStorage.getItem("token");
     if (token) {
       dispatch(getUser())

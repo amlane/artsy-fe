@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
-import { Form, Button, Row, Col, Figure, Image } from "react-bootstrap";
+import { Form, Button, Row, Col, Image } from "react-bootstrap";
 
 function EditProfile(props) {
     const user = useSelector(state => state.user)
@@ -44,36 +44,32 @@ function EditProfile(props) {
 
         axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
             .then(res => {
-                console.log(res)
                 props.history.push("/user/posts")
             })
             .catch(err => {
                 console.log({ err })
             })
     }
-    console.log("editprofile", user)
+
     if (!user.username) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10%' }}>
+        <div className="edit-profile">
+            <div className="image-preview">
 
-                <Figure style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'column' }}>
-                    <Form.Label style={{ textAlign: 'center', cursor: 'pointer' }} onClick={uploadWidget}><i className="far fa-images"></i> Edit profile picture</Form.Label>
-                    <Image
-                        src={inputValue.avatar_url}
-                        alt="image preview"
-                        style={{ height: '350px', width: '65%', objectFit: 'cover', objectPosition: 'center', cursor: 'pointer' }}
-                        onClick={uploadWidget}
-                    />
-                    <Form.Text className="text-muted">
-                        Here is a preview of what your new profile picture will look like.
-                   </Form.Text>
-                </Figure>
+                <Image
+                    src={inputValue.avatar_url}
+                    alt="image preview"
+                    onClick={uploadWidget}
+                />
+                <div>
+                    <h1>{user.username}</h1>
+                    <Form.Label style={{ textAlign: 'center', cursor: 'pointer', color: '#17A2B8' }} onClick={uploadWidget}><i className="far fa-images"></i> Change Profile Pic</Form.Label>
+                </div>
             </div>
-            <Form style={{ width: '60%', marginRight: '10%' }}>
 
-                <Row>
-                    <Col>
+            <form>
+                <section>
+                    <div>
                         <Form.Group controlId="formUsername">
                             <Form.Label>Username</Form.Label>
                             <Form.Control
@@ -87,8 +83,8 @@ function EditProfile(props) {
                                 Your username can include spaces, letters, numbers, punctuations and special characters.
                         </Form.Text>
                         </Form.Group>
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                         <Form.Group controlId="formLocation">
                             <Form.Label>Location</Form.Label>
                             <Form.Control
@@ -102,8 +98,8 @@ function EditProfile(props) {
                                 Example: "Eugene, Oregon"
                 </Form.Text>
                         </Form.Group>
-                    </Col>
-                </Row>
+                    </div>
+                </section>
                 <Form.Group controlId="formUsername">
                     <Form.Label>About</Form.Label>
                     <Form.Control
@@ -117,17 +113,17 @@ function EditProfile(props) {
                 </Form.Group>
                 <Row>
                     <Col>
-                        <Button block onClick={handleSubmit} style={{ backgroundColor: '#1C93B9', marginRight: '20px' }} variant="info" type="submit">
-                            Submit
-            </Button>
-                    </Col>
-                    <Col>
                         <Button block onClick={() => { props.history.push("/user/posts") }} variant="outline-secondary" type="submit">
                             Cancel
             </Button>
                     </Col>
+                    <Col>
+                        <Button block onClick={handleSubmit} style={{ backgroundColor: '#1C93B9', marginRight: '20px' }} variant="info" type="submit">
+                            Submit
+            </Button>
+                    </Col>
                 </Row>
-            </Form>
+            </form>
         </div>
     )
 }

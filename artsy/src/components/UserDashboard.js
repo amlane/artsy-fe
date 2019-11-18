@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUser } from "../actions";
 import { NavLink } from "react-router-dom";
 
-import { Button, Card, Jumbotron } from "react-bootstrap";
+import { Button, Jumbotron } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import "../index.css"
 
@@ -14,7 +14,6 @@ function UserDashboard() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("dashboard rendered")
         dispatch(getUser())
     }, [dispatch])
 

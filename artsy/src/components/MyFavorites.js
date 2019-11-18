@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from 'react-redux';
-import AddNewPost from "./AddNewPost";
 import { Card, Container, Row, Col } from "react-bootstrap";
 
 function MyFavorites() {

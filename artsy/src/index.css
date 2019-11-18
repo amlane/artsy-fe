@@ -19,6 +19,9 @@ body {
 .App {
   margin: 0 auto;
 }
+
+/* main navigation */
+
 nav {
   margin: 0 auto;
 }
@@ -33,6 +36,27 @@ nav a:hover {
 
 nav .fas:hover {
   color: #17A2B8;
+}
+
+nav .nav-search {
+  margin: 0 3% 0 3%;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+nav .nav-search input, nav .nav-search button {
+  border: none;
+  background: none;
+}
+
+nav .nav-search button:focus, nav .nav-search input:focus {
+  outline: none;
+}
+
+nav .title {
+  font-family: Megrim, cursive;
+  font-size: 64px;
+  margin: 0 3% 0 3%;
 }
 
 /* Jumbotron */
@@ -146,11 +170,74 @@ nav .fas:hover {
   color: #17A2B8;
 }
 
-@media only screen and (max-width: 800px) {
+/* edit profile page */
+
+.edit-profile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 5% auto;
+}
+
+.edit-profile .image-preview {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 10%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 40%;
+}
+
+.edit-profile .image-preview img {
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.edit-profile .image-preview h1 {
+  font-size: 35px;
+  font-weight: bolder;
+  width: 100%;
+}
+
+.edit-profile form {
+  width: 60%;
+  margin-right: 10%;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
   /* navigation */
   nav {
     flex-direction: column;
   }
+
+  nav .nav-search {
+    display: none;
+  }
+
+  nav .title {
+    font-size: 20px;
+    align-self: flex-start;
+  }
+
+    /* home hero */
+    .home-hero .container {
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+    }
+    .home-hero .container img {
+      height: 180px;
+      margin-top: 20px;
+    }
 
   /* user-dashboard */
   .user-dashboard {
@@ -176,6 +263,10 @@ nav .fas:hover {
   .user-dashboard section .main{
     flex-direction: column;
   }
+
+  .user-dashboard section .main p{
+    width: 100%;
+  }
   .user-dashboard section div .desktop {
     display: none;
   }
@@ -184,14 +275,36 @@ nav .fas:hover {
     width: 125px;
   }
 
-  /* home hero */
-  .home-hero .container {
+  /* edit profile */
+  .edit-profile {
     flex-direction: column;
     align-items: center;
-    padding: 0;
+    justify-content: center;
   }
-  .home-hero .container img {
-    height: 180px;
-    margin-top: 20px;
+
+  .edit-profile .image-preview {
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .edit-profile .image-preview h1 {
+    font-size: 24px;
+    font-weight: bolder;
+  }
+
+  .edit-profile .image-preview img {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+
+  .edit-profile form {
+    width: 90%;
+    margin-right: 0;
   }
 }
