@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Axios from "axios";
+import { useSelector } from 'react-redux';
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Figure, Image } from "react-bootstrap";
 
 function EditProfile(props) {
+    const user = useSelector(state => state.user)
 
     const [inputValue, setInputValue] = useState({
         username: "",
@@ -19,24 +20,17 @@ function EditProfile(props) {
     var token = localStorage.getItem("token");
     var decoded = jwt_decode(token);
 
-    const getUserData = () => {
-        Axios.get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
-            .then(res => {
-                setInputValue({
-                    username: res.data.user.username !== null ? res.data.user.username : "",
-                    location: res.data.user.location !== null ? res.data.user.location : "",
-                    about: res.data.user.about !== null ? res.data.user.about : "",
-                    avatar_url: res.data.user.avatar_url
-                })
-            })
-            .catch(err => {
-                console.log({ err })
-            })
-    }
-
     useEffect(() => {
-        getUserData();
-    }, [])
+        console.log("checking")
+        if (user.username) {
+            setInputValue({
+                username: user.username !== null ? user.username : "",
+                location: user.location !== null ? user.location : "",
+                about: user.about !== null ? user.about : "",
+                avatar_url: user.avatar_url
+            })
+        }
+    }, [user])
 
 
     const handleChange = e => {
@@ -48,7 +42,6 @@ function EditProfile(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // console.log(inputValue)
         axiosWithAuth().put(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`, inputValue)
             .then(res => {
                 console.log(res)
@@ -58,7 +51,8 @@ function EditProfile(props) {
                 console.log({ err })
             })
     }
-
+    console.log("editprofile", user)
+    if (!user.username) return <h1>Loading</h1>;
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10%' }}>

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
+import { Card, Container, Row, Col, Image } from 'react-bootstrap';
 import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode"
 import Axios from "axios";
+import HomeHero from "./HomeHero";
 
-import designer from "../assets/designer.svg"
-import camera from "../assets/camera.svg";
-import post_image from "../assets/image_post.svg";
+
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
-function Home() {
+function Home(props) {
     const [photos, setPhotos] = useState(null)
     const [userFavorites, setUserFavorites] = useState(null)
     const [favsID, setFavsID] = useState(null);
@@ -51,17 +50,22 @@ function Home() {
     }, [userFavorites])
 
     const addLike = (id) => {
-        axiosWithAuth().post(`https://artsy-be.herokuapp.com/api/photos/${id}/like`)
-            .then(res => {
-                setPhotos(res.data.photos)
-                getUserData();
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        if (!localStorage.getItem("token")) {
+            props.history.push("/login")
+        } else {
+            axiosWithAuth().post(`https://artsy-be.herokuapp.com/api/photos/${id}/like`)
+                .then(res => {
+                    setPhotos(res.data.photos)
+                    getUserData();
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
     }
 
     const unLike = (id) => {
+        // if (!localStorage.getItem("token")) return console.log("You must be logged in");
         axiosWithAuth().delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike`)
             .then(res => {
                 setPhotos(res.data.photos)
@@ -73,45 +77,11 @@ function Home() {
     }
 
 
-    console.log(userFavorites)
+    //console.log(userFavorites)
     if (!photos) return <Loader type="TailSpin" color="#1C93B9" height={200} width={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '15vh' }} />;
     return (
         <div>
-            {!localStorage.getItem("token") ? (
-                <Jumbotron style={{ textAlign: 'center' }}>
-                    <h1 style={{ marginBottom: "30px", fontWeight: 'lighter' }}>Are you <span style={{ fontFamily: 'Megrim, cursive' }}>Artsy?</span></h1>
-                    <Container>
-                        <Row style={{}}>
-                            <Col>
-                                <Image
-                                    src={designer}
-                                    alt="designer"
-                                    style={{ width: '80%' }}
-                                />
-                                <h3 style={{ marginTop: '20px' }}>Create your art</h3>
-                            </Col>
-                            <Col>
-                                <Image
-                                    src={camera}
-                                    alt="camera"
-                                    style={{ width: '80%' }}
-                                />
-                                <h3 style={{ marginTop: '20px' }}>Snap a photo</h3>
-                            </Col>
-                            <Col>
-                                <Image
-                                    src={post_image}
-                                    alt="posting an image"
-                                    style={{ width: '70%' }}
-                                />
-                                <h3 style={{ marginTop: '20px' }}>Share with the world</h3>
-                            </Col>
-                        </Row>
-                    </Container>
-                    <Button style={{ marginTop: '30px', backgroundColor: '#1C93B9' }} variant="info" size="lg" href="/register">Get Started</Button>
-                </Jumbotron>
-            ) : null}
-
+            <HomeHero />
             <Container>
                 <Row>
                     {photos.map(photo => {
@@ -131,8 +101,7 @@ function Home() {
                                     </Card.Header>
                                     <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '150px', objectFit: 'cover', objectPosition: 'center' }} />
                                     <Card.Body style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                                        {}
-                                        <span onClick={() => favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}>{photo.likes} <i className="fas fa-star" style={{ color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer" }}></i></span>
+                                        <span onClick={() => localStorage.getItem("token") && favsID.includes(photo.id) ? unLike(photo.id) : addLike(photo.id)}>{photo.likes} <i className="fas fa-star" style={{ color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray", cursor: "pointer" }}></i></span>
                                     </Card.Body>
                                 </Card>
                             </Col>

@@ -3,7 +3,7 @@ import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
 import { Card, Modal, Button, Col } from 'react-bootstrap';
 
-function Photo({ photo, getUserData }) {
+function Photo({ photo }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -16,7 +16,6 @@ function Photo({ photo, getUserData }) {
             .then(res => {
                 console.log(res);
                 handleClose();
-                getUserData();
             })
             .catch(err => {
                 console.log({ err })

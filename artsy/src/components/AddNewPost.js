@@ -3,7 +3,7 @@ import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import { Modal, Button, Form, Image, Figure } from 'react-bootstrap';
 import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
 
-function AddNewPost({ getUserData }) {
+function AddNewPost() {
 
     const [show, setShow] = useState(false);
     const [newPost, setNewPost] = useState({
@@ -24,7 +24,6 @@ function AddNewPost({ getUserData }) {
         axiosWithAuth().post("https://artsy-be.herokuapp.com/api/photos", newPost)
             .then(res => {
                 // console.log(res)
-                getUserData();
                 handleClose();
                 setNewPost({
                     photo_url: "",
@@ -41,7 +40,7 @@ function AddNewPost({ getUserData }) {
     return (
         <>
             <Button variant="info" onClick={handleShow} style={{ marginBottom: '10px' }}>
-                Add a Post
+                Add Post
             </Button>
 
             <Modal show={show} onHide={handleClose} centered>

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getUser } from "./actions"
 
 import './App.css';
 
@@ -12,8 +14,19 @@ import UserDashboard from "./components/UserDashboard";
 import Navigation from "./components/NavBar";
 import EditProfile from "./components/EditProfile";
 import MyPhotos from './components/MyPhotos';
+import MyFavorites from './components/MyFavorites';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("App rendered")
+    var token = localStorage.getItem("token");
+    if (token) {
+      dispatch(getUser())
+    }
+  }, [dispatch])
+
   return (
 
     <div className="App">
@@ -26,6 +39,7 @@ function App() {
       <div style={{ display: "flex" }}>
         <PrivateRoute path="/user" component={UserDashboard} />
         <PrivateRoute exact path="/user/posts" component={MyPhotos} />
+        <PrivateRoute exact path="/user/favorites" component={MyFavorites} />
       </div>
       <PrivateRoute path="/edit-profile" component={EditProfile} />
     </div>
