@@ -17,6 +17,7 @@ function Login(props) {
         password: ""
     });
     const [isLoggingIn, setIsLoggingIn] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("")
 
     const handleChange = e => {
         setUser({
@@ -27,17 +28,24 @@ function Login(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setIsLoggingIn(true);
-        axios.post("https://artsy-be.herokuapp.com/api/auth/login", user)
-            .then(res => {
-                //console.log(res.data)
-                localStorage.setItem("token", res.data.token)
-                props.history.push("/user/posts")
-                setIsLoggingIn(false);
-            })
-            .catch(err => {
-                console.log({ err })
-            })
+        if (!user.email || !user.password) {
+            setErrorMsg("Email and Password are required")
+        } else {
+            setIsLoggingIn(true);
+            axios.post("https://artsy-be.herokuapp.com/api/auth/login", user)
+                .then(res => {
+                    //console.log(res.data)
+                    localStorage.setItem("token", res.data.token)
+                    props.history.push("/user/posts")
+                    setIsLoggingIn(false);
+                    setErrorMsg("")
+                })
+                .catch(err => {
+                    console.log(err.response.data.message)
+                    setErrorMsg(err.response.data.message)
+                    setIsLoggingIn(false);
+                })
+        }
     }
 
     return (
@@ -63,6 +71,11 @@ function Login(props) {
                             name="password"
                         />
                     </Form>
+                    {errorMsg ? (
+                        <Form.Text className="text-muted">
+                            {errorMsg}
+                        </Form.Text>
+                    ) : null}
                     <Button block size="lg" style={{ marginTop: '20px', backgroundColor: '#1C93B9' }} variant="info" onClick={(e) => handleSubmit(e)}>
                         {isLoggingIn ? <Loader type="ThreeDots" color="#fff" height={30} width={30} /> : "Login"}
                     </Button>
