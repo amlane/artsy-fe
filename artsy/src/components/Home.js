@@ -83,7 +83,7 @@ function Home(props) {
     return (
         <div>
             <HomeHero />
-            <Container style={{ marginTop: '45px' }}>
+            <Container style={{ marginTop: '15px' }}>
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                     {photos.map(photo => {
                         return (

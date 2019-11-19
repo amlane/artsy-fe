@@ -119,8 +119,8 @@ function EditProfile(props) {
                     </Col>
                     <Col>
                         <Button block onClick={handleSubmit} style={{ backgroundColor: '#1C93B9', marginRight: '20px' }} variant="info" type="submit">
-                            Submit
-            </Button>
+                            Save
+                        </Button>
                     </Col>
                 </Row>
             </form>
