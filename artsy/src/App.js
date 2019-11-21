@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getUser } from "./actions"
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "./actions";
 
-import './App.css';
+import "./App.css";
 
 import { Route } from "react-router-dom";
-import PrivateRoute from "./components/Authentication/PrivateRoute"
+import PrivateRoute from "./components/Authentication/PrivateRoute";
 
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Home from "./components/Home";
 import UserDashboard from "./components/UserDashboard";
 import Navigation from "./components/NavBar";
+import MobileNav from "./components/MobileNav";
+import NewPost from "./components/NewPost";
 import EditProfile from "./components/EditProfile";
-import MyPhotos from './components/MyPhotos';
-import MyFavorites from './components/MyFavorites';
+import MyPhotos from "./components/MyPhotos";
+import MyFavorites from "./components/MyFavorites";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,15 +24,15 @@ function App() {
   useEffect(() => {
     var token = localStorage.getItem("token");
     if (token) {
-      dispatch(getUser())
+      dispatch(getUser());
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
-
     <div className="App">
       <header className="App-header">
         <Navigation />
+        <MobileNav />
       </header>
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
@@ -38,6 +40,7 @@ function App() {
       <PrivateRoute path="/user" component={UserDashboard} />
       <PrivateRoute exact path="/user/posts" component={MyPhotos} />
       <PrivateRoute exact path="/user/favorites" component={MyFavorites} />
+      <PrivateRoute path="/new-post" component={NewPost} />
       <PrivateRoute path="/edit-profile" component={EditProfile} />
     </div>
   );

@@ -6,9 +6,7 @@ const initialState = {
     user: {
         photos: [],
         favorites: []
-    },
-    errorMsg: "",
-    isLoggingIn: false
+    }
 }
 
 function reducer(state = initialState, action) {
