@@ -91,11 +91,11 @@ function NewPost(props) {
           <Form.Label>Description</Form.Label>
           <Form.Control
             as="textarea"
-            rows="10"
             placeholder="Tell us about your art..."
             name="description"
             value={newPost.description}
             onChange={handleChange}
+            className="text-area"
           />
         </Form.Group>
         <Row>

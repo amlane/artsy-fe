@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Container, Row, Col, Image } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode";
 import Axios from "axios";

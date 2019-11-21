@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../actions";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
-import { Card, Modal, Button, Col } from "react-bootstrap";
+import { Card, Modal, Button } from "react-bootstrap";
 
 function Photo({ photo }) {
   const dispatch = useDispatch();
