@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { visitUser } from "../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -14,7 +14,6 @@ function Home(props) {
   const [userFavorites, setUserFavorites] = useState(null);
   const [favsID, setFavsID] = useState(null);
 
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   var token = localStorage.getItem("token");
@@ -34,7 +33,6 @@ function Home(props) {
 
   useEffect(() => {
     getUserData();
-
     axios
       .get("https://artsy-be.herokuapp.com/api/photos")
       .then(res => {
@@ -106,7 +104,7 @@ function Home(props) {
         }}
       />
     );
-  console.log(photos);
+
   return (
     <div className="home-page">
       <HomeHero />

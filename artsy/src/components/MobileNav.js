@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { getUser } from "../actions";
 import { NavLink, withRouter } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 
 function MobileNav(props) {
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const getMyProfile = () => {
