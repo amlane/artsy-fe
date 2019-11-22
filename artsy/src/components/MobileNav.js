@@ -20,7 +20,7 @@ function MobileNav() {
       <NavLink to="/new-post">
         <FaPaintBrush />
       </NavLink>
-      <NavLink to="/">
+      <NavLink to="/search/a">
         <FaSearch />
       </NavLink>
       <NavLink to="/user/posts">

@@ -62,7 +62,8 @@ nav .title {
 }
 
 /* mobile nav */
-.mobile-nav {
+.mobile-nav,
+.mobile-search {
   display: none;
 }
 
@@ -432,6 +433,12 @@ nav .title {
   }
   .mobile-nav a:nth-child(3) {
     font-size: 32px;
+  }
+
+  .mobile-search {
+    display: block;
+    text-align: center;
+    width: 100%;
   }
 
   /* home hero */

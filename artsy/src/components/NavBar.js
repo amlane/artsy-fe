@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../index.css";
 
 function Navigation(props) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = e => {
+    setInputValue(e.target.value);
+  };
+
+  const searchRoute = () => {
+    props.history.push(`/search/${inputValue}`);
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     props.history.push("/");
@@ -52,11 +62,17 @@ function Navigation(props) {
           )}
         </div>
       </div>
-      <form className="nav-search">
+      <form onSubmit={searchRoute} className="nav-search">
         <button type="search">
           <i className="fas fa-search"></i>
         </button>
-        <input type="text" placeholder="Search" className="search-input" />
+        <input
+          type="text"
+          placeholder="Search"
+          className="search-input"
+          value={inputValue}
+          onChange={handleChange}
+        />
       </form>
     </nav>
   );

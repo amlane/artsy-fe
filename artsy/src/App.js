@@ -18,6 +18,7 @@ import EditProfile from "./components/EditProfile";
 import MyPhotos from "./components/MyPhotos";
 import MyFavorites from "./components/MyFavorites";
 import SinglePostView from "./components/SinglePostView";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/photo/:photoId" component={SinglePostView} />
+      <Route exact path="/search/:title" component={Search} />
       <PrivateRoute path="/user" component={UserDashboard} />
       <PrivateRoute exact path="/user/posts" component={MyPhotos} />
       <PrivateRoute exact path="/user/favorites" component={MyFavorites} />
