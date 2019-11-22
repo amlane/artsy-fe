@@ -47,7 +47,7 @@ function UserDashboard(props) {
       <Jumbotron className="user-dashboard">
         <header>
           <img className="avatar" src={user.avatar_url} alt={user.username} />
-          {props.match.params.id === decoded.subject ? (
+          {props.match.params.id.toString() === decoded.subject.toString() ? (
             <Button
               className="mobile"
               variant="outline-secondary"
