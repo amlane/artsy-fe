@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../index.css";
 
 function Navigation(props) {
+  const user = useSelector(state => state.user);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = e => {
+    setInputValue(e.target.value);
+  };
+
+  const searchRoute = e => {
+    props.history.push(`/search/${inputValue}`);
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     props.history.push("/");
@@ -29,7 +41,7 @@ function Navigation(props) {
         </NavLink>
         <NavLink
           style={{ fontSize: "30px", color: "gray", padding: "0 15px" }}
-          to="/user/posts"
+          to={`/user/${user.id}/posts`}
         >
           <i className="fas fa-user"></i>
         </NavLink>
@@ -52,11 +64,17 @@ function Navigation(props) {
           )}
         </div>
       </div>
-      <form className="nav-search">
-        <button>
+      <form onSubmit={searchRoute} className="nav-search">
+        <button type="search">
           <i className="fas fa-search"></i>
         </button>
-        <input type="text" placeholder="Search" className="search-input" />
+        <input
+          type="text"
+          placeholder="Search"
+          className="search-input"
+          value={inputValue}
+          onChange={handleChange}
+        />
       </form>
     </nav>
   );
