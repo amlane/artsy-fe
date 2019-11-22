@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { visitUser } from "../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Image } from "react-bootstrap";
@@ -11,6 +13,9 @@ function Home(props) {
   const [photos, setPhotos] = useState(null);
   const [userFavorites, setUserFavorites] = useState(null);
   const [favsID, setFavsID] = useState(null);
+
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const getUserData = () => {
     var token = localStorage.getItem("token");
@@ -76,6 +81,15 @@ function Home(props) {
       });
   };
 
+  function connectToProfile(userId) {
+    dispatch(visitUser(userId));
+    visitPage(userId);
+  }
+
+  function visitPage(userId) {
+    props.history.push(`/user/${userId}/posts`);
+  }
+
   if (!photos)
     return (
       <Loader
@@ -125,6 +139,7 @@ function Home(props) {
                         marginRight: "5px",
                         objectPosition: "center"
                       }}
+                      onClick={() => connectToProfile(photo.user_id)}
                     />
                     <p style={{ margin: "5px" }}>{photo.username}</p>
                   </div>

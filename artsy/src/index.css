@@ -24,6 +24,7 @@ body {
   align-items: center;
   background-color: #fff;
   border-bottom: 1px solid silver;
+  padding: 0 5%;
 }
 nav a {
   color: #000;
@@ -42,6 +43,7 @@ nav .nav-search {
   margin: 0 3% 0 3%;
   border: 1px solid silver;
   border-radius: 5px;
+  padding: 5px;
 }
 
 nav .nav-search input,
@@ -399,9 +401,6 @@ nav .title {
     width: 90%;
     margin-right: 0;
   }
-}
-
-@media only screen and (max-width: 605px) {
   /* desktop navigation */
   .desktop-nav {
     display: none;
@@ -436,13 +435,13 @@ nav .title {
   }
 
   .mobile-search {
-    display: block;
-    text-align: center;
-    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
     margin: 5%;
     border: 1px solid silver;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 15px;
     margin: 25px auto;
   }
 
@@ -450,6 +449,14 @@ nav .title {
   .mobile-search button {
     border: none;
     background: none;
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  /* mobile search */
+
+  .mobile-search {
+    width: 70%;
   }
 
   /* home hero */

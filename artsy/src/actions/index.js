@@ -2,6 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 export const FETCH_USER = "FETCH_USER";
+export const VISIT_USER = "VISIT_USER";
 
 export const getUser = () => dispatch => {
   var token = localStorage.getItem("token");
@@ -15,4 +16,18 @@ export const getUser = () => dispatch => {
     .catch(err => {
       console.log({ err });
     });
+};
+
+export const visitUser = userId => dispatch => {
+  if (userId !== undefined) {
+    axios
+      .get(`https://artsy-be.herokuapp.com/api/users/${userId}`)
+      .then(res => {
+        console.log("From the actions");
+        dispatch({ type: VISIT_USER, payload: res.data.user });
+      })
+      .catch(err => {
+        console.log({ err });
+      });
+  }
 };

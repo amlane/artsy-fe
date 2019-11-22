@@ -38,11 +38,9 @@ function Login(props) {
           localStorage.setItem("token", res.data.token);
           setIsLoggingIn(false);
           setErrorMsg("");
-          console.log(res);
           props.history.push(`/user/${res.data.user.id}/posts`);
         })
         .catch(err => {
-          console.log(err.response.data.message);
           setErrorMsg(err.response.data.message);
           setIsLoggingIn(false);
         });
