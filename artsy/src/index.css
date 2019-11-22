@@ -438,7 +438,18 @@ nav .title {
   .mobile-search {
     display: block;
     text-align: center;
-    width: 100%;
+    width: 70%;
+    margin: 5%;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 25px auto;
+  }
+
+  .mobile-search input,
+  .mobile-search button {
+    border: none;
+    background: none;
   }
 
   /* home hero */

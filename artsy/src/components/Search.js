@@ -28,7 +28,7 @@ function Search(props) {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [props.match.params.title]);
   if (!searchResults)
     return (
       <Loader
@@ -46,20 +46,20 @@ function Search(props) {
     );
   return (
     <>
+      <form onSubmit={searchRoute} className="mobile-search">
+        <input
+          type="text"
+          placeholder="Search"
+          className="search-input"
+          value={inputValue}
+          onChange={handleChange}
+        />
+        <button type="search">
+          <i className="fas fa-search"></i>
+        </button>
+      </form>
       <div className="my-photos" style={{ justifyContent: "flex-start" }}>
-        <form onSubmit={searchRoute} className="mobile-search">
-          <input
-            type="text"
-            placeholder="Search"
-            className="search-input"
-            value={inputValue}
-            onChange={handleChange}
-          />
-          <button type="search">
-            <i className="fas fa-search"></i>
-          </button>
-        </form>
-        {searchResults &&
+        {searchResults.length > 0 ? (
           searchResults
             .map(photo => {
               return (
@@ -72,7 +72,29 @@ function Search(props) {
                 </Link>
               );
             })
-            .reverse()}
+            .reverse()
+        ) : (
+          <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%"
+              }}
+            >
+              No results found.
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%"
+              }}
+            >
+              Please try a new search.
+            </div>
+          </>
+        )}
       </div>
     </>
   );

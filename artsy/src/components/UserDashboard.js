@@ -79,8 +79,8 @@ function UserDashboard() {
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">
-        <NavLink to="/user/posts">Posts</NavLink>
-        <NavLink to="/user/favorites">Favorites</NavLink>
+        <NavLink to={`/user/${user.id}/posts`}>Posts</NavLink>
+        <NavLink to={`/user/${user.id}/favorites`}>Favorites</NavLink>
       </nav>
     </>
   );

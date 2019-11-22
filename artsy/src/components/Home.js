@@ -5,8 +5,6 @@ import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode";
 import HomeHero from "./HomeHero";
-import moment from "moment";
-
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
 function Home(props) {

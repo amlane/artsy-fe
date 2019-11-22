@@ -41,9 +41,9 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
-      <PrivateRoute path="/user" component={UserDashboard} />
-      <PrivateRoute exact path="/user/posts" component={MyPhotos} />
-      <PrivateRoute exact path="/user/favorites" component={MyFavorites} />
+      <PrivateRoute path="/user/:id" component={UserDashboard} />
+      <PrivateRoute exact path="/user/:id/posts" component={MyPhotos} />
+      <PrivateRoute exact path="/user/:id/favorites" component={MyFavorites} />
       <PrivateRoute path="/new-post" component={NewPost} />
       <PrivateRoute path="/edit-profile" component={EditProfile} />
     </div>

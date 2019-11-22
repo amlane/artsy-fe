@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../actions";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import { withRouter } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
 
 function NewPost(props) {
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const [newPost, setNewPost] = useState({
@@ -31,10 +32,8 @@ function NewPost(props) {
     axiosWithAuth()
       .post("https://artsy-be.herokuapp.com/api/photos", newPost)
       .then(res => {
-        // console.log(res)
-        // handleClose();
         dispatch(getUser());
-        props.history.push("/user/posts");
+        props.history.push(`/user/${user.id}/posts`);
         setNewPost({
           photo_url: "",
           title: "",
@@ -103,7 +102,7 @@ function NewPost(props) {
             <Button
               block
               onClick={() => {
-                props.history.push("/user/posts");
+                props.history.push(`/user/${user.id}/posts`);
               }}
               variant="outline-secondary"
               type="submit"
