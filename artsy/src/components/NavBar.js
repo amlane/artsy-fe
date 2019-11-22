@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../actions";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../index.css";
+import jwt_decode from "jwt-decode";
 
 function Navigation(props) {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
+  var token = localStorage.getItem("token");
+  var decoded = jwt_decode(token);
 
   const handleChange = e => {
     setInputValue(e.target.value);
@@ -19,6 +24,11 @@ function Navigation(props) {
   const logout = () => {
     localStorage.removeItem("token");
     props.history.push("/");
+  };
+
+  const getMyProfile = () => {
+    dispatch(getUser());
+    props.history.push(`/user/${decoded.subject}/posts`);
   };
 
   return (
@@ -39,12 +49,12 @@ function Navigation(props) {
         >
           <i className="fas fa-users"></i>
         </NavLink>
-        <NavLink
+        <div
           style={{ fontSize: "30px", color: "gray", padding: "0 15px" }}
-          to={`/user/${user.id}/posts`}
+          onClick={getMyProfile}
         >
           <i className="fas fa-user"></i>
-        </NavLink>
+        </div>
         <div
           style={{
             position: "absolute",

@@ -422,7 +422,8 @@ nav .title {
     padding: 0 5%;
   }
 
-  .mobile-nav a {
+  .mobile-nav a,
+  .mobile-nav div {
     color: gray;
     font-size: 25px;
     /* align-self: center; */
