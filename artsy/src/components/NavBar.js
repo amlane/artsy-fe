@@ -11,7 +11,6 @@ function Navigation(props) {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   var token = localStorage.getItem("token");
-  var decoded = jwt_decode(token);
 
   const handleChange = e => {
     setInputValue(e.target.value);
@@ -27,8 +26,11 @@ function Navigation(props) {
   };
 
   const getMyProfile = () => {
-    dispatch(getUser());
-    props.history.push(`/user/${decoded.subject}/posts`);
+    if (token) {
+      var decoded = jwt_decode(token);
+      dispatch(getUser());
+      props.history.push(`/user/${decoded.subject}/posts`);
+    }
   };
 
   return (

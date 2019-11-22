@@ -6,16 +6,17 @@ export const VISIT_USER = "VISIT_USER";
 
 export const getUser = () => dispatch => {
   var token = localStorage.getItem("token");
-  var decoded = jwt_decode(token);
-
-  axios
-    .get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
-    .then(res => {
-      dispatch({ type: FETCH_USER, payload: res.data.user });
-    })
-    .catch(err => {
-      console.log({ err });
-    });
+  if (token) {
+    var decoded = jwt_decode(token);
+    axios
+      .get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
+      .then(res => {
+        dispatch({ type: FETCH_USER, payload: res.data.user });
+      })
+      .catch(err => {
+        console.log({ err });
+      });
+  }
 };
 
 export const visitUser = userId => dispatch => {
@@ -23,7 +24,6 @@ export const visitUser = userId => dispatch => {
     axios
       .get(`https://artsy-be.herokuapp.com/api/users/${userId}`)
       .then(res => {
-        console.log("From the actions");
         dispatch({ type: VISIT_USER, payload: res.data.user });
       })
       .catch(err => {

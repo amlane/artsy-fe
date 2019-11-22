@@ -18,7 +18,7 @@ function UserDashboard(props) {
 
   useEffect(() => {
     console.log("checkin for loops");
-    if (props.match.params.id === decoded.subject) {
+    if (props.match.params.id.toString() === decoded.subject.toString()) {
       dispatch(getUser());
     } else {
       dispatch(visitUser());
@@ -47,7 +47,7 @@ function UserDashboard(props) {
       <Jumbotron className="user-dashboard">
         <header>
           <img className="avatar" src={user.avatar_url} alt={user.username} />
-          {props.match.params.id == decoded.subject ? (
+          {props.match.params.id === decoded.subject ? (
             <Button
               className="mobile"
               variant="outline-secondary"
@@ -60,7 +60,7 @@ function UserDashboard(props) {
         <section>
           <div>
             <h1>{user.username}</h1>
-            {props.match.params.id == decoded.subject ? (
+            {props.match.params.id.toString() === decoded.subject.toString() ? (
               <Button
                 className="desktop"
                 variant="outline-secondary"
@@ -87,7 +87,7 @@ function UserDashboard(props) {
               </p>
             ) : null}
           </div>
-          {props.match.params.id == decoded.subject ? (
+          {props.match.params.id.toString() === decoded.subject.toString() ? (
             <Button variant="info" href="/new-post" className="desktop-add-btn">
               Add Post
             </Button>

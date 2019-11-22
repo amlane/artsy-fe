@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../actions";
 import { NavLink, withRouter } from "react-router-dom";
@@ -15,10 +15,11 @@ function MobileNav(props) {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  var token = localStorage.getItem("token");
-  var decoded = jwt_decode(token);
-
   const getMyProfile = () => {
+    var token = localStorage.getItem("token");
+    if (token) {
+      var decoded = jwt_decode(token);
+    }
     dispatch(getUser());
     props.history.push(`/user/${decoded.subject}/posts`);
   };
