@@ -17,8 +17,8 @@ function Home(props) {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  var token = localStorage.getItem("token");
   const getUserData = () => {
-    var token = localStorage.getItem("token");
     if (token) {
       var decoded = jwt_decode(token);
       axios
@@ -34,6 +34,7 @@ function Home(props) {
 
   useEffect(() => {
     getUserData();
+
     axios
       .get("https://artsy-be.herokuapp.com/api/photos")
       .then(res => {
