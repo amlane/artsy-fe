@@ -53,7 +53,7 @@ function Navigation(props) {
         </div>
       </div>
       <form className="nav-search">
-        <button>
+        <button type="search">
           <i className="fas fa-search"></i>
         </button>
         <input type="text" placeholder="Search" className="search-input" />

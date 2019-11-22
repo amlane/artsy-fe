@@ -106,43 +106,46 @@ function Home(props) {
                   key={photo.id}
                   className="card"
                   style={{
-                    margin: "15px",
+                    margin: "10px",
                     border: "1px solid #E9ECEF"
                   }}
                 >
-                  <Card.Header style={{ background: "#fff" }}>
-                    <div style={{ display: "flex" }}>
-                      <Image
-                        roundedCircle
-                        src={photo.avatar_url}
-                        alt={photo.username}
-                        style={{
-                          height: "40px",
-                          width: "40px",
-                          objectFit: "cover",
-                          marginRight: "5px",
-                          objectPosition: "center"
-                        }}
-                      />
-                      <p style={{ margin: "5px" }}>{photo.username}</p>
-                    </div>
-                  </Card.Header>
+                  <div
+                    style={{
+                      display: "flex",
+                      padding: "5% 5% 0 5%"
+                    }}
+                  >
+                    <Image
+                      roundedCircle
+                      src={photo.avatar_url}
+                      alt={photo.username}
+                      style={{
+                        height: "40px",
+                        width: "40px",
+                        objectFit: "cover",
+                        marginRight: "5px",
+                        objectPosition: "center"
+                      }}
+                    />
+                    <p style={{ margin: "5px" }}>{photo.username}</p>
+                  </div>
                   <Link to={`/photo/${photo.id}`}>
                     <Card.Img
                       variant="top"
                       src={photo.photo_url}
                       alt={photo.title}
                       style={{
-                        height: "60vh",
+                        height: "40vh",
                         objectFit: "cover",
-                        objectPosition: "center"
+                        objectPosition: "center",
+                        padding: "5% 5% 0 5%"
                       }}
                     />
                   </Link>
                   <Card.Body
                     style={{
                       display: "flex",
-                      flexDirection: "column",
                       justifyContent: "flex-start",
                       alignItems: "flex-start"
                     }}
@@ -164,26 +167,11 @@ function Home(props) {
                               : "gray",
                           cursor: "pointer",
                           fontSize: "24px",
-                          paddingBottom: "10px"
+                          paddingRight: "5px"
                         }}
                       ></i>
                     </span>
-                    <span>
-                      {photo.likes} {photo.likes === "1" ? "like" : "likes"}
-                    </span>
-                    <span
-                      style={{
-                        width: "100%",
-                        color: "silver",
-                        fontSize: "12px",
-                        textTransform: "uppercase",
-                        padding: "10px 0",
-                        borderTop: "1px solid silver",
-                        marginTop: "2%"
-                      }}
-                    >
-                      {moment(photo.created_at).fromNow()}
-                    </span>
+                    <span>{photo.likes}</span>
                   </Card.Body>
                 </Card>
               );

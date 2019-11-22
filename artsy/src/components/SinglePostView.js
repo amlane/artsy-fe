@@ -140,9 +140,7 @@ function SinglePostView(props) {
               }}
             ></i>
           </span>
-          <span>
-            {photo.likes.count} {photo.likes.count === 1 ? "like" : "likes"}
-          </span>
+          <span>{photo.likes.count}</span>
           <div
             style={{
               width: "100%",

@@ -103,7 +103,10 @@ nav .title {
 }
 
 .home-page .photos .card {
-  width: 30%;
+  width: 25%;
+  /* height: 350px; */
+  border: 1px solid;
+  margin: 15px;
 }
 
 /* User Dashboard */
