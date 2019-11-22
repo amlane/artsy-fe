@@ -54,7 +54,7 @@ function Search(props) {
           value={inputValue}
           onChange={handleChange}
         />
-        <button type="search">
+        <button type="search" style={{ padding: "5px" }}>
           <i className="fas fa-search"></i>
         </button>
       </form>
