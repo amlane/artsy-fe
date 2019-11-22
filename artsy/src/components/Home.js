@@ -149,7 +149,7 @@ function Home(props) {
                       src={photo.photo_url}
                       alt={photo.title}
                       style={{
-                        height: "40vh",
+                        height: "50vh",
                         objectFit: "cover",
                         objectPosition: "center",
                         padding: "5% 5% 0 5%"
