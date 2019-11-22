@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function MyFavorites() {
   const user = useSelector(state => state.user);
@@ -10,13 +10,13 @@ function MyFavorites() {
         user.favorites
           .map(photo => {
             return (
-              <Card key={photo.id} className="photo-card">
-                <Card.Img
-                  variant="top"
-                  src={photo.photo_url}
-                  alt={photo.title}
-                />
-              </Card>
+              <Link
+                to={`/photo/${photo.id}`}
+                className="photo-card"
+                key={photo.id}
+              >
+                <img variant="top" src={photo.photo_url} alt={photo.title} />
+              </Link>
             );
           })
           .reverse()}

@@ -190,6 +190,41 @@ nav .title {
   color: #17a2b8;
 }
 
+/* single photo view */
+
+.single-photo-view {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+}
+
+.single-photo-view .main {
+  max-height: 600px;
+  max-width: 600px;
+  height: 600px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.single-photo-view .details {
+  width: 35%;
+  padding: 0 20px;
+}
+
+.single-photo-view .artist {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.single-photo-view .avatar {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 10px;
+}
+
 /* my photos */
 
 .my-photos {
@@ -203,12 +238,16 @@ nav .title {
 .photo-card {
   cursor: pointer;
   border: 1px solid #e9ecef;
+  background: #fff;
   height: 350px;
   width: 33%;
+  padding: 20px;
+  margin: 3px 0;
 }
 
 .photo-card img {
   height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -233,7 +272,6 @@ nav .title {
 
 .add-new-post form {
   width: 60%;
-  margin-right: 10%;
 }
 
 .add-new-post form .text-area {
@@ -288,9 +326,6 @@ nav .title {
   .photo-card {
     height: 250px;
   }
-  .home-page .photos .card {
-    width: 47%;
-  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -316,6 +351,30 @@ nav .title {
   }
   .photo-card {
     height: 200px;
+  }
+
+  /* single photo view */
+  .single-photo-view {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .single-photo-view .main {
+    max-height: auto;
+    max-width: auto;
+    height: auto;
+    width: 100%;
+  }
+
+  .single-photo-view .details {
+    width: 100%;
+    padding: 0;
+    height: auto;
+  }
+
+  /* single photo modal - being deprecated */
+  .single-photo {
+    flex-direction: column;
   }
 
   /* add new post */
@@ -436,6 +495,7 @@ nav .title {
 
   .photo-card {
     height: 18vh;
+    padding: 0;
   }
 
   /* add new post */

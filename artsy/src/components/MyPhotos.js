@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import Photo from "./Photo";
+import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 function MyPhotos() {
@@ -28,7 +28,15 @@ function MyPhotos() {
       {user &&
         user.photos
           .map(photo => {
-            return <Photo key={photo.id} photo={photo} />;
+            return (
+              <Link
+                to={`/photo/${photo.id}`}
+                className="photo-card"
+                key={photo.id}
+              >
+                <img variant="top" src={photo.photo_url} alt={photo.title} />
+              </Link>
+            );
           })
           .reverse()}
     </div>
