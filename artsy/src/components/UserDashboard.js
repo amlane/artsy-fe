@@ -17,13 +17,12 @@ function UserDashboard(props) {
   var decoded = jwt_decode(token);
 
   useEffect(() => {
-    console.log("checkin for loops");
     if (props.match.params.id.toString() === decoded.subject.toString()) {
       dispatch(getUser());
     } else {
       dispatch(visitUser());
     }
-  }, [dispatch, props.match.params.id]);
+  }, [dispatch, props.match.params.id, decoded.subject]);
 
   if (!user)
     return (

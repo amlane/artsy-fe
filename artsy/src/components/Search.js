@@ -12,17 +12,19 @@ function Search(props) {
   };
 
   const searchRoute = () => {
-    props.history.push(`/search/${inputValue}`);
+    if (inputValue !== "") {
+      props.history.push(`/search/${inputValue}`);
+    } else {
+      props.history.push(`/search/""`);
+    }
   };
 
   useEffect(() => {
-    console.log("checking");
     axiosWithAuth()
       .get(
         `https://artsy-be.herokuapp.com/api/photos/search/${props.match.params.title}`
       )
       .then(res => {
-        console.log(res);
         setSearchResults(res.data);
       })
       .catch(err => {

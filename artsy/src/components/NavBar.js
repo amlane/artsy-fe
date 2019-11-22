@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getUser } from "../actions";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
@@ -7,7 +7,6 @@ import "../index.css";
 import jwt_decode from "jwt-decode";
 
 function Navigation(props) {
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   var token = localStorage.getItem("token");

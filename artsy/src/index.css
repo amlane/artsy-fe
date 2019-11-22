@@ -451,6 +451,11 @@ nav .title {
     border: none;
     background: none;
   }
+
+  .mobile-search input:focus,
+  .mobile-search button:focus {
+    outline: none;
+  }
 }
 
 @media only screen and (max-width: 605px) {
