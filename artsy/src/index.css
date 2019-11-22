@@ -100,13 +100,13 @@ nav .title {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .home-page .photos .card {
-  width: 25%;
-  /* height: 350px; */
+  width: 30%;
   border: 1px solid;
-  margin: 15px;
 }
 
 /* User Dashboard */
@@ -177,6 +177,7 @@ nav .title {
   border-bottom: 1px solid silver;
   width: 80%;
   margin: 0 auto;
+  max-width: 1200px;
 }
 
 .dashboard-nav a {
@@ -236,6 +237,7 @@ nav .title {
   justify-content: space-between;
   margin: 25px auto;
   width: 80%;
+  max-width: 1200px;
 }
 
 .photo-card {
