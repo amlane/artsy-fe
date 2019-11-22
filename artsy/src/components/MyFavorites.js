@@ -1,24 +1,27 @@
 import React from "react";
-import { useSelector } from 'react-redux';
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function MyFavorites() {
-    const user = useSelector(state => state.user)
-    return (
-        <Container style={{ marginTop: '25px' }}>
-            <Row>
-                {user && user.favorites.map(photo => {
-                    return (
-                        <Col xl={4} key={photo.id}>
-                            <Card style={{ marginBottom: "15px", cursor: "pointer", border: '1px solid #E9ECEF' }}>
-                                <Card.Img variant="top" src={photo.photo_url} alt={photo.title} style={{ height: '350px', objectFit: 'cover', objectPosition: 'center' }} />
-                            </Card>
-                        </Col>
-                    )
-                }).reverse()}
-            </Row>
-        </Container>
-    )
+  const user = useSelector(state => state.user);
+  return (
+    <div className="my-photos">
+      {user &&
+        user.favorites
+          .map(photo => {
+            return (
+              <Link
+                to={`/photo/${photo.id}`}
+                className="photo-card"
+                key={photo.id}
+              >
+                <img variant="top" src={photo.photo_url} alt={photo.title} />
+              </Link>
+            );
+          })
+          .reverse()}
+    </div>
+  );
 }
 
 export default MyFavorites;

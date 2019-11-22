@@ -62,11 +62,16 @@ function EditProfile(props) {
   if (!user.username)
     return (
       <Loader
-        type="TailSpin"
+        type="ThreeDots"
         color="#1C93B9"
-        height={200}
-        width={200}
-        style={{ display: "flex", justifyContent: "center", marginTop: "15vh" }}
+        height={150}
+        width={150}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "15vh"
+        }}
       />
     );
   return (

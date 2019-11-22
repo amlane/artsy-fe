@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../actions";
 import { NavLink } from "react-router-dom";
-import AddNewPost from "./AddNewPost";
 
 import { Button, Jumbotron } from "react-bootstrap";
 import Loader from "react-loader-spinner";
@@ -21,11 +20,16 @@ function UserDashboard() {
   if (!user.username)
     return (
       <Loader
-        type="TailSpin"
+        type="ThreeDots"
         color="#1C93B9"
-        height={100}
-        width={100}
-        style={{ display: "flex", justifyContent: "center", marginTop: "10%" }}
+        height={150}
+        width={150}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "15vh"
+        }}
       />
     );
   return (
@@ -69,7 +73,7 @@ function UserDashboard() {
               </p>
             ) : null}
           </div>
-          <Button variant="info" href="/new-post" style={{ float: "right" }}>
+          <Button variant="info" href="/new-post" className="desktop-add-btn">
             Add Post
           </Button>
         </section>
