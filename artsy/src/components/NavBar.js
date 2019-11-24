@@ -1,35 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "../actions";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../index.css";
-import jwt_decode from "jwt-decode";
+import decodedToken from "./utils/decodedToken";
 
 function Navigation(props) {
-  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
-  var token = localStorage.getItem("token");
 
   const handleChange = e => {
     setInputValue(e.target.value);
   };
 
   const searchRoute = e => {
-    props.history.push(`/search/${inputValue}`);
+    e.preventDefault();
+    if (inputValue === "") {
+      props.history.push(`/search/""`);
+    } else {
+      props.history.push(`/search/${inputValue}`);
+    }
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     props.history.push("/");
-  };
-
-  const getMyProfile = () => {
-    if (token) {
-      var decoded = jwt_decode(token);
-      dispatch(getUser());
-      props.history.push(`/user/${decoded.subject}/posts`);
-    }
   };
 
   return (
@@ -50,12 +43,12 @@ function Navigation(props) {
         >
           <i className="fas fa-users"></i>
         </NavLink>
-        <div
+        <NavLink
           style={{ fontSize: "30px", color: "gray", padding: "0 15px" }}
-          onClick={getMyProfile}
+          to={`/user/${decodedToken()}/posts`}
         >
           <i className="fas fa-user"></i>
-        </div>
+        </NavLink>
         <div
           style={{
             position: "absolute",

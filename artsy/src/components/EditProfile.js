@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser, visitUser } from "../actions";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import Loader from "react-loader-spinner";
 import jwt_decode from "jwt-decode";
@@ -9,7 +10,7 @@ import { Form, Button, Row, Col, Image } from "react-bootstrap";
 
 function EditProfile(props) {
   const user = useSelector(state => state.user);
-
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState({
     username: "",
     location: "",
@@ -21,6 +22,11 @@ function EditProfile(props) {
     setInputValue,
     "avatar_url"
   );
+
+  useEffect(() => {
+    console.log("loops for days");
+    dispatch(getUser());
+  }, [dispatch]);
 
   useEffect(() => {
     console.log("checking");
@@ -58,7 +64,7 @@ function EditProfile(props) {
         console.log({ err });
       });
   };
-
+  console.log(user);
   if (!user.username)
     return (
       <Loader

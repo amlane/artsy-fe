@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { visitUser } from "../actions";
+import { useSelector, useDispatch } from "react-redux";
+import { visitUser, getUser } from "../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import jwt_decode from "jwt-decode";
+import decodedToken from "./utils/decodedToken";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 
 function Home(props) {
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
   const [photos, setPhotos] = useState(null);
   const [userFavorites, setUserFavorites] = useState(null);
   const [favsID, setFavsID] = useState(null);
 
-  const dispatch = useDispatch();
-
-  var token = localStorage.getItem("token");
-  const getUserData = () => {
-    if (token) {
-      var decoded = jwt_decode(token);
-      axios
-        .get(`https://artsy-be.herokuapp.com/api/users/${decoded.subject}`)
-        .then(res => {
-          setUserFavorites(res.data.user.favorites);
-        })
-        .catch(err => {
-          console.log({ err });
-        });
-    }
-  };
+  // const getUserData = () => {
+  //   if (decodedToken() !== undefined) {
+  //     dispatch(getUser());
+  //     setUserFavorites(user.favorites);
+  //   }
+  // };
 
   useEffect(() => {
-    getUserData();
+    console.log("loop there it is");
+    if (decodedToken() !== undefined) {
+      dispatch(getUser());
+      setUserFavorites(user.favorites);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    // getUserData();
     axios
       .get("https://artsy-be.herokuapp.com/api/photos")
       .then(res => {
@@ -60,7 +61,7 @@ function Home(props) {
         .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like`)
         .then(res => {
           setPhotos(res.data.photos);
-          getUserData();
+          dispatch(getUser());
         })
         .catch(err => {
           console.log(err);
@@ -73,7 +74,7 @@ function Home(props) {
       .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike`)
       .then(res => {
         setPhotos(res.data.photos);
-        getUserData();
+        dispatch(getUser());
       })
       .catch(err => {
         console.log(err);
@@ -86,7 +87,7 @@ function Home(props) {
   }
 
   function visitPage(userId) {
-    props.history.push(`/user/${userId}/posts`);
+    props.history.push(`/portfolio/${userId}`);
   }
 
   if (!photos)
@@ -121,10 +122,13 @@ function Home(props) {
                     border: "1px solid #E9ECEF"
                   }}
                 >
-                  <div
+                  <Link
+                    to={`/portfolio/${photo.user_id}`}
                     style={{
                       display: "flex",
-                      padding: "5% 5% 0 5%"
+                      padding: "5% 5% 0 5%",
+                      textDecoration: "none",
+                      color: "#000"
                     }}
                   >
                     <Image
@@ -136,12 +140,14 @@ function Home(props) {
                         width: "40px",
                         objectFit: "cover",
                         marginRight: "5px",
-                        objectPosition: "center"
+                        objectPosition: "center",
+                        cursor: "pointer"
                       }}
-                      onClick={() => connectToProfile(photo.user_id)}
                     />
-                    <p style={{ margin: "5px" }}>{photo.username}</p>
-                  </div>
+                    <p style={{ margin: "5px", cursor: "pointer" }}>
+                      {photo.username}
+                    </p>
+                  </Link>
                   <Link to={`/photo/${photo.id}`}>
                     <Card.Img
                       variant="top"
@@ -149,6 +155,7 @@ function Home(props) {
                       alt={photo.title}
                       style={{
                         height: "50vh",
+                        maxHeight: "400px",
                         objectFit: "cover",
                         objectPosition: "center",
                         padding: "5% 5% 0 5%"

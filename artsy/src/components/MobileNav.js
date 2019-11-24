@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "../actions";
-import { NavLink, withRouter } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import { NavLink } from "react-router-dom";
+import decodedToken from "./utils/decodedToken";
 import {
   FaPaintBrush,
   FaSearch,
@@ -11,17 +9,7 @@ import {
   FaUsers
 } from "react-icons/fa";
 
-function MobileNav(props) {
-  const dispatch = useDispatch();
-
-  const getMyProfile = () => {
-    var token = localStorage.getItem("token");
-    if (token) {
-      var decoded = jwt_decode(token);
-    }
-    dispatch(getUser());
-    props.history.push(`/user/${decoded.subject}/posts`);
-  };
+function MobileNav() {
   return (
     <nav className="mobile-nav">
       <NavLink to="/">
@@ -36,11 +24,11 @@ function MobileNav(props) {
       <NavLink to="/search/art">
         <FaSearch />
       </NavLink>
-      <div onClick={getMyProfile}>
+      <NavLink to={`/user/${decodedToken()}/posts`}>
         <FaUserAlt />
-      </div>
+      </NavLink>
     </nav>
   );
 }
 
-export default withRouter(MobileNav);
+export default MobileNav;
