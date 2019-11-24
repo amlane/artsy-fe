@@ -10,7 +10,6 @@ function Login(props) {
     setShow(false);
     props.history.push("/");
   };
-  // const handleShow = () => setShow(true);
 
   const [user, setUser] = useState({
     email: "",

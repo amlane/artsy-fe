@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, visitUser } from "../actions";
+import { getUser } from "../actions";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
 import Loader from "react-loader-spinner";
-import jwt_decode from "jwt-decode";
+import decodedToken from "./utils/decodedToken";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
@@ -24,12 +24,10 @@ function EditProfile(props) {
   );
 
   useEffect(() => {
-    console.log("loops for days");
     dispatch(getUser());
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("checking");
     if (user.username) {
       setInputValue({
         username: user.username !== null ? user.username : "",
@@ -49,12 +47,9 @@ function EditProfile(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    var token = localStorage.getItem("token");
-    var decoded = jwt_decode(token);
-
     axiosWithAuth()
       .put(
-        `https://artsy-be.herokuapp.com/api/users/${decoded.subject}`,
+        `https://artsy-be.herokuapp.com/api/users/${decodedToken()}`,
         inputValue
       )
       .then(res => {
@@ -64,7 +59,7 @@ function EditProfile(props) {
         console.log({ err });
       });
   };
-  console.log(user);
+
   if (!user.username)
     return (
       <Loader
@@ -99,7 +94,7 @@ function EditProfile(props) {
         </div>
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <section>
           <div>
             <Form.Group controlId="formUsername">
@@ -152,7 +147,6 @@ function EditProfile(props) {
                 props.history.push(`/user/${user.id}/posts`);
               }}
               variant="outline-secondary"
-              type="submit"
             >
               Cancel
             </Button>

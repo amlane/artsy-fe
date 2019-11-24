@@ -25,7 +25,7 @@ function MyPhotos() {
 
   return (
     <div className="my-photos">
-      {user &&
+      {user.photos !== 0 ? (
         user.photos
           .map(photo => {
             return (
@@ -38,7 +38,12 @@ function MyPhotos() {
               </Link>
             );
           })
-          .reverse()}
+          .reverse()
+      ) : (
+        <h3 style={{ textAlign: "center", width: "100%", color: "silver" }}>
+          Nothing posted here yet
+        </h3>
+      )}
     </div>
   );
 }

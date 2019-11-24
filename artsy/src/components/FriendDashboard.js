@@ -18,7 +18,7 @@ function FriendDashboard(props) {
     dispatch(visitUser(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
-  if (!friend)
+  if (!friend || friend.id !== +props.match.params.id)
     return (
       <Loader
         type="ThreeDots"

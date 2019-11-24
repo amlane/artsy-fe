@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../actions";
+import { getUser, setFavsID } from "../actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
@@ -9,12 +9,11 @@ import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 
 function SinglePostView(props) {
-  const user = useSelector(state => state.user);
+  const userFavorites = useSelector(state => state.userFavorites);
+  const favsID = useSelector(state => state.favsID);
   const dispatch = useDispatch();
 
   const [photo, setPhoto] = useState(null);
-  const [userFavorites, setUserFavorites] = useState(null);
-  const [favsID, setFavsID] = useState(null);
 
   useEffect(() => {
     axios
@@ -34,17 +33,10 @@ function SinglePostView(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    setUserFavorites(user.favorites);
-  }, [user]);
-
-  useEffect(() => {
-    if (userFavorites) {
-      const favs = userFavorites.map(favs => {
-        return favs.id;
-      });
-      setFavsID(favs);
+    if (userFavorites.length > 0) {
+      dispatch(setFavsID());
     }
-  }, [userFavorites]);
+  }, [userFavorites, dispatch]);
 
   const addLike = id => {
     if (!localStorage.getItem("token")) {
@@ -71,8 +63,7 @@ function SinglePostView(props) {
         console.log(err);
       });
   };
-  console.log(userFavorites);
-  console.log(user);
+
   if (!photo)
     return (
       <Loader

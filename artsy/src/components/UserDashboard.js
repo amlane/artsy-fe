@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, visitUser } from "../actions";
+import { getUser } from "../actions";
 import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "./utils/decodedToken";
 
@@ -20,7 +20,7 @@ function UserDashboard(props) {
     } else {
       props.history.push("/login");
     }
-  }, [dispatch]);
+  }, [dispatch, props.match, props.history]);
 
   if (!user)
     return (
