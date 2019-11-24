@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../actions";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { axiosWithAuth } from "./Authentication/axiosWithAuth";
@@ -16,7 +17,6 @@ function SinglePostView(props) {
   const [favsID, setFavsID] = useState(null);
 
   useEffect(() => {
-    console.log("check check");
     axios
       .get(
         `https://artsy-be.herokuapp.com/api/photos/${props.match.params.photoId}`
@@ -30,12 +30,14 @@ function SinglePostView(props) {
   }, [userFavorites, props.match.params.photoId]);
 
   useEffect(() => {
-    console.log("user useEffect");
+    dispatch(getUser());
+  }, [dispatch]);
+
+  useEffect(() => {
     setUserFavorites(user.favorites);
   }, [user]);
 
   useEffect(() => {
-    console.log("user favorites");
     if (userFavorites) {
       const favs = userFavorites.map(favs => {
         return favs.id;
@@ -69,7 +71,8 @@ function SinglePostView(props) {
         console.log(err);
       });
   };
-
+  console.log(userFavorites);
+  console.log(user);
   if (!photo)
     return (
       <Loader
@@ -97,11 +100,14 @@ function SinglePostView(props) {
         }}
       >
         <div>
-          <div
+          <Link
+            to={`/portfolio/${photo.user_id}`}
             style={{
               display: "flex",
               borderBottom: "1px solid silver",
-              padding: "8px"
+              padding: "8px",
+              textDecoration: "none",
+              color: "#000"
             }}
           >
             <Image
@@ -117,7 +123,7 @@ function SinglePostView(props) {
               }}
             />
             <p style={{ margin: "5px" }}>{photo.username}</p>
-          </div>
+          </Link>
           <h1>{photo.title}</h1>
           <p>{photo.description}</p>
         </div>

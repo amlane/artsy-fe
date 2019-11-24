@@ -1,11 +1,15 @@
-import { FETCH_USER, VISIT_USER } from "../actions";
+import { FETCH_USER, VISIT_USER, REMOVE_USER } from "../actions";
 
 const initialState = {
   user: {
+    id: "",
     photos: [],
     favorites: []
   },
-  friend: null
+  friend: {
+    photos: [],
+    favorites: []
+  }
 };
 
 function reducer(state = initialState, action) {
@@ -18,7 +22,16 @@ function reducer(state = initialState, action) {
     case VISIT_USER:
       return {
         ...state,
-        user: action.payload
+        friend: action.payload
+      };
+    case REMOVE_USER:
+      return {
+        ...state,
+        user: {
+          id: "",
+          photos: [],
+          favorites: []
+        }
       };
     default:
       return state;

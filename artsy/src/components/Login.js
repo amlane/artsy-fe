@@ -69,23 +69,24 @@ function Login(props) {
               value={user.password}
               name="password"
             />
+            {errorMsg ? (
+              <Form.Text className="text-muted">{errorMsg}</Form.Text>
+            ) : null}
+            <Button
+              block
+              size="lg"
+              style={{ marginTop: "20px", backgroundColor: "#1C93B9" }}
+              variant="info"
+              type="submit"
+              onClick={e => handleSubmit(e)}
+            >
+              {isLoggingIn ? (
+                <Loader type="ThreeDots" color="#fff" height={30} width={30} />
+              ) : (
+                "Login"
+              )}
+            </Button>
           </Form>
-          {errorMsg ? (
-            <Form.Text className="text-muted">{errorMsg}</Form.Text>
-          ) : null}
-          <Button
-            block
-            size="lg"
-            style={{ marginTop: "20px", backgroundColor: "#1C93B9" }}
-            variant="info"
-            onClick={e => handleSubmit(e)}
-          >
-            {isLoggingIn ? (
-              <Loader type="ThreeDots" color="#fff" height={30} width={30} />
-            ) : (
-              "Login"
-            )}
-          </Button>
         </Modal.Body>
         <Modal.Footer>
           <p>

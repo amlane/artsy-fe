@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "./actions";
+import React from "react";
 
 import "./App.css";
 
@@ -19,17 +17,10 @@ import MyPhotos from "./components/MyPhotos";
 import MyFavorites from "./components/MyFavorites";
 import SinglePostView from "./components/SinglePostView";
 import Search from "./components/Search";
+import FriendDashboard from "./components/FriendDashboard";
+import FriendPhotos from "./components/FriendPhotos";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    var token = localStorage.getItem("token");
-    if (token) {
-      dispatch(getUser());
-    }
-  }, [dispatch]);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -41,6 +32,8 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
+      <Route path="/portfolio/:id" component={FriendDashboard} />
+      <Route path="/portfolio/:id" component={FriendPhotos} />
       <PrivateRoute path="/user/:id" component={UserDashboard} />
       <PrivateRoute exact path="/user/:id/posts" component={MyPhotos} />
       <PrivateRoute exact path="/user/:id/favorites" component={MyFavorites} />

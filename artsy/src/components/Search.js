@@ -26,6 +26,7 @@ function Search(props) {
       )
       .then(res => {
         setSearchResults(res.data);
+        setInputValue("");
       })
       .catch(err => {
         console.log(err);
@@ -60,7 +61,11 @@ function Search(props) {
           <i className="fas fa-search"></i>
         </button>
       </form>
-      <div className="my-photos" style={{ justifyContent: "flex-start" }}>
+      <h3 style={{ textAlign: "center", padding: "15px" }}>
+        <span style={{ color: "silver" }}>Search results for</span>{" "}
+        {props.match.params.title}
+      </h3>
+      <div className="my-photos">
         {searchResults.length > 0 ? (
           searchResults
             .map(photo => {
