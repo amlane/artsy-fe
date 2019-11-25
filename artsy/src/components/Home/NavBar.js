@@ -27,7 +27,6 @@ function Navigation(props) {
     dispatch(logout());
     props.history.push("/");
   };
-
   return (
     <nav className="desktop-nav">
       <Link to="/" className="title">

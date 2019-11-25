@@ -1,8 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import decodedToken from "./../utils/decodedToken";
+import { NavLink, withRouter } from "react-router-dom";
+import decodedToken from "../utils/decodedToken";
 import {
-  FaPaintBrush,
   FaSearch,
   FaUserAlt,
   FaPalette,
@@ -20,9 +19,6 @@ function MobileNav() {
       <NavLink to="/">
         <FaUsers />
       </NavLink>
-      {/* <NavLink to="/new-post">
-        <FaPaintBrush />
-      </NavLink> */}
       <Button
         variant="info"
         href="/new-post"
@@ -44,4 +40,4 @@ function MobileNav() {
   );
 }
 
-export default MobileNav;
+export default withRouter(MobileNav);

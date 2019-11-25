@@ -5,7 +5,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 
 import { Button, Jumbotron } from "react-bootstrap";
-import { FaPalette, FaPaintBrush, FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import Loader from "react-loader-spinner";
 import "../../index.css";
 
@@ -21,7 +21,7 @@ function UserDashboard(props) {
     } else {
       props.history.push("/login");
     }
-  }, [dispatch, props.match, props.history]);
+  }, [dispatch, props.match.params.id, props.history]);
 
   if (!user)
     return (
