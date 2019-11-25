@@ -25,7 +25,7 @@ function FriendPhotos() {
 
   return (
     <div className="my-photos">
-      {friend &&
+      {friend.photos.length !== 0 ? (
         friend.photos
           .map(photo => {
             return (
@@ -38,7 +38,12 @@ function FriendPhotos() {
               </Link>
             );
           })
-          .reverse()}
+          .reverse()
+      ) : (
+        <h3 style={{ textAlign: "center", width: "100%", color: "silver" }}>
+          Nothing posted here yet
+        </h3>
+      )}
     </div>
   );
 }

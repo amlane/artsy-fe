@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../actions";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../actions";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { withRouter } from "react-router-dom";
-import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
+import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
+import decodedToken from "../utils/decodedToken";
 
 function NewPost(props) {
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const [newPost, setNewPost] = useState({
@@ -33,7 +33,7 @@ function NewPost(props) {
       .post("https://artsy-be.herokuapp.com/api/photos", newPost)
       .then(res => {
         dispatch(getUser());
-        props.history.push(`/user/${user.id}/posts`);
+        props.history.push(`/user/${decodedToken()}/posts`);
         setNewPost({
           photo_url: "",
           title: "",
@@ -71,7 +71,7 @@ function NewPost(props) {
         </div>
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <section>
           <div>
             <Form.Group controlId="formTitle">
@@ -102,10 +102,9 @@ function NewPost(props) {
             <Button
               block
               onClick={() => {
-                props.history.push(`/user/${user.id}/posts`);
+                props.history.push(`/user/${decodedToken()}/posts`);
               }}
               variant="outline-secondary"
-              type="submit"
             >
               Cancel
             </Button>

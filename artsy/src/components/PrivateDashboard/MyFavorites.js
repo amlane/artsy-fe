@@ -6,7 +6,7 @@ function MyFavorites() {
   const user = useSelector(state => state.user);
   return (
     <div className="my-photos">
-      {user &&
+      {user.favorites.length !== 0 ? (
         user.favorites
           .map(photo => {
             return (
@@ -19,7 +19,12 @@ function MyFavorites() {
               </Link>
             );
           })
-          .reverse()}
+          .reverse()
+      ) : (
+        <h3 style={{ textAlign: "center", width: "100%", color: "silver" }}>
+          Nothing here yet
+        </h3>
+      )}
     </div>
   );
 }

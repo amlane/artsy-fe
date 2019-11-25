@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import "../index.css";
-import decodedToken from "./utils/decodedToken";
+import "../../index.css";
+import decodedToken from "./../utils/decodedToken";
 
 function Navigation(props) {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = e => {
@@ -20,8 +23,8 @@ function Navigation(props) {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
+  const signOut = () => {
+    dispatch(logout());
     props.history.push("/");
   };
 
@@ -58,7 +61,7 @@ function Navigation(props) {
           }}
         >
           {localStorage.getItem("token") ? (
-            <Nav.Link style={{ color: "silver" }} onClick={logout}>
+            <Nav.Link style={{ color: "silver" }} onClick={signOut}>
               Log out
             </Nav.Link>
           ) : (

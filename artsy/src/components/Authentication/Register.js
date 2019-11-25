@@ -10,7 +10,6 @@ function Register(props) {
     setShow(false);
     props.history.push("/");
   };
-  // const handleShow = () => setShow(true);
 
   const [newUser, setNewUser] = useState({
     email: "",
@@ -36,9 +35,8 @@ function Register(props) {
       axios
         .post("https://artsy-be.herokuapp.com/api/auth/register", newUser)
         .then(res => {
-          console.log(res.data);
           localStorage.setItem("token", res.data.token);
-          props.history.push("/user/posts");
+          props.history.push(`/user/${res.data.newUser.id}/posts`);
           setIsLoggingIn(false);
           setErrorMsg("");
         })

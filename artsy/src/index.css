@@ -109,7 +109,8 @@ nav .title {
 
 .home-page .photos .card {
   width: 30%;
-  border: 1px solid;
+  border: 1px solid #e9ecef;
+  margin: 10px;
 }
 
 /* User Dashboard */
@@ -139,7 +140,7 @@ nav .title {
 .user-dashboard section div {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 5px 0;
 }
 
 .user-dashboard header .mobile {
@@ -152,8 +153,13 @@ nav .title {
   margin-right: 10%;
 }
 
+.user-dashboard section div .desktop {
+  white-space: nowrap;
+}
+
 .user-dashboard section .main {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
 }
 
@@ -361,6 +367,10 @@ nav .title {
     height: 200px;
   }
 
+  .user-dashboard .desktop-add-btn {
+    display: none;
+  }
+
   /* single photo view */
   .single-photo-view {
     flex-direction: column;
@@ -491,6 +501,10 @@ nav .title {
     justify-content: flex-start;
     margin-top: 10px;
   }
+
+  .user-dashboard section h1 {
+    width: 100%;
+  }
   .user-dashboard header {
     width: 100%;
     display: flex;
@@ -500,7 +514,7 @@ nav .title {
   .user-dashboard header .mobile {
     display: inline;
   }
-  .user-dashboard section .main {
+  .user-dashboard section .main .info {
     flex-direction: column;
   }
 
@@ -513,10 +527,6 @@ nav .title {
   .user-dashboard .avatar {
     height: 125px;
     width: 125px;
-  }
-
-  .user-dashboard .desktop-add-btn {
-    display: none;
   }
 
   .dashboard-nav {

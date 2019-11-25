@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import decodedToken from "./utils/decodedToken";
+import decodedToken from "./../utils/decodedToken";
 import {
   FaPaintBrush,
   FaSearch,

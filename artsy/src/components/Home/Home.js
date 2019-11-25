@@ -1,39 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { visitUser, getUser } from "../actions";
+import { getUser, setFavsID } from "../../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import decodedToken from "./utils/decodedToken";
 import HomeHero from "./HomeHero";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 function Home(props) {
-  const user = useSelector(state => state.user);
+  const userFavorites = useSelector(state => state.userFavorites);
+  const favsID = useSelector(state => state.favsID);
   const dispatch = useDispatch();
 
   const [photos, setPhotos] = useState(null);
-  const [userFavorites, setUserFavorites] = useState(null);
-  const [favsID, setFavsID] = useState(null);
-
-  // const getUserData = () => {
-  //   if (decodedToken() !== undefined) {
-  //     dispatch(getUser());
-  //     setUserFavorites(user.favorites);
-  //   }
-  // };
 
   useEffect(() => {
-    console.log("loop there it is");
-    if (decodedToken() !== undefined) {
-      dispatch(getUser());
-      setUserFavorites(user.favorites);
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    // getUserData();
+    dispatch(getUser());
     axios
       .get("https://artsy-be.herokuapp.com/api/photos")
       .then(res => {
@@ -42,16 +25,12 @@ function Home(props) {
       .catch(err => {
         console.log({ err });
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    if (userFavorites) {
-      const favs = userFavorites.map(favs => {
-        return favs.id;
-      });
-      setFavsID(favs);
-    }
-  }, [userFavorites]);
+    console.log("check home");
+    dispatch(setFavsID());
+  }, [userFavorites, dispatch]);
 
   const addLike = id => {
     if (!localStorage.getItem("token")) {
@@ -80,16 +59,8 @@ function Home(props) {
         console.log(err);
       });
   };
-
-  function connectToProfile(userId) {
-    dispatch(visitUser(userId));
-    visitPage(userId);
-  }
-
-  function visitPage(userId) {
-    props.history.push(`/portfolio/${userId}`);
-  }
-
+  console.log(userFavorites);
+  console.log(favsID);
   if (!photos)
     return (
       <Loader
@@ -114,14 +85,7 @@ function Home(props) {
           {photos
             .map(photo => {
               return (
-                <Card
-                  key={photo.id}
-                  className="card"
-                  style={{
-                    margin: "10px",
-                    border: "1px solid #E9ECEF"
-                  }}
-                >
+                <Card key={photo.id} className="card">
                   <Link
                     to={`/portfolio/${photo.user_id}`}
                     style={{
