@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../actions";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { getUser } from "../../actions";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Loader from "react-loader-spinner";
-import decodedToken from "./utils/decodedToken";
+import decodedToken from "../utils/decodedToken";
 import { withRouter } from "react-router-dom";
-import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
+import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
 
 function EditProfile(props) {

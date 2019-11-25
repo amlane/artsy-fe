@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../actions";
+import { logout } from "../../actions";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import "../index.css";
-import decodedToken from "./utils/decodedToken";
+import "../../index.css";
+import decodedToken from "./../utils/decodedToken";
 
 function Navigation(props) {
   const dispatch = useDispatch();

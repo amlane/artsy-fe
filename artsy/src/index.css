@@ -109,7 +109,8 @@ nav .title {
 
 .home-page .photos .card {
   width: 30%;
-  border: 1px solid;
+  border: 1px solid #e9ecef;
+  margin: 10px;
 }
 
 /* User Dashboard */
@@ -158,6 +159,7 @@ nav .title {
 
 .user-dashboard section .main {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
 }
 
@@ -512,7 +514,7 @@ nav .title {
   .user-dashboard header .mobile {
     display: inline;
   }
-  .user-dashboard section .main {
+  .user-dashboard section .main .info {
     flex-direction: column;
   }
 

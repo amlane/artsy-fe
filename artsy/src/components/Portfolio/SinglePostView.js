@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, setFavsID } from "../actions";
+import { getUser, setFavsID } from "../../actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 

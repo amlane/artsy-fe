@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../actions";
+import { getUser } from "../../actions";
 import { NavLink, withRouter } from "react-router-dom";
-import decodedToken from "./utils/decodedToken";
+import decodedToken from "../utils/decodedToken";
 
 import { Button, Jumbotron } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import "../index.css";
+import "../../index.css";
 
 import moment from "moment";
 
@@ -66,20 +66,32 @@ function UserDashboard(props) {
           </div>
           <p>{user.about}</p>
           <div className="main">
-            <p>
-              <i className="fas fa-palette"></i>
-              {user.photos.length} posts
-            </p>
-            <p>
-              <i className="fas fa-paint-brush"></i>Joined{" "}
-              {moment(user.created_at).fromNow()}
-            </p>
-            {user.location ? (
+            <div className="follows">
               <p>
-                <i className="fas fa-map-marker-alt"></i>
-                {user.location}
+                <i className="fas fa-user"></i>
+                {user.following.length} following
               </p>
-            ) : null}
+              <p>
+                <i className="fas fa-users"></i>
+                {user.followers.length} followers
+              </p>
+            </div>
+            <div className="info">
+              <p>
+                <i className="fas fa-palette"></i>
+                {user.photos.length} posts
+              </p>
+              <p>
+                <i className="fas fa-paint-brush"></i>Joined{" "}
+                {moment(user.created_at).fromNow()}
+              </p>
+              {user.location ? (
+                <p>
+                  <i className="fas fa-map-marker-alt"></i>
+                  {user.location}
+                </p>
+              ) : null}
+            </div>
           </div>
 
           <Button variant="info" href="/new-post" className="desktop-add-btn">

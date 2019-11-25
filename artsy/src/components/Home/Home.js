@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, setFavsID } from "../actions";
+import { getUser, setFavsID } from "../../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -85,14 +85,7 @@ function Home(props) {
           {photos
             .map(photo => {
               return (
-                <Card
-                  key={photo.id}
-                  className="card"
-                  style={{
-                    margin: "10px",
-                    border: "1px solid #E9ECEF"
-                  }}
-                >
+                <Card key={photo.id} className="card">
                   <Link
                     to={`/portfolio/${photo.user_id}`}
                     style={{

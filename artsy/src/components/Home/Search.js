@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 

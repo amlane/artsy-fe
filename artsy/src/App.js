@@ -3,22 +3,22 @@ import React from "react";
 import "./App.css";
 
 import { Route } from "react-router-dom";
-import PrivateRoute from "./components/Authentication/PrivateRoute";
+import PrivateRoute from "./components/utils/PrivateRoute";
 
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import UserDashboard from "./components/UserDashboard";
-import Navigation from "./components/NavBar";
-import MobileNav from "./components/MobileNav";
-import NewPost from "./components/NewPost";
-import EditProfile from "./components/EditProfile";
-import MyPhotos from "./components/MyPhotos";
-import MyFavorites from "./components/MyFavorites";
-import SinglePostView from "./components/SinglePostView";
-import Search from "./components/Search";
-import FriendDashboard from "./components/FriendDashboard";
-import FriendPhotos from "./components/FriendPhotos";
+import Login from "./components/Authentication/Login";
+import Register from "./components/Authentication/Register";
+import Home from "./components/Home/Home";
+import UserDashboard from "./components/PrivateDashboard/UserDashboard";
+import Navigation from "./components/Home/NavBar";
+import MobileNav from "./components/Home/MobileNav";
+import NewPost from "./components/PrivateDashboard/NewPost";
+import EditProfile from "./components/PrivateDashboard/EditProfile";
+import MyPhotos from "./components/PrivateDashboard/MyPhotos";
+import MyFavorites from "./components/PrivateDashboard/MyFavorites";
+import SinglePostView from "./components/Portfolio/SinglePostView";
+import Search from "./components/Home/Search";
+import FriendDashboard from "./components/Portfolio/FriendDashboard";
+import FriendPhotos from "./components/Portfolio/FriendPhotos";
 
 function App() {
   return (

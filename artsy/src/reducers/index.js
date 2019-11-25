@@ -10,13 +10,17 @@ const initialState = {
   user: {
     id: "",
     photos: [],
-    favorites: []
+    favorites: [],
+    followers: [],
+    following: []
   },
   userFavorites: [],
   favsID: [],
   friend: {
     photos: [],
-    favorites: []
+    favorites: [],
+    followers: [],
+    following: []
   }
 };
 

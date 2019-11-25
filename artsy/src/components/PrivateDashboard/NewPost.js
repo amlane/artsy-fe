@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUser } from "../actions";
-import { axiosWithAuth } from "./Authentication/axiosWithAuth";
+import { getUser } from "../../actions";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { withRouter } from "react-router-dom";
-import { useCloudinaryWidget } from "./hooks/useCloudinaryWidget";
+import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
-import decodedToken from "./utils/decodedToken";
+import decodedToken from "../utils/decodedToken";
 
 function NewPost(props) {
   const dispatch = useDispatch();
