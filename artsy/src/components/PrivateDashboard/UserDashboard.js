@@ -5,7 +5,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 
 import { Button, Jumbotron } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
+import { MdAdd } from "react-icons/md";
 import Loader from "react-loader-spinner";
 import "../../index.css";
 
@@ -96,7 +96,7 @@ function UserDashboard(props) {
           </div>
 
           <Button variant="info" href="/new-post" className="desktop-add-btn">
-            <FaPlus size="1.5em" />
+            <MdAdd size="1.5em" />
           </Button>
           {/* <Button variant="info" href="/new-post" className="mobile-add-btn">
             <FaPlus size="1.5em" style={{ display: "block" }} />

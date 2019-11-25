@@ -5,6 +5,9 @@ import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../../index.css";
 import decodedToken from "./../utils/decodedToken";
+import { WiStars } from "react-icons/wi";
+import { IoIosPeople } from "react-icons/io";
+import { MdHome } from "react-icons/md";
 
 function Navigation(props) {
   const dispatch = useDispatch();
@@ -32,24 +35,67 @@ function Navigation(props) {
       <Link to="/" className="title">
         Artsy
       </Link>
-      <div style={{ display: "flex", width: "25%", justifyContent: "center" }}>
+
+      <form onSubmit={searchRoute} className="nav-search">
+        <input
+          type="text"
+          placeholder="Search"
+          className="search-input"
+          value={inputValue}
+          onChange={handleChange}
+        />
+        <button type="search">
+          <i className="fas fa-search"></i>
+        </button>
+      </form>
+
+      <div
+        className="icons"
+        style={{ display: "flex", width: "25%", justifyContent: "center" }}
+      >
         <NavLink
-          style={{ fontSize: "30px", color: "gray", padding: "0 15px" }}
+          style={{
+            color: "gray",
+            padding: "0 15px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRight: "1px solid #ece9e7"
+          }}
           to="/"
         >
-          <i className="fas fa-palette"></i>
+          <WiStars style={{ fontSize: "35px" }} />
+          <p>Explore</p>
         </NavLink>
         <NavLink
-          style={{ fontSize: "30px", color: "gray", padding: "0 15px" }}
+          style={{
+            color: "gray",
+            padding: "0 15px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRight: "1px solid #ece9e7"
+          }}
           to="/"
         >
-          <i className="fas fa-users"></i>
+          <IoIosPeople style={{ fontSize: "35px" }} />
+          <p>Connect</p>
         </NavLink>
         <NavLink
-          style={{ fontSize: "30px", color: "gray", padding: "0 15px" }}
+          style={{
+            color: "gray",
+            padding: "0 15px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
           to={`/user/${decodedToken()}/posts`}
         >
-          <i className="fas fa-user"></i>
+          <MdHome style={{ fontSize: "35px" }} />
+          <p>You</p>
         </NavLink>
         <div
           style={{
@@ -60,28 +106,16 @@ function Navigation(props) {
           }}
         >
           {localStorage.getItem("token") ? (
-            <Nav.Link style={{ color: "silver" }} onClick={signOut}>
+            <Nav.Link style={{ color: "gray" }} onClick={signOut}>
               Log out
             </Nav.Link>
           ) : (
-            <Nav.Link style={{ color: "silver" }} href="/login">
+            <Nav.Link style={{ color: "gray" }} href="/login">
               Login/SignUp
             </Nav.Link>
           )}
         </div>
       </div>
-      <form onSubmit={searchRoute} className="nav-search">
-        <button type="search">
-          <i className="fas fa-search"></i>
-        </button>
-        <input
-          type="text"
-          placeholder="Search"
-          className="search-input"
-          value={inputValue}
-          onChange={handleChange}
-        />
-      </form>
     </nav>
   );
 }
