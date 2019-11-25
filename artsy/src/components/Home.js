@@ -28,9 +28,8 @@ function Home(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (userFavorites.length > 0) {
-      dispatch(setFavsID());
-    }
+    console.log("check home");
+    dispatch(setFavsID());
   }, [userFavorites, dispatch]);
 
   const addLike = id => {

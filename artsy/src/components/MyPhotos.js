@@ -25,7 +25,7 @@ function MyPhotos() {
 
   return (
     <div className="my-photos">
-      {user.photos !== 0 ? (
+      {user.photos.length !== 0 ? (
         user.photos
           .map(photo => {
             return (

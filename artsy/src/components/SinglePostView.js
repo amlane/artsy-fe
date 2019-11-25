@@ -33,9 +33,8 @@ function SinglePostView(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (userFavorites.length > 0) {
-      dispatch(setFavsID());
-    }
+    console.log("check");
+    dispatch(setFavsID());
   }, [userFavorites, dispatch]);
 
   const addLike = id => {

@@ -6,7 +6,7 @@ function MyFavorites() {
   const user = useSelector(state => state.user);
   return (
     <div className="my-photos">
-      {user.favorites !== 0 ? (
+      {user.favorites.length !== 0 ? (
         user.favorites
           .map(photo => {
             return (
