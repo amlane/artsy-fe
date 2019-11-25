@@ -24,26 +24,26 @@ body {
   align-items: center;
   background-color: #fff;
   border-bottom: 1px solid silver;
-  padding: 0 5%;
+  padding: 0 8%;
 }
 nav a {
-  color: #000;
+  color: #17a2b8;
+  transition: 2s;
 }
 
 nav a:hover {
   text-decoration: none;
-  color: #17a2b8;
-}
-
-nav .fas:hover {
-  color: #17a2b8;
+  color: #0f7585;
 }
 
 nav .nav-search {
   margin: 0 3% 0 3%;
   border: 1px solid silver;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 25px;
+  padding: 5px 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav .nav-search input,
@@ -442,14 +442,7 @@ nav .title {
   .mobile-nav div {
     color: gray;
     font-size: 25px;
-    /* align-self: center; */
   }
-  .mobile-nav a:nth-child(2) {
-    font-size: 32px;
-  }
-  /* .mobile-nav a:nth-child(3) {
-    font-size: 32px;
-  } */
 
   .mobile-nav .mobile-add-btn {
     display: flex;
