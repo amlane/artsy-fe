@@ -16,15 +16,11 @@ function MobileNav() {
         <IoIosPeople size="1.25em" />
       </NavLink>
       <Button
-        variant="info"
+        variant="outline-secondary"
         href="/new-post"
         className="mobile-add-btn"
-        style={{
-          position: "relative",
-          bottom: "15px"
-        }}
       >
-        <MdAdd style={{ color: "#FFF" }} />
+        <MdAdd />
       </Button>
       <NavLink to="/search/art">
         <IoIosSearch size="1.25em" />
