@@ -6,6 +6,7 @@ import decodedToken from "../utils/decodedToken";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import { Button, Jumbotron } from "react-bootstrap";
+import { IoMdPersonAdd } from "react-icons/io";
 import Loader from "react-loader-spinner";
 import moment from "moment";
 
@@ -106,7 +107,7 @@ function FriendDashboard(props) {
               </Button>
             ) : (
               <Button className="mobile" variant="info" onClick={followArtist}>
-                Follow
+                <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
               </Button>
             )
           ) : null}
@@ -137,7 +138,7 @@ function FriendDashboard(props) {
                   variant="info"
                   onClick={followArtist}
                 >
-                  Follow
+                  <IoMdPersonAdd style={{ marginRight: "10px" }} /> Follow
                 </Button>
               )
             ) : null}

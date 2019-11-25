@@ -95,7 +95,11 @@ function UserDashboard(props) {
             </div>
           </div>
 
-          <Button variant="info" href="/new-post" className="desktop-add-btn">
+          <Button
+            variant="outline-info"
+            href="/new-post"
+            className="desktop-add-btn"
+          >
             <MdAdd size="1.5em" />
           </Button>
           {/* <Button variant="info" href="/new-post" className="mobile-add-btn">
