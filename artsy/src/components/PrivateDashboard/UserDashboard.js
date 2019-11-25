@@ -5,6 +5,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 
 import { Button, Jumbotron } from "react-bootstrap";
+import { FaPalette, FaPaintBrush, FaPlus } from "react-icons/fa";
 import Loader from "react-loader-spinner";
 import "../../index.css";
 
@@ -15,7 +16,7 @@ function UserDashboard(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (props.match.params.id === decodedToken().toString()) {
+    if (+props.match.params.id === decodedToken()) {
       dispatch(getUser());
     } else {
       props.history.push("/login");
@@ -69,17 +70,17 @@ function UserDashboard(props) {
             <div className="follows">
               <p>
                 <i className="fas fa-user"></i>
-                {user.following.length} following
+                {user.following && user.following.length} following
               </p>
               <p>
                 <i className="fas fa-users"></i>
-                {user.followers.length} followers
+                {user.followers && user.followers.length} followers
               </p>
             </div>
             <div className="info">
               <p>
                 <i className="fas fa-palette"></i>
-                {user.photos.length} posts
+                {user.photos && user.photos.length} posts
               </p>
               <p>
                 <i className="fas fa-paint-brush"></i>Joined{" "}
@@ -95,8 +96,11 @@ function UserDashboard(props) {
           </div>
 
           <Button variant="info" href="/new-post" className="desktop-add-btn">
-            Add Post
+            <FaPlus size="1.5em" />
           </Button>
+          {/* <Button variant="info" href="/new-post" className="mobile-add-btn">
+            <FaPlus size="1.5em" style={{ display: "block" }} />
+          </Button> */}
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">

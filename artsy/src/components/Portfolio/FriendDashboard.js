@@ -22,8 +22,6 @@ function FriendDashboard(props) {
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
-    console.log("Follows");
-
     const list = friend.followers.map(follows => {
       return follows.id;
     });
@@ -79,12 +77,6 @@ function FriendDashboard(props) {
         }}
       />
     );
-
-  const followersId = friend.followers.map(follows => {
-    return follows.id;
-  });
-
-  console.log(followersId.includes(decodedToken()));
 
   return (
     <>

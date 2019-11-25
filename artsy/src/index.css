@@ -177,6 +177,12 @@ nav .title {
 
 .user-dashboard .desktop-add-btn {
   float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 
 .dashboard-nav {
@@ -424,11 +430,11 @@ nav .title {
     z-index: 10;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     background: #fff;
     width: 100%;
     border-top: 1px solid silver;
-    height: 60px;
+    height: 55px;
     padding: 0 5%;
   }
 
@@ -441,8 +447,17 @@ nav .title {
   .mobile-nav a:nth-child(2) {
     font-size: 32px;
   }
-  .mobile-nav a:nth-child(3) {
+  /* .mobile-nav a:nth-child(3) {
     font-size: 32px;
+  } */
+
+  .mobile-nav .mobile-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
   }
 
   .mobile-search {

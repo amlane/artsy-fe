@@ -6,8 +6,10 @@ import {
   FaSearch,
   FaUserAlt,
   FaPalette,
-  FaUsers
+  FaUsers,
+  FaPlus
 } from "react-icons/fa";
+import { Button } from "react-bootstrap";
 
 function MobileNav() {
   return (
@@ -18,9 +20,20 @@ function MobileNav() {
       <NavLink to="/">
         <FaUsers />
       </NavLink>
-      <NavLink to="/new-post">
+      {/* <NavLink to="/new-post">
         <FaPaintBrush />
-      </NavLink>
+      </NavLink> */}
+      <Button
+        variant="info"
+        href="/new-post"
+        className="mobile-add-btn"
+        style={{
+          position: "relative",
+          bottom: "15px"
+        }}
+      >
+        <FaPlus size="1.5em" style={{ color: "#FFF" }} />
+      </Button>
       <NavLink to="/search/art">
         <FaSearch />
       </NavLink>
