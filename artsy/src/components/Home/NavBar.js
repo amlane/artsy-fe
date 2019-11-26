@@ -6,7 +6,7 @@ import { Nav } from "react-bootstrap";
 import "../../index.css";
 import decodedToken from "./../utils/decodedToken";
 import { WiStars } from "react-icons/wi";
-import { IoIosPeople } from "react-icons/io";
+import { IoIosPeople, IoIosSearch } from "react-icons/io";
 import { MdHome } from "react-icons/md";
 
 function Navigation(props) {
@@ -46,7 +46,7 @@ function Navigation(props) {
           onChange={handleChange}
         />
         <button type="search">
-          <i className="fas fa-search"></i>
+          <IoIosSearch size="1.5em" style={{ color: "gray" }} />
         </button>
       </form>
 
@@ -79,7 +79,7 @@ function Navigation(props) {
             alignItems: "center",
             borderRight: "1px solid #ece9e7"
           }}
-          to="/"
+          to="/connect"
         >
           <IoIosPeople style={{ fontSize: "35px" }} />
           <p>Connect</p>

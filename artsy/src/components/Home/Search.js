@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { IoIosSearch } from "react-icons/io";
 
 function Search(props) {
   const [searchResults, setSearchResults] = useState(null);
@@ -57,8 +58,8 @@ function Search(props) {
           value={inputValue}
           onChange={handleChange}
         />
-        <button type="search" style={{ padding: "5px" }}>
-          <i className="fas fa-search"></i>
+        <button type="search" style={{ padding: "5px", color: "gray" }}>
+          <IoIosSearch size="1.5em" />
         </button>
       </form>
       <h3 style={{ textAlign: "center", padding: "15px" }}>
