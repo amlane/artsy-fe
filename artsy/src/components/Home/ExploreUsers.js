@@ -39,7 +39,6 @@ function ExploreUsers() {
     axiosWithAuth()
       .post(`https://artsy-be.herokuapp.com/api/follow/${id}`)
       .then(res => {
-        console.log(res);
         dispatch(getUser());
       })
       .catch(err => {
@@ -52,7 +51,6 @@ function ExploreUsers() {
     axiosWithAuth()
       .delete(`https://artsy-be.herokuapp.com/api/follow/${id}`)
       .then(res => {
-        console.log(res);
         dispatch(getUser());
       })
       .catch(err => {
@@ -86,6 +84,8 @@ function ExploreUsers() {
               unfollowArtist={unfollowArtist}
             />
           );
+        } else {
+          return null;
         }
       })}
     </div>
