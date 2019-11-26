@@ -124,13 +124,13 @@ function FriendDashboard(props) {
             <h1>{friend.username}</h1>
             {localStorage.getItem("token") ? (
               +props.match.params.id === decodedToken() ? (
-                <button
+                <Button
                   className="desktop"
                   variant="outline-secondary"
                   href="/edit-profile"
                 >
                   Edit Profile
-                </button>
+                </Button>
               ) : isFollowing ? (
                 <button
                   className="desktop"
