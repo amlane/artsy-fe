@@ -95,7 +95,7 @@ function ExploreUsers() {
             );
           })
           .reverse()
-          .slice(0, 8)}
+          .slice(0, 4)}
       </div>
       <h2>Popular Artists</h2>
       <div
