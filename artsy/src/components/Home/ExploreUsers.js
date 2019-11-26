@@ -60,34 +60,68 @@ function ExploreUsers() {
 
   const getFollowerIds = followers.map(follower => follower.id);
   const getFollowingIds = following.map(following => following.id);
-
+  console.log(users);
   if (!users) return <h1>loading...</h1>;
   return (
     <div
       style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
         maxWidth: "1000px",
-        margin: "0 auto"
+        display: "flex",
+        flexDirection: "column",
+        margin: "25px auto"
       }}
     >
-      {users.map(user => {
-        if (user.id !== decodedToken()) {
-          return (
-            <ExploreUsersCard
-              user={user}
-              key={user.id}
-              getFollowerIds={getFollowerIds}
-              getFollowingIds={getFollowingIds}
-              followArtist={followArtist}
-              unfollowArtist={unfollowArtist}
-            />
-          );
-        } else {
-          return null;
-        }
-      })}
+      <h2>New Artists</h2>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          margin: "0 auto"
+        }}
+      >
+        {users
+          .filter(user => user.id !== decodedToken())
+          .map(user => {
+            return (
+              <ExploreUsersCard
+                user={user}
+                key={user.id}
+                getFollowerIds={getFollowerIds}
+                getFollowingIds={getFollowingIds}
+                followArtist={followArtist}
+                unfollowArtist={unfollowArtist}
+              />
+            );
+          })
+          .reverse()
+          .slice(0, 8)}
+      </div>
+      <h2>Popular Artists</h2>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          margin: "0 auto"
+        }}
+      >
+        {users
+          .filter(user => user.id !== decodedToken())
+          .map(user => {
+            return (
+              <ExploreUsersCard
+                user={user}
+                key={user.id}
+                getFollowerIds={getFollowerIds}
+                getFollowingIds={getFollowingIds}
+                followArtist={followArtist}
+                unfollowArtist={unfollowArtist}
+              />
+            );
+          })
+          .slice(0, 8)}
+      </div>
     </div>
   );
 }
