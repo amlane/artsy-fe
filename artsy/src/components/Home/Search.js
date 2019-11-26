@@ -11,7 +11,7 @@ function Search(props) {
     setInputValue(e.target.value);
   };
 
-  const searchRoute = () => {
+  const submitSearch = () => {
     if (inputValue !== "") {
       props.history.push(`/search/${inputValue}`);
     } else {
@@ -48,11 +48,11 @@ function Search(props) {
       />
     );
   return (
-    <>
-      <form onSubmit={searchRoute} className="mobile-search">
+    <div className="search-page">
+      <form onSubmit={submitSearch} className="mobile-search">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search for titles"
           className="search-input"
           value={inputValue}
           onChange={handleChange}
@@ -103,7 +103,7 @@ function Search(props) {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

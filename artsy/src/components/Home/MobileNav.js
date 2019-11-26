@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import { WiStars } from "react-icons/wi";
-import { IoIosPeople, IoIosSearch, IoIosAdd } from "react-icons/io";
+import { IoIosPeople, IoIosSearch } from "react-icons/io";
 import { MdHome, MdAdd } from "react-icons/md";
 import { Button } from "react-bootstrap";
 

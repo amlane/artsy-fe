@@ -7,6 +7,7 @@ import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { FaStar } from "react-icons/fa";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -28,7 +29,6 @@ function Home(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("check home");
     dispatch(setFavsID());
   }, [userFavorites, dispatch]);
 
@@ -59,8 +59,7 @@ function Home(props) {
         console.log(err);
       });
   };
-  console.log(userFavorites);
-  console.log(favsID);
+
   if (!photos)
     return (
       <Loader
@@ -90,7 +89,7 @@ function Home(props) {
                     to={`/portfolio/${photo.user_id}`}
                     style={{
                       display: "flex",
-                      padding: "5% 5% 0 5%",
+                      padding: "3%",
                       textDecoration: "none",
                       color: "#000"
                     }}
@@ -117,13 +116,7 @@ function Home(props) {
                       variant="top"
                       src={photo.photo_url}
                       alt={photo.title}
-                      style={{
-                        height: "50vh",
-                        maxHeight: "400px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                        padding: "5% 5% 0 5%"
-                      }}
+                      className="main"
                     />
                   </Link>
                   <Card.Body
@@ -140,19 +133,19 @@ function Home(props) {
                           ? unLike(photo.id)
                           : addLike(photo.id)
                       }
+                      style={{ display: "flex" }}
                     >
-                      <i
-                        className="fas fa-star"
+                      <FaStar
+                        size="1.5em"
                         style={{
                           color:
                             favsID && favsID.includes(photo.id)
                               ? "#D4AF43"
                               : "gray",
                           cursor: "pointer",
-                          fontSize: "24px",
                           paddingRight: "5px"
                         }}
-                      ></i>
+                      />
                     </span>
                     <span>{photo.likes}</span>
                   </Card.Body>

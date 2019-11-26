@@ -17,12 +17,13 @@ function Navigation(props) {
     setInputValue(e.target.value);
   };
 
-  const searchRoute = e => {
+  const submitSearch = e => {
     e.preventDefault();
     if (inputValue === "") {
       props.history.push(`/search/""`);
     } else {
       props.history.push(`/search/${inputValue}`);
+      setInputValue("");
     }
   };
 
@@ -36,10 +37,10 @@ function Navigation(props) {
         Artsy
       </Link>
 
-      <form onSubmit={searchRoute} className="nav-search">
+      <form onSubmit={submitSearch} className="nav-search">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search for titles"
           className="search-input"
           value={inputValue}
           onChange={handleChange}

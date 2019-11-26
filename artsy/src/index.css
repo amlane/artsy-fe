@@ -28,7 +28,7 @@ body {
 }
 nav a {
   color: #17a2b8;
-  transition: 2s;
+  transition: 0.2s;
 }
 
 nav a:hover {
@@ -52,8 +52,12 @@ nav .nav-search button {
   background: none;
 }
 
-nav .nav-search button:focus,
-nav .nav-search input:focus {
+nav .nav-search input {
+  width: 100%;
+}
+
+button:focus,
+input:focus {
   outline: none;
 }
 
@@ -99,18 +103,31 @@ nav .title {
   height: 250px;
 }
 
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .home-page .photos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   max-width: 1400px;
-  margin: 0 auto;
+  padding: 3%;
 }
 
 .home-page .photos .card {
-  width: 30%;
+  width: 31%;
   border: 1px solid #e9ecef;
   margin: 10px;
+}
+
+.home-page .photos .card .main {
+  height: 45vh;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* User Dashboard */
@@ -125,10 +142,6 @@ nav .title {
   margin: 0 auto;
 }
 
-.user-dashboard header {
-  margin-right: 10%;
-}
-
 .user-dashboard .avatar {
   object-fit: cover;
   object-position: center;
@@ -137,10 +150,14 @@ nav .title {
   border-radius: 50%;
 }
 
+.user-dashboard section {
+  padding: 0 5%;
+  width: 70%;
+}
+
 .user-dashboard section div {
   display: flex;
   align-items: center;
-  margin: 5px 0;
 }
 
 .user-dashboard header .mobile {
@@ -153,20 +170,48 @@ nav .title {
   margin-right: 10%;
 }
 
+/* edit button  */
 .user-dashboard section div .desktop {
   white-space: nowrap;
   display: flex;
   align-items: center;
+  border: 1px solid #17a2b8;
+  color: #17a2b8;
+  border-radius: 20px;
+  padding: 8px 20px;
+  background: #fff;
+}
+
+.user-dashboard section div .desktop.follow {
+  color: #fff;
+  background: #17a2b8;
+}
+
+.user-dashboard section .main .follows {
+  padding-left: 4px;
+}
+
+.user-dashboard section .follows span {
+  color: #000;
+  font-weight: bolder;
+  margin-right: 3px;
 }
 
 .user-dashboard section .main {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: flex-start;
+  font-size: 16px;
+  color: gray;
 }
 
 .user-dashboard section .main p {
   margin-right: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .user-dashboard section .main p i {
   padding-right: 10px;
@@ -198,7 +243,7 @@ nav .title {
 }
 
 .dashboard-nav a {
-  color: #000;
+  color: gray;
   padding: 8px;
   margin: 0 10px;
   width: 100px;
@@ -248,12 +293,18 @@ nav .title {
 
 /* my photos */
 
+.search-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .my-photos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 25px auto;
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
 }
 
@@ -262,9 +313,9 @@ nav .title {
   border: 1px solid #e9ecef;
   background: #fff;
   height: 350px;
-  width: 33%;
+  width: 31.5%;
   padding: 20px;
-  margin: 3px 0;
+  margin: 3px;
 }
 
 .photo-card img {
@@ -278,14 +329,20 @@ nav .title {
 
 .add-new-post {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   max-width: 1000px;
   margin: 5% auto;
   width: 100%;
 }
 
+.add-new-post .image-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .add-new-post img {
-  width: 90%;
+  width: 80%;
   cursor: pointer;
   max-height: 450px;
   object-fit: cover;
@@ -294,6 +351,7 @@ nav .title {
 
 .add-new-post form {
   width: 60%;
+  min-width: 500px;
 }
 
 .add-new-post form .text-area {
@@ -370,6 +428,10 @@ nav .title {
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
+  }
+
+  .user-dashboard section {
+    width: 100%;
   }
   .photo-card {
     height: 200px;
@@ -474,11 +536,6 @@ nav .title {
     border: none;
     background: none;
   }
-
-  .mobile-search input:focus,
-  .mobile-search button:focus {
-    outline: none;
-  }
 }
 
 @media only screen and (max-width: 605px) {
@@ -508,11 +565,21 @@ nav .title {
     width: 100%;
     align-items: flex-start;
   }
+
+  .user-dashboard section {
+    width: 100%;
+    padding: 0;
+  }
+
   .user-dashboard section div {
     width: 100%;
     align-items: flex-start;
     justify-content: flex-start;
     margin-top: 10px;
+  }
+
+  .user-dashboard section .follows span {
+    margin-right: 3px;
   }
 
   .user-dashboard section h1 {
@@ -523,24 +590,48 @@ nav .title {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    margin: 0;
   }
   .user-dashboard header .mobile {
     display: flex;
     align-items: center;
+    border: 1px solid #17a2b8;
+    color: #17a2b8;
+    border-radius: 20px;
+    padding: 8px 20px;
+    background: #fff;
   }
-  .user-dashboard section .main .info {
-    flex-direction: column;
+
+  .user-dashboard header .mobile.follow {
+    color: #fff;
+    background: #17a2b8;
+  }
+
+  .user-dashboard section .main {
+    font-size: 14px;
   }
 
   .user-dashboard section .main p {
-    width: 100%;
+    margin: 0 0 8px 0;
+    padding: 0 15px 0 0;
+    display: flex;
+    align-items: center;
   }
+
+  .user-dashboard section div {
+    margin: 0;
+  }
+
   .user-dashboard section div .desktop {
     display: none;
   }
   .user-dashboard .avatar {
-    height: 125px;
-    width: 125px;
+    height: 100px;
+    width: 100px;
+  }
+
+  .user-dashboard section div h1 {
+    font-size: 28px;
   }
 
   .dashboard-nav {
@@ -578,6 +669,7 @@ nav .title {
 
   .add-new-post form {
     width: 100%;
+    min-width: auto;
   }
 
   .add-new-post form .text-area {
