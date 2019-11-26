@@ -7,7 +7,7 @@ import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import { FaEllipsisH } from "react-icons/fa";
+import { FaEllipsisH, FaStar } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
 
 function SinglePostView(props) {
@@ -144,18 +144,17 @@ function SinglePostView(props) {
                 : addLike(photo.id)
             }
           >
-            <i
-              className="fas fa-star"
+            <FaStar
+              size="1.75em"
               style={{
                 color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray",
                 cursor: "pointer",
-                fontSize: "24px",
-                paddingBottom: "10px",
+                paddingBottom: "5px",
                 paddingRight: "5px"
               }}
-            ></i>
+            />
+            <span>{photo.likes.count}</span>
           </span>
-          <span>{photo.likes.count}</span>
           <div
             style={{
               width: "100%",

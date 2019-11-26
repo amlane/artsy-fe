@@ -669,6 +669,7 @@ nav .title {
 
   .add-new-post form {
     width: 100%;
+    min-width: auto;
   }
 
   .add-new-post form .text-area {

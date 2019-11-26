@@ -7,6 +7,7 @@ import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { FaStar } from "react-icons/fa";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -58,8 +59,7 @@ function Home(props) {
         console.log(err);
       });
   };
-  console.log(userFavorites);
-  console.log(favsID);
+
   if (!photos)
     return (
       <Loader
@@ -133,19 +133,19 @@ function Home(props) {
                           ? unLike(photo.id)
                           : addLike(photo.id)
                       }
+                      style={{ display: "flex" }}
                     >
-                      <i
-                        className="fas fa-star"
+                      <FaStar
+                        size="1.5em"
                         style={{
                           color:
                             favsID && favsID.includes(photo.id)
                               ? "#D4AF43"
                               : "gray",
                           cursor: "pointer",
-                          fontSize: "24px",
                           paddingRight: "5px"
                         }}
-                      ></i>
+                      />
                     </span>
                     <span>{photo.likes}</span>
                   </Card.Body>
