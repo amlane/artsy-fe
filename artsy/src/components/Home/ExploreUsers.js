@@ -5,6 +5,7 @@ import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import ExploreUsersCard from "./ExploreUsersCard";
 import decodedToken from "../utils/decodedToken";
+import Loader from "react-loader-spinner";
 
 function ExploreUsers() {
   const followList = useSelector(state => state.user);
@@ -61,7 +62,21 @@ function ExploreUsers() {
   const getFollowerIds = followers.map(follower => follower.id);
   const getFollowingIds = following.map(following => following.id);
   console.log(users);
-  if (!users) return <h1>loading...</h1>;
+  if (!users)
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#1C93B9"
+        height={150}
+        width={150}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "15vh"
+        }}
+      />
+    );
   return (
     <div
       style={{
