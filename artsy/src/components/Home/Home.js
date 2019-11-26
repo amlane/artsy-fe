@@ -28,7 +28,6 @@ function Home(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("check home");
     dispatch(setFavsID());
   }, [userFavorites, dispatch]);
 
@@ -90,7 +89,7 @@ function Home(props) {
                     to={`/portfolio/${photo.user_id}`}
                     style={{
                       display: "flex",
-                      padding: "5% 5% 0 5%",
+                      padding: "3%",
                       textDecoration: "none",
                       color: "#000"
                     }}
@@ -117,13 +116,7 @@ function Home(props) {
                       variant="top"
                       src={photo.photo_url}
                       alt={photo.title}
-                      style={{
-                        height: "50vh",
-                        maxHeight: "400px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                        padding: "5% 5% 0 5%"
-                      }}
+                      className="main"
                     />
                   </Link>
                   <Card.Body

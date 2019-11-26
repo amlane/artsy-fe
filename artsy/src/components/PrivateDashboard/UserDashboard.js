@@ -87,37 +87,15 @@ function UserDashboard(props) {
             </p>
             <div className="follows">
               <p>
-                <span
-                  style={{
-                    color: "#000",
-                    fontWeight: "bolder",
-                    margin: "0 5px"
-                  }}
-                >
-                  {user.following && user.following.length}
-                </span>{" "}
-                following
+                <span>{user.following && user.following.length}</span> following
               </p>
               <p>
-                <span
-                  style={{
-                    color: "#000",
-                    fontWeight: "bolder",
-                    marginRight: "5px"
-                  }}
-                >
-                  {user.followers && user.followers.length}
-                </span>{" "}
-                followers
+                <span>{user.followers && user.followers.length}</span> followers
               </p>
             </div>
           </div>
 
-          <Button
-            variant="outline-info"
-            href="/new-post"
-            className="desktop-add-btn"
-          >
+          <Button variant="info" href="/new-post" className="desktop-add-btn">
             <MdAdd size="1.5em" />
           </Button>
           {/* <Button variant="info" href="/new-post" className="mobile-add-btn">

@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
 import decodedToken from "../utils/decodedToken";
+import { FaRegImage } from "react-icons/fa";
 
 function NewPost(props) {
   const dispatch = useDispatch();
@@ -49,10 +50,10 @@ function NewPost(props) {
     <div className="add-new-post">
       <div className="image-preview">
         {newPost.photo_url === "" ? (
-          <Image
-            src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg"
-            alt="image preview"
+          <FaRegImage
+            size="8em"
             onClick={uploadWidget}
+            style={{ color: "#17A2B8", cursor: "pointer" }}
           />
         ) : (
           <Image
@@ -63,10 +64,10 @@ function NewPost(props) {
         )}
         <div>
           <Form.Label
-            style={{ textAlign: "center", cursor: "pointer", color: "#17A2B8" }}
+            style={{ cursor: "pointer", color: "#17A2B8" }}
             onClick={uploadWidget}
           >
-            <i className="far fa-images"></i> Upload a picture of your art
+            Upload a photo
           </Form.Label>
         </div>
       </div>

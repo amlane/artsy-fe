@@ -167,27 +167,11 @@ function FriendDashboard(props) {
             </p>
             <div className="follows">
               <p>
-                <span
-                  style={{
-                    color: "#000",
-                    fontWeight: "bolder",
-                    margin: "0 5px"
-                  }}
-                >
-                  {friend.following && friend.following.length}
-                </span>{" "}
+                <span>{friend.following && friend.following.length}</span>{" "}
                 following
               </p>
               <p>
-                <span
-                  style={{
-                    color: "#000",
-                    fontWeight: "bolder",
-                    marginRight: "5px"
-                  }}
-                >
-                  {friend.followers && friend.followers.length}
-                </span>{" "}
+                <span>{friend.followers && friend.followers.length}</span>{" "}
                 {friend.followers.length === 1 ? "follower" : "followers"}
               </p>
             </div>
