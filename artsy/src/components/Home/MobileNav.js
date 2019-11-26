@@ -12,7 +12,7 @@ function MobileNav() {
       <NavLink to="/">
         <WiStars size="1.5em" />
       </NavLink>
-      <NavLink to="/">
+      <NavLink to="/connect">
         <IoIosPeople size="1.25em" />
       </NavLink>
       <Button
