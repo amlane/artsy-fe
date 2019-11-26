@@ -112,7 +112,7 @@ nav .title {
 .home-page .photos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   max-width: 1400px;
   padding: 3%;
 }
@@ -302,7 +302,7 @@ nav .title {
 .my-photos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   margin: 25px auto;
   width: 90%;
   max-width: 1200px;
@@ -351,6 +351,7 @@ nav .title {
 
 .add-new-post form {
   width: 60%;
+  min-width: 500px;
 }
 
 .add-new-post form .text-area {

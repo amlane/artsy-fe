@@ -23,6 +23,7 @@ function Navigation(props) {
       props.history.push(`/search/""`);
     } else {
       props.history.push(`/search/${inputValue}`);
+      setInputValue("");
     }
   };
 

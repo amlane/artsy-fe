@@ -12,6 +12,7 @@ import UserDashboard from "./components/PrivateDashboard/UserDashboard";
 import Navigation from "./components/Home/NavBar";
 import MobileNav from "./components/Home/MobileNav";
 import NewPost from "./components/PrivateDashboard/NewPost";
+import EditPost from "./components/PrivateDashboard/EditPost";
 import EditProfile from "./components/PrivateDashboard/EditProfile";
 import MyPhotos from "./components/PrivateDashboard/MyPhotos";
 import MyFavorites from "./components/PrivateDashboard/MyFavorites";
@@ -38,6 +39,7 @@ function App() {
       <PrivateRoute exact path="/user/:id/posts" component={MyPhotos} />
       <PrivateRoute exact path="/user/:id/favorites" component={MyFavorites} />
       <PrivateRoute path="/new-post" component={NewPost} />
+      <PrivateRoute path="/edit-post/:id" component={EditPost} />
       <PrivateRoute path="/edit-profile" component={EditProfile} />
     </div>
   );

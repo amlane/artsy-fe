@@ -7,6 +7,8 @@ import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
+import { FaEllipsisH } from "react-icons/fa";
+import decodedToken from "../utils/decodedToken";
 
 function SinglePostView(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -90,30 +92,47 @@ function SinglePostView(props) {
         }}
       >
         <div>
-          <Link
-            to={`/portfolio/${photo.user_id}`}
+          <div
             style={{
               display: "flex",
-              borderBottom: "1px solid silver",
-              padding: "8px",
-              textDecoration: "none",
-              color: "#000"
+              width: "100%",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "0 15px 0 0",
+              borderBottom: "1px solid silver"
             }}
           >
-            <Image
-              roundedCircle
-              src={photo.avatar_url}
-              alt={photo.username}
+            <Link
+              to={`/portfolio/${photo.user_id}`}
               style={{
-                height: "40px",
-                width: "40px",
-                objectFit: "cover",
-                marginRight: "5px",
-                objectPosition: "center"
+                display: "flex",
+                padding: "8px 0",
+                textDecoration: "none",
+                color: "#000"
               }}
-            />
-            <p style={{ margin: "5px" }}>{photo.username}</p>
-          </Link>
+            >
+              <Image
+                roundedCircle
+                src={photo.avatar_url}
+                alt={photo.username}
+                style={{
+                  height: "40px",
+                  width: "40px",
+                  objectFit: "cover",
+                  objectPosition: "center"
+                }}
+              />
+              <p style={{ margin: "5px" }}>{photo.username}</p>
+            </Link>
+            <Link to={`/edit-post/${photo.id}`}>
+              {photo.user_id === decodedToken() ? (
+                <FaEllipsisH
+                  size="2em"
+                  style={{ color: "gray", cursor: "pointer" }}
+                />
+              ) : null}
+            </Link>
+          </div>
           <h1>{photo.title}</h1>
           <p>{photo.description}</p>
         </div>
