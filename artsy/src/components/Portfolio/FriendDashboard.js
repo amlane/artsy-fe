@@ -7,6 +7,9 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import { Button, Jumbotron } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import { FiCamera } from "react-icons/fi";
 import Loader from "react-loader-spinner";
 import moment from "moment";
 
@@ -98,17 +101,21 @@ function FriendDashboard(props) {
                 Edit Profile
               </Button>
             ) : isFollowing ? (
-              <Button
+              <button
                 className="mobile"
                 variant="outline-info"
                 onClick={unfollowArtist}
               >
                 Unfollow
-              </Button>
+              </button>
             ) : (
-              <Button className="mobile" variant="info" onClick={followArtist}>
+              <button
+                className="mobile follow"
+                variant="info"
+                onClick={followArtist}
+              >
                 <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
-              </Button>
+              </button>
             )
           ) : null}
         </header>
@@ -117,61 +124,75 @@ function FriendDashboard(props) {
             <h1>{friend.username}</h1>
             {localStorage.getItem("token") ? (
               +props.match.params.id === decodedToken() ? (
-                <Button
+                <button
                   className="desktop"
                   variant="outline-secondary"
                   href="/edit-profile"
                 >
                   Edit Profile
-                </Button>
+                </button>
               ) : isFollowing ? (
-                <Button
+                <button
                   className="desktop"
                   variant="outline-info"
                   onClick={unfollowArtist}
                 >
                   Unfollow
-                </Button>
+                </button>
               ) : (
-                <Button
-                  className="desktop"
-                  variant="info"
-                  onClick={followArtist}
-                >
+                <button className="desktop follow" onClick={followArtist}>
                   <IoMdPersonAdd style={{ marginRight: "10px" }} /> Follow
-                </Button>
+                </button>
               )
             ) : null}
           </div>
           <p>{friend.about}</p>
           <div className="main">
-            <div className="follows">
-              <p>
-                <i className="fas fa-user"></i>
-                {friend.following.length} following
-              </p>
-              <p>
-                <i className="fas fa-users"></i>
-                {friend.followers.length} followers
-              </p>
-            </div>
             <div className="info">
-              <p>
-                <i className="fas fa-palette"></i>
-                {friend.photos.length} posts
-              </p>
-              <p>
-                <i className="fas fa-paint-brush"></i>Joined{" "}
-                {moment(friend.created_at).fromNow()}
-              </p>
               {friend.location ? (
                 <p>
-                  <i className="fas fa-map-marker-alt"></i>
+                  <MdLocationOn size="1.25em" style={{ marginRight: "5px" }} />
                   {friend.location}
                 </p>
               ) : null}
+              <p>
+                <FiCamera size="1.25em" style={{ marginRight: "5px" }} />
+                {friend.photos && friend.photos.length}{" "}
+                {friend.photos.length === 1 ? "post" : "posts"}
+              </p>
+            </div>
+            <p>
+              <FaRegCalendarAlt size="1.25em" style={{ marginRight: "5px" }} />
+              Joined {moment(friend.created_at).fromNow()}
+            </p>
+            <div className="follows">
+              <p>
+                <span
+                  style={{
+                    color: "#000",
+                    fontWeight: "bolder",
+                    margin: "0 5px"
+                  }}
+                >
+                  {friend.following && friend.following.length}
+                </span>{" "}
+                following
+              </p>
+              <p>
+                <span
+                  style={{
+                    color: "#000",
+                    fontWeight: "bolder",
+                    marginRight: "5px"
+                  }}
+                >
+                  {friend.followers && friend.followers.length}
+                </span>{" "}
+                {friend.followers.length === 1 ? "follower" : "followers"}
+              </p>
             </div>
           </div>
+
           {/* {localStorage.getItem("token") && props.match.params.id.toString() === decodedToken().toString() ? (
             <Button variant="info" href="/new-post" className="desktop-add-btn">
               Add Post

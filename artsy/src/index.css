@@ -28,7 +28,7 @@ body {
 }
 nav a {
   color: #17a2b8;
-  transition: 2s;
+  transition: 0.2s;
 }
 
 nav a:hover {
@@ -52,8 +52,8 @@ nav .nav-search button {
   background: none;
 }
 
-nav .nav-search button:focus,
-nav .nav-search input:focus {
+button:focus,
+input:focus {
   outline: none;
 }
 
@@ -125,16 +125,17 @@ nav .title {
   margin: 0 auto;
 }
 
-.user-dashboard header {
-  margin-right: 10%;
-}
-
 .user-dashboard .avatar {
   object-fit: cover;
   object-position: center;
   height: 150px;
   width: 150px;
   border-radius: 50%;
+}
+
+.user-dashboard section {
+  padding: 0 8%;
+  width: 70%;
 }
 
 .user-dashboard section div {
@@ -153,16 +154,31 @@ nav .title {
   margin-right: 10%;
 }
 
+/* edit button  */
 .user-dashboard section div .desktop {
   white-space: nowrap;
   display: flex;
   align-items: center;
+  border: 1px solid #17a2b8;
+  color: #17a2b8;
+  border-radius: 20px;
+  padding: 8px 20px;
+  background: #fff;
+}
+
+.user-dashboard section div .desktop.follow {
+  color: #fff;
+  background: #17a2b8;
 }
 
 .user-dashboard section .main {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: flex-start;
+  font-size: 16px;
+  color: gray;
 }
 
 .user-dashboard section .main p {
@@ -198,7 +214,7 @@ nav .title {
 }
 
 .dashboard-nav a {
-  color: #000;
+  color: gray;
   padding: 8px;
   margin: 0 10px;
   width: 100px;
@@ -474,11 +490,6 @@ nav .title {
     border: none;
     background: none;
   }
-
-  .mobile-search input:focus,
-  .mobile-search button:focus {
-    outline: none;
-  }
 }
 
 @media only screen and (max-width: 605px) {
@@ -508,6 +519,12 @@ nav .title {
     width: 100%;
     align-items: flex-start;
   }
+
+  .user-dashboard section {
+    width: 100%;
+    padding: 0;
+  }
+
   .user-dashboard section div {
     width: 100%;
     align-items: flex-start;
@@ -523,24 +540,48 @@ nav .title {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    margin: 0;
   }
   .user-dashboard header .mobile {
     display: flex;
     align-items: center;
+    border: 1px solid #17a2b8;
+    color: #17a2b8;
+    border-radius: 20px;
+    padding: 8px 20px;
+    background: #fff;
   }
-  .user-dashboard section .main .info {
-    flex-direction: column;
+
+  .user-dashboard header .mobile.follow {
+    color: #fff;
+    background: #17a2b8;
+  }
+
+  .user-dashboard section .main {
+    font-size: 14px;
   }
 
   .user-dashboard section .main p {
-    width: 100%;
+    margin: 0 0 8px 0;
+    padding: 0 15px 0 0;
+    display: flex;
+    align-items: center;
   }
+
+  .user-dashboard section div {
+    margin: 0;
+  }
+
   .user-dashboard section div .desktop {
     display: none;
   }
   .user-dashboard .avatar {
-    height: 125px;
-    width: 125px;
+    height: 100px;
+    width: 100px;
+  }
+
+  .user-dashboard section div h1 {
+    font-size: 28px;
   }
 
   .dashboard-nav {

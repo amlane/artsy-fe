@@ -5,7 +5,9 @@ import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 
 import { Button, Jumbotron } from "react-bootstrap";
-import { MdAdd } from "react-icons/md";
+import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
+import { MdAdd, MdLocationOn } from "react-icons/md";
+import { FiCamera } from "react-icons/fi";
 import Loader from "react-loader-spinner";
 import "../../index.css";
 
@@ -44,7 +46,6 @@ function UserDashboard(props) {
       <Jumbotron className="user-dashboard">
         <header>
           <img className="avatar" src={user.avatar_url} alt={user.username} />
-
           <Button
             className="mobile"
             variant="outline-secondary"
@@ -58,7 +59,7 @@ function UserDashboard(props) {
             <h1>{user.username}</h1>
 
             <Button
-              className="desktop"
+              className="desktop edit"
               variant="outline-secondary"
               href="/edit-profile"
             >
@@ -67,31 +68,48 @@ function UserDashboard(props) {
           </div>
           <p>{user.about}</p>
           <div className="main">
-            <div className="follows">
-              <p>
-                <i className="fas fa-user"></i>
-                {user.following && user.following.length} following
-              </p>
-              <p>
-                <i className="fas fa-users"></i>
-                {user.followers && user.followers.length} followers
-              </p>
-            </div>
             <div className="info">
-              <p>
-                <i className="fas fa-palette"></i>
-                {user.photos && user.photos.length} posts
-              </p>
-              <p>
-                <i className="fas fa-paint-brush"></i>Joined{" "}
-                {moment(user.created_at).fromNow()}
-              </p>
               {user.location ? (
                 <p>
-                  <i className="fas fa-map-marker-alt"></i>
+                  <MdLocationOn size="1.25em" style={{ marginRight: "5px" }} />
                   {user.location}
                 </p>
               ) : null}
+              <p>
+                <FiCamera size="1.25em" style={{ marginRight: "5px" }} />
+                {user.photos && user.photos.length}{" "}
+                {user.photos.length === 1 ? "post" : "posts"}
+              </p>
+            </div>
+            <p>
+              <FaRegCalendarAlt size="1.25em" style={{ marginRight: "5px" }} />
+              Joined {moment(user.created_at).fromNow()}
+            </p>
+            <div className="follows">
+              <p>
+                <span
+                  style={{
+                    color: "#000",
+                    fontWeight: "bolder",
+                    margin: "0 5px"
+                  }}
+                >
+                  {user.following && user.following.length}
+                </span>{" "}
+                following
+              </p>
+              <p>
+                <span
+                  style={{
+                    color: "#000",
+                    fontWeight: "bolder",
+                    marginRight: "5px"
+                  }}
+                >
+                  {user.followers && user.followers.length}
+                </span>{" "}
+                followers
+              </p>
             </div>
           </div>
 
@@ -108,8 +126,12 @@ function UserDashboard(props) {
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">
-        <NavLink to={`/user/${user.id}/posts`}>Posts</NavLink>
-        <NavLink to={`/user/${user.id}/favorites`}>Favorites</NavLink>
+        <NavLink to={`/user/${user.id}/posts`}>
+          <FiCamera size="2em" />
+        </NavLink>
+        <NavLink to={`/user/${user.id}/favorites`}>
+          <FaRegStar size="2em" />
+        </NavLink>
       </nav>
     </>
   );
