@@ -133,6 +133,10 @@ nav .title {
 
 /* User Dashboard */
 
+.settings-dropdown {
+  display: none;
+}
+
 .user-dashboard {
   display: flex;
   width: 90%;
@@ -425,6 +429,14 @@ nav .title {
   }
 
   /* user dashboard  */
+
+  .settings-dropdown {
+    display: inline;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
   .user-dashboard {
     flex-direction: column;
     width: 100%;

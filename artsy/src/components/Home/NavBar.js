@@ -5,6 +5,7 @@ import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../../index.css";
 import decodedToken from "./../utils/decodedToken";
+import { Dropdown } from "react-bootstrap";
 import { WiStars } from "react-icons/wi";
 import { IoIosPeople, IoIosSearch } from "react-icons/io";
 import { MdHome } from "react-icons/md";
@@ -66,7 +67,7 @@ function Navigation(props) {
           }}
           to="/"
         >
-          <WiStars style={{ fontSize: "35px" }} />
+          <WiStars style={{ fontSize: "45px" }} />
           <p>Explore</p>
         </NavLink>
         <NavLink
@@ -81,10 +82,10 @@ function Navigation(props) {
           }}
           to="/connect"
         >
-          <IoIosPeople style={{ fontSize: "35px" }} />
+          <IoIosPeople style={{ fontSize: "45px" }} />
           <p>Connect</p>
         </NavLink>
-        <NavLink
+        <div
           style={{
             color: "gray",
             padding: "0 15px",
@@ -93,11 +94,47 @@ function Navigation(props) {
             justifyContent: "center",
             alignItems: "center"
           }}
-          to={`/user/${decodedToken()}/posts`}
+          // to={`/user/${decodedToken()}/posts`}
         >
-          <MdHome style={{ fontSize: "35px" }} />
-          <p>You</p>
-        </NavLink>
+          {decodedToken() !== undefined ? (
+            <>
+              <NavLink to={`/user/${decodedToken()}/posts`}>
+                <MdHome style={{ fontSize: "35px", color: "gray" }} />
+              </NavLink>
+              <Dropdown>
+                <Dropdown.Toggle
+                  id="dropdown-desktop"
+                  style={{
+                    background: "none",
+                    color: "gray",
+                    paddingTop: "0",
+                    marginTop: "0"
+                  }}
+                  variant="outline-light"
+                >
+                  You
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href={`/user/${decodedToken()}/posts`}>
+                    My Profile
+                  </Dropdown.Item>
+                  <Dropdown.Item href={`/settings/${decodedToken()}`}>
+                    Settings
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={signOut}>Log out</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </>
+          ) : (
+            <>
+              <NavLink to={`/user/${decodedToken()}/posts`}>
+                <MdHome style={{ fontSize: "45px", color: "gray" }} />
+              </NavLink>
+              <p>You</p>
+            </>
+          )}
+        </div>
         <div
           style={{
             position: "absolute",
@@ -106,11 +143,7 @@ function Navigation(props) {
             fontSize: "12px"
           }}
         >
-          {localStorage.getItem("token") ? (
-            <Nav.Link style={{ color: "gray" }} onClick={signOut}>
-              Log out
-            </Nav.Link>
-          ) : (
+          {localStorage.getItem("token") ? null : (
             <Nav.Link style={{ color: "gray" }} href="/login">
               Login/SignUp
             </Nav.Link>
