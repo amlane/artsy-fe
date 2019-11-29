@@ -129,10 +129,11 @@ function UserDashboard(props) {
       </Jumbotron>
       <nav className="dashboard-nav">
         <NavLink to={`/user/${user.id}/posts`}>
-          <FiCamera size="2em" />
+          <FiCamera size="1.5em" /> <p style={{ marginLeft: "5px" }}>Posts</p>
         </NavLink>
         <NavLink to={`/user/${user.id}/favorites`}>
-          <FaRegStar size="2em" />
+          <FaRegStar size="1.5em" />
+          <p style={{ marginLeft: "5px" }}>Favorites</p>
         </NavLink>
       </nav>
     </>
