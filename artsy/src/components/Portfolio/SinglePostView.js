@@ -7,7 +7,7 @@ import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import { FaEllipsisH, FaStar } from "react-icons/fa";
+import { FaEllipsisH, FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
 
 function SinglePostView(props) {
@@ -23,6 +23,7 @@ function SinglePostView(props) {
         `https://artsy-be.herokuapp.com/api/photos/${props.match.params.photoId}`
       )
       .then(res => {
+        console.log(res);
         setPhoto(res.data.photo);
       })
       .catch(err => {
@@ -35,7 +36,6 @@ function SinglePostView(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("check");
     dispatch(setFavsID());
   }, [userFavorites, dispatch]);
 
@@ -44,7 +44,7 @@ function SinglePostView(props) {
       props.history.push("/login");
     } else {
       axiosWithAuth()
-        .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like`)
+        .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like/`)
         .then(res => {
           dispatch(getUser());
         })
@@ -56,7 +56,7 @@ function SinglePostView(props) {
 
   const unLike = id => {
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike`)
+      .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike/`)
       .then(res => {
         dispatch(getUser());
       })
@@ -143,17 +143,40 @@ function SinglePostView(props) {
                 ? unLike(photo.id)
                 : addLike(photo.id)
             }
+            style={{ display: "flex" }}
           >
-            <FaStar
-              size="1.75em"
-              style={{
-                color: favsID && favsID.includes(photo.id) ? "#D4AF43" : "gray",
-                cursor: "pointer",
-                paddingBottom: "5px",
-                paddingRight: "5px"
-              }}
-            />
-            <span>{photo.likes.count}</span>
+            {favsID && favsID.includes(photo.id) ? (
+              <FaStar
+                size="1.5em"
+                style={{
+                  color: "#D4AF43",
+                  cursor: "pointer",
+                  marginRight: "5px"
+                }}
+              />
+            ) : (
+              <FaRegStar
+                size="1.5em"
+                style={{
+                  color: "gray",
+                  cursor: "pointer",
+                  marginRight: "5px"
+                }}
+              />
+            )}
+            <span style={{ marginRight: "15px" }}>{photo.likes.count}</span>
+            <span>
+              <FaRegComment
+                size="1.5em"
+                style={{
+                  color: "gray",
+                  cursor: "pointer",
+                  marginRight: "5px",
+                  transform: "scaleX(-1)"
+                }}
+              />
+            </span>
+            <span>{photo.comments.length}</span>
           </span>
           <div
             style={{

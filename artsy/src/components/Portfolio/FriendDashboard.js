@@ -43,7 +43,6 @@ function FriendDashboard(props) {
         `https://artsy-be.herokuapp.com/api/follow/${props.match.params.id}`
       )
       .then(res => {
-        console.log(res);
         dispatch(visitUser(props.match.params.id));
       })
       .catch(err => {
@@ -58,7 +57,6 @@ function FriendDashboard(props) {
         `https://artsy-be.herokuapp.com/api/follow/${props.match.params.id}`
       )
       .then(res => {
-        console.log(res);
         dispatch(visitUser(props.match.params.id));
       })
       .catch(err => {

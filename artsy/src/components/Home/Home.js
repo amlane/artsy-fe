@@ -7,7 +7,7 @@ import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -21,6 +21,7 @@ function Home(props) {
     axios
       .get("https://artsy-be.herokuapp.com/api/photos")
       .then(res => {
+        console.log(res);
         setPhotos(res.data.photos);
       })
       .catch(err => {
@@ -37,8 +38,9 @@ function Home(props) {
       props.history.push("/login");
     } else {
       axiosWithAuth()
-        .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like`)
+        .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like/`)
         .then(res => {
+          console.log(res);
           setPhotos(res.data.photos);
           dispatch(getUser());
         })
@@ -50,7 +52,7 @@ function Home(props) {
 
   const unLike = id => {
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike`)
+      .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike/`)
       .then(res => {
         setPhotos(res.data.photos);
         dispatch(getUser());
@@ -135,19 +137,39 @@ function Home(props) {
                       }
                       style={{ display: "flex" }}
                     >
-                      <FaStar
+                      {favsID && favsID.includes(photo.id) ? (
+                        <FaStar
+                          size="1.5em"
+                          style={{
+                            color: "#D4AF43",
+                            cursor: "pointer",
+                            marginRight: "5px"
+                          }}
+                        />
+                      ) : (
+                        <FaRegStar
+                          size="1.5em"
+                          style={{
+                            color: "gray",
+                            cursor: "pointer",
+                            marginRight: "5px"
+                          }}
+                        />
+                      )}
+                    </span>
+                    <span>{photo.likes}</span>
+                    <span>
+                      <FaRegComment
                         size="1.5em"
                         style={{
-                          color:
-                            favsID && favsID.includes(photo.id)
-                              ? "#D4AF43"
-                              : "gray",
+                          color: "gray",
                           cursor: "pointer",
-                          paddingRight: "5px"
+                          margin: "0 5px 0 15px",
+                          transform: "scaleX(-1)"
                         }}
                       />
                     </span>
-                    <span>{photo.likes}</span>
+                    <span>{photo.comments}</span>
                   </Card.Body>
                 </Card>
               );

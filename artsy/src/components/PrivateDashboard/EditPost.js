@@ -21,11 +21,9 @@ function EditPost(props) {
   );
 
   useEffect(() => {
-    console.log("just making sure");
     axiosWithAuth()
       .get(`https://artsy-be.herokuapp.com/api/photos/${props.match.params.id}`)
       .then(res => {
-        console.log(res.data.photo);
         setUpdatedPost({
           photo_url:
             res.data.photo.photo_url !== null ? res.data.photo.photo_url : "",
@@ -58,7 +56,6 @@ function EditPost(props) {
         updatedPost
       )
       .then(res => {
-        console.log(res);
         props.history.push(`/photo/${props.match.params.id}`);
       })
       .catch(err => {

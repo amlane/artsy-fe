@@ -25,7 +25,7 @@ function UserDashboard(props) {
     }
   }, [dispatch, props.match.params.id, props.history]);
 
-  if (!user)
+  if (!user.username || user.photos.length === 0)
     return (
       <Loader
         type="ThreeDots"
