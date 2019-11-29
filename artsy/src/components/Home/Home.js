@@ -14,7 +14,7 @@ function Home(props) {
   const favsID = useSelector(state => state.favsID);
   const dispatch = useDispatch();
 
-  const [photos, setPhotos] = useState(null);
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     dispatch(getUser());
@@ -62,7 +62,7 @@ function Home(props) {
       });
   };
 
-  if (!photos)
+  if (photos.length === 0)
     return (
       <Loader
         type="ThreeDots"
