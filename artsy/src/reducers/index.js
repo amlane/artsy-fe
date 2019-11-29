@@ -42,8 +42,12 @@ function reducer(state = initialState, action) {
         user: {
           id: "",
           photos: [],
-          favorites: []
-        }
+          favorites: [],
+          followers: [],
+          following: []
+        },
+        userFavorites: [],
+        favsID: []
       };
     case SET_USER_FAVORITES:
       return {

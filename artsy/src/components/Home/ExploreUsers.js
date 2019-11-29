@@ -10,7 +10,7 @@ import Loader from "react-loader-spinner";
 function ExploreUsers() {
   const followList = useSelector(state => state.user);
   const dispatch = useDispatch();
-  console.log(followList);
+
   const [users, setUsers] = useState(null);
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
@@ -28,7 +28,6 @@ function ExploreUsers() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("jic");
     if (followList) {
       setFollowers(followList.followers);
       setFollowing(followList.following);
@@ -61,7 +60,7 @@ function ExploreUsers() {
 
   const getFollowerIds = followers.map(follower => follower.id);
   const getFollowingIds = following.map(following => following.id);
-  console.log(users);
+
   if (!users)
     return (
       <Loader
@@ -96,7 +95,10 @@ function ExploreUsers() {
         }}
       >
         {users
-          .filter(user => user.id !== decodedToken())
+          .filter(
+            user =>
+              user.id !== decodedToken() && !getFollowingIds.includes(user.id)
+          )
           .map(user => {
             return (
               <ExploreUsersCard

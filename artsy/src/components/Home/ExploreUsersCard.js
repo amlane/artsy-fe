@@ -43,7 +43,6 @@ function ExploreUsersCard({
               borderRadius: "50%",
               height: "70px",
               width: "70px",
-
               objectFit: "cover",
               objectPosition: "center"
             }}

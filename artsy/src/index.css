@@ -126,6 +126,7 @@ nav .title {
 .home-page .photos .card .main {
   height: 45vh;
   max-height: 400px;
+  min-height: 350px;
   object-fit: cover;
   object-position: center;
 }
@@ -557,6 +558,10 @@ nav .title {
   }
   .home-page .photos .card {
     width: 100%;
+  }
+
+  .home-page .photos .card .main {
+    min-height: 0;
   }
 
   /* user-dashboard */
