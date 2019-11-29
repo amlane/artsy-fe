@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../../actions";
+import { getUser, logout } from "../../actions";
 import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 
-import { Button, Jumbotron } from "react-bootstrap";
-import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
+import { Button, Jumbotron, Dropdown } from "react-bootstrap";
+import { FaRegCalendarAlt, FaRegStar, FaEllipsisH } from "react-icons/fa";
 import { MdAdd, MdLocationOn } from "react-icons/md";
+import { GoGear } from "react-icons/go";
 import { FiCamera } from "react-icons/fi";
 import Loader from "react-loader-spinner";
 import "../../index.css";
@@ -41,8 +42,33 @@ function UserDashboard(props) {
       />
     );
 
+  const signOut = () => {
+    dispatch(logout());
+    props.history.push("/");
+  };
   return (
     <>
+      <Dropdown alignRight className="settings-dropdown">
+        <Dropdown.Toggle
+          style={{
+            background: "none",
+            color: "gray",
+            border: "1px solid #FFF"
+          }}
+          variant="light"
+          id="dropdown-basic"
+        >
+          <GoGear size="1.5em" />
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item href={`/settings/${decodedToken()}`}>
+            Settings
+          </Dropdown.Item>
+          <Dropdown.Item onClick={signOut}>Log out</Dropdown.Item>
+          {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+        </Dropdown.Menu>
+      </Dropdown>
       <Jumbotron className="user-dashboard">
         <header>
           <img className="avatar" src={user.avatar_url} alt={user.username} />
@@ -54,6 +80,7 @@ function UserDashboard(props) {
             Edit Profile
           </Button>
         </header>
+
         <section>
           <div>
             <h1>{user.username}</h1>
@@ -98,9 +125,6 @@ function UserDashboard(props) {
           <Button variant="info" href="/new-post" className="desktop-add-btn">
             <MdAdd size="1.5em" />
           </Button>
-          {/* <Button variant="info" href="/new-post" className="mobile-add-btn">
-            <FaPlus size="1.5em" style={{ display: "block" }} />
-          </Button> */}
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">

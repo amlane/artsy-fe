@@ -21,6 +21,7 @@ import Search from "./components/Home/Search";
 import FriendDashboard from "./components/Portfolio/FriendDashboard";
 import FriendPhotos from "./components/Portfolio/FriendPhotos";
 import ExploreUsers from "./components/Home/ExploreUsers";
+import UserSettings from "./components/PrivateDashboard/UserSettings";
 
 function App() {
   return (
@@ -34,10 +35,11 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
-      <PrivateRoute exact path="/connect" component={ExploreUsers} />
       <Route path="/portfolio/:id" component={FriendDashboard} />
       <Route path="/portfolio/:id" component={FriendPhotos} />
+      <PrivateRoute exact path="/connect" component={ExploreUsers} />
       <PrivateRoute path="/user/:id" component={UserDashboard} />
+      <PrivateRoute path="/settings/:id" component={UserSettings} />
       <PrivateRoute exact path="/user/:id/posts" component={MyPhotos} />
       <PrivateRoute exact path="/user/:id/favorites" component={MyFavorites} />
       <PrivateRoute path="/new-post" component={NewPost} />
