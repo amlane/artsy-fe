@@ -85,36 +85,7 @@ function ExploreUsers() {
         margin: "25px auto"
       }}
     >
-      <h2>New Artists</h2>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          margin: "0 auto"
-        }}
-      >
-        {users
-          .filter(
-            user =>
-              user.id !== decodedToken() && !getFollowingIds.includes(user.id)
-          )
-          .map(user => {
-            return (
-              <ExploreUsersCard
-                user={user}
-                key={user.id}
-                getFollowerIds={getFollowerIds}
-                getFollowingIds={getFollowingIds}
-                followArtist={followArtist}
-                unfollowArtist={unfollowArtist}
-              />
-            );
-          })
-          .reverse()
-          .slice(0, 4)}
-      </div>
-      <h2>Popular Artists</h2>
+      <h2 style={{ textAlign: "center" }}>New Artists</h2>
       <div
         style={{
           display: "flex",
@@ -137,7 +108,33 @@ function ExploreUsers() {
               />
             );
           })
-          .slice(0, 8)}
+          .reverse()
+          .slice(0, 6)}
+      </div>
+      <h2 style={{ textAlign: "center" }}>Popular Artists</h2>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          margin: "0 auto"
+        }}
+      >
+        {users
+          .filter(user => user.id !== decodedToken())
+          .map(user => {
+            return (
+              <ExploreUsersCard
+                user={user}
+                key={user.id}
+                getFollowerIds={getFollowerIds}
+                getFollowingIds={getFollowingIds}
+                followArtist={followArtist}
+                unfollowArtist={unfollowArtist}
+              />
+            );
+          })
+          .slice(0, 24)}
       </div>
     </div>
   );

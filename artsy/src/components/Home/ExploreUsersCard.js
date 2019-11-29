@@ -13,8 +13,8 @@ function ExploreUsersCard({
   return (
     <Card
       style={{
-        width: "12rem",
-        margin: "20px"
+        width: "9rem",
+        margin: "5px"
       }}
     >
       <Card.Body
@@ -48,7 +48,15 @@ function ExploreUsersCard({
             }}
           />
 
-          <Card.Text style={{ whiteSpace: "nowrap" }}>
+          <Card.Text
+            style={{
+              whiteSpace: "nowrap",
+              overflowX: "hidden",
+              textOverflow: "ellipsis",
+              width: "9rem",
+              textAlign: "center"
+            }}
+          >
             {user.username}
           </Card.Text>
         </Link>
@@ -60,7 +68,7 @@ function ExploreUsersCard({
         {!getFollowingIds.includes(user.id) ? (
           <Button
             size="sm"
-            variant="primary"
+            variant="info"
             style={{
               background: "#17a2b8",
               borderRadius: "20px",
@@ -75,7 +83,7 @@ function ExploreUsersCard({
         ) : (
           <Button
             size="sm"
-            variant="primary"
+            variant="info"
             style={{
               background: "#fff",
               borderRadius: "20px",
