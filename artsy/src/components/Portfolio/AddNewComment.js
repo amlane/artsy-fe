@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getPhotoById } from "../../actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 function AddNewComment({ photoId }) {
+  const dispatch = useDispatch();
+
   const [newComment, setNewComment] = useState("");
 
   const submitComment = e => {
@@ -17,6 +21,7 @@ function AddNewComment({ photoId }) {
       .then(res => {
         console.log(res);
         setNewComment("");
+        dispatch(getPhotoById(photoId));
       })
       .catch(err => {
         console.log(err);
@@ -28,14 +33,15 @@ function AddNewComment({ photoId }) {
       style={{
         width: "100%",
         border: "1px solid silver",
-        padding: "5px 15px",
+        padding: "10px 15px",
+        margin: "5px 0",
         background: "#fff",
-        borderRadius: "20px"
+        borderRadius: "5px"
       }}
       onSubmit={submitComment}
     >
       <input
-        style={{ width: "89%", border: "none" }}
+        style={{ width: "86%", border: "none" }}
         name="content"
         value={newComment}
         onChange={e => {

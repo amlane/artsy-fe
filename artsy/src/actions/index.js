@@ -6,6 +6,7 @@ export const VISIT_USER = "VISIT_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const SET_USER_FAVORITES = "SET_USER_FAVORITES";
 export const SET_FAVS_ID = "SET_FAVS_ID";
+export const SET_SINGLE_PHOTO_VIEW = "SET_SINGLE_PHOTO_VIEW";
 
 export const getUser = () => dispatch => {
   if (decodedToken() !== undefined) {
@@ -62,4 +63,16 @@ export const setUserFavorites = () => dispatch => {
 
 export const setFavsID = () => dispatch => {
   dispatch({ type: SET_FAVS_ID });
+};
+
+export const getPhotoById = id => dispatch => {
+  axios
+    .get(`https://artsy-be.herokuapp.com/api/photos/${id}`)
+    .then(res => {
+      // console.log(res);
+      dispatch({ type: SET_SINGLE_PHOTO_VIEW, payload: res.data.photo });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

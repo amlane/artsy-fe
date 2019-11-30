@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, setFavsID } from "../../actions";
+import { getUser, setFavsID, getPhotoById } from "../../actions";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Image } from "react-bootstrap";
@@ -10,29 +9,19 @@ import Loader from "react-loader-spinner";
 import { FaEllipsisH, FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
 import AddNewComment from "./AddNewComment";
+import Comment from "./Comment";
 
 function SinglePostView(props) {
+  const photo = useSelector(state => state.photo);
+
   const userFavorites = useSelector(state => state.userFavorites);
   const favsID = useSelector(state => state.favsID);
   const dispatch = useDispatch();
 
-  const [photo, setPhoto] = useState(null);
-  const [comments, setComments] = useState([]);
-
   useEffect(() => {
-    axios
-      .get(
-        `https://artsy-be.herokuapp.com/api/photos/${props.match.params.photoId}`
-      )
-      .then(res => {
-        console.log(res);
-        setPhoto(res.data.photo);
-        setComments(res.data.photo.comments);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [userFavorites, props.match.params.photoId]);
+    console.log("I'm hungry");
+    dispatch(getPhotoById(props.match.params.photoId));
+  }, [dispatch, userFavorites, props.match.params.photoId]);
 
   useEffect(() => {
     dispatch(getUser());
@@ -68,7 +57,7 @@ function SinglePostView(props) {
       });
   };
 
-  if (!photo)
+  if (!photo.title)
     return (
       <Loader
         type="ThreeDots"
@@ -194,27 +183,20 @@ function SinglePostView(props) {
           >
             {moment(photo.created_at).fromNow()}
           </div>
-          {photo.comments.map((comment, index) => {
-            return (
-              <div
-                key={comment.id + index}
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <p style={{ padding: "0", margin: "0" }}>{comment.content}</p>
-                <div>
-                  <p style={{ padding: "0", margin: "0" }}>
-                    {" "}
-                    {comment.username}
-                  </p>
-                  <p style={{ fontSize: "12px", color: "gray" }}>
-                    {moment(comment.created_at).fromNow()}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-          <AddNewComment photoId={photo.id} />
         </div>
+        <div
+          style={{
+            overflowY: "scroll",
+            maxHeight: "200px",
+            margin: "20px 0 0 0"
+          }}
+          className="scroll"
+        >
+          {photo.comments.map((comment, index) => {
+            return <Comment comment={comment} key={index + comment.id} />;
+          })}
+        </div>
+        {localStorage.getItem("token") && <AddNewComment photoId={photo.id} />}
       </section>
     </div>
   );
