@@ -9,6 +9,7 @@ import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { FaEllipsisH, FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
+import AddNewComment from "./AddNewComment";
 
 function SinglePostView(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -16,6 +17,7 @@ function SinglePostView(props) {
   const dispatch = useDispatch();
 
   const [photo, setPhoto] = useState(null);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     axios
@@ -25,6 +27,7 @@ function SinglePostView(props) {
       .then(res => {
         console.log(res);
         setPhoto(res.data.photo);
+        setComments(res.data.photo.comments);
       })
       .catch(err => {
         console.log(err);
@@ -103,7 +106,7 @@ function SinglePostView(props) {
             }}
           >
             <Link
-              to={`/portfolio/${photo.user_id}`}
+              to={`/portfolio/${photo.user_id}/posts`}
               style={{
                 display: "flex",
                 padding: "8px 0",
@@ -127,7 +130,7 @@ function SinglePostView(props) {
             <Link to={`/edit-post/${photo.id}`}>
               {photo.user_id === decodedToken() ? (
                 <FaEllipsisH
-                  size="2em"
+                  size="1.5em"
                   style={{ color: "gray", cursor: "pointer" }}
                 />
               ) : null}
@@ -191,6 +194,26 @@ function SinglePostView(props) {
           >
             {moment(photo.created_at).fromNow()}
           </div>
+          {photo.comments.map((comment, index) => {
+            return (
+              <div
+                key={comment.id + index}
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <p style={{ padding: "0", margin: "0" }}>{comment.content}</p>
+                <div>
+                  <p style={{ padding: "0", margin: "0" }}>
+                    {" "}
+                    {comment.username}
+                  </p>
+                  <p style={{ fontSize: "12px", color: "gray" }}>
+                    {moment(comment.created_at).fromNow()}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+          <AddNewComment photoId={photo.id} />
         </div>
       </section>
     </div>

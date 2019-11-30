@@ -88,7 +88,7 @@ function Home(props) {
               return (
                 <Card key={photo.id} className="card">
                   <Link
-                    to={`/portfolio/${photo.user_id}`}
+                    to={`/portfolio/${photo.user_id}/posts`}
                     style={{
                       display: "flex",
                       padding: "3%",

@@ -5,9 +5,9 @@ import { NavLink, withRouter } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 
 import { Button, Jumbotron, Dropdown } from "react-bootstrap";
-import { FaRegCalendarAlt, FaRegStar, FaEllipsisH } from "react-icons/fa";
+import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
 import { MdAdd, MdLocationOn } from "react-icons/md";
-import { GoGear } from "react-icons/go";
+import { GoGear, GoInfo } from "react-icons/go";
 import { FiCamera } from "react-icons/fi";
 import Loader from "react-loader-spinner";
 import "../../index.css";
@@ -129,11 +129,15 @@ function UserDashboard(props) {
       </Jumbotron>
       <nav className="dashboard-nav">
         <NavLink to={`/user/${user.id}/posts`}>
-          <FiCamera size="1.5em" /> <p style={{ marginLeft: "5px" }}>Posts</p>
+          <FiCamera size="1.5em" /> <p style={{ marginLeft: "5px" }}>Artwork</p>
         </NavLink>
         <NavLink to={`/user/${user.id}/favorites`}>
           <FaRegStar size="1.5em" />
           <p style={{ marginLeft: "5px" }}>Favorites</p>
+        </NavLink>
+        <NavLink to={`/user/${user.id}/info`}>
+          <GoInfo size="1.5em" />
+          <p style={{ marginLeft: "5px" }}>Gallery Info</p>
         </NavLink>
       </nav>
     </>

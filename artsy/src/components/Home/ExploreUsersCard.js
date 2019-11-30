@@ -26,7 +26,7 @@ function ExploreUsersCard({
         }}
       >
         <Link
-          to={`/portfolio/${user.id}`}
+          to={`/portfolio/${user.id}/posts`}
           style={{
             color: "#000",
             textDecoration: "none",

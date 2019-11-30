@@ -16,10 +16,13 @@ import EditPost from "./components/PrivateDashboard/EditPost";
 import EditProfile from "./components/PrivateDashboard/EditProfile";
 import MyPhotos from "./components/PrivateDashboard/MyPhotos";
 import MyFavorites from "./components/PrivateDashboard/MyFavorites";
+import MyGalleryInfo from "./components/PrivateDashboard/MyGalleryInfo";
 import SinglePostView from "./components/Portfolio/SinglePostView";
 import Search from "./components/Home/Search";
 import FriendDashboard from "./components/Portfolio/FriendDashboard";
 import FriendPhotos from "./components/Portfolio/FriendPhotos";
+import FriendFavorites from "./components/Portfolio/FriendFavorites";
+import FriendGalleryInfo from "./components/Portfolio/FriendGalleryInfo";
 import ExploreUsers from "./components/Home/ExploreUsers";
 import UserSettings from "./components/PrivateDashboard/UserSettings";
 
@@ -36,12 +39,15 @@ function App() {
       <Route exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
       <Route path="/portfolio/:id" component={FriendDashboard} />
-      <Route path="/portfolio/:id" component={FriendPhotos} />
+      <Route path="/portfolio/:id/posts" component={FriendPhotos} />
+      <Route path="/portfolio/:id/favorites" component={FriendFavorites} />
+      <Route path="/portfolio/:id/info" component={FriendGalleryInfo} />
       <PrivateRoute exact path="/connect" component={ExploreUsers} />
       <PrivateRoute path="/user/:id" component={UserDashboard} />
       <PrivateRoute path="/settings/:id" component={UserSettings} />
       <PrivateRoute exact path="/user/:id/posts" component={MyPhotos} />
       <PrivateRoute exact path="/user/:id/favorites" component={MyFavorites} />
+      <PrivateRoute exact path="/user/:id/info" component={MyGalleryInfo} />
       <PrivateRoute path="/new-post" component={NewPost} />
       <PrivateRoute path="/edit-post/:id" component={EditPost} />
       <PrivateRoute path="/edit-profile" component={EditProfile} />

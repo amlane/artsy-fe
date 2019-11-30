@@ -1,16 +1,16 @@
 import React from "react";
 
-function UserSettings() {
+function MyGalleryInfo() {
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        margin: "25px auto",
         width: "100%"
       }}
     >
-      <h1>User Settings</h1>
       <p>
         <span role="img" aria-label="construction signs">
           🚧🚧🚧
@@ -20,10 +20,11 @@ function UserSettings() {
           🚧🚧🚧
         </span>
       </p>
-      <p>Dark Mode Toggle </p>
-      <p>Delete Account</p>
+      <p>Shipping Details</p>
+      <p>Contact Info</p>
+      <p>Refund Policy</p>
     </div>
   );
 }
 
-export default UserSettings;
+export default MyGalleryInfo;
