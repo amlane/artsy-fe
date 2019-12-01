@@ -31,19 +31,21 @@ function AddNewComment({ photoId }) {
   return (
     <form
       style={{
-        width: "99%",
+        width: "100%",
         border: "1px solid silver",
         padding: "10px 0 10px 15px",
         margin: "0",
         background: "#fff",
-        borderRadius: "5px"
+        display: "flex",
+        justifyContent: "space-between"
       }}
       onSubmit={submitComment}
     >
       <input
-        style={{ width: "84%", border: "none" }}
+        style={{ width: "80%", border: "none" }}
         name="content"
         value={newComment}
+        placeholder="Add a comment..."
         onChange={e => {
           setNewComment(e.target.value);
         }}

@@ -22,7 +22,7 @@ html {
 /* comment scroll bar */
 
 .scroll {
-  --scrollbarBG: #fafafa;
+  --scrollbarBG: #fff;
   --thumbBG: #c1c1c1;
 }
 .scroll::-webkit-scrollbar {
@@ -310,7 +310,7 @@ nav .title {
 
 .single-photo-view .details {
   width: 35%;
-  padding: 0 20px;
+  padding: 0;
 }
 
 .single-photo-view .artist {
@@ -333,6 +333,7 @@ nav .title {
   border: none;
   background: none;
   color: #17a2b8;
+  padding: 0 15px 0 0;
 }
 
 .add-comment:disabled {

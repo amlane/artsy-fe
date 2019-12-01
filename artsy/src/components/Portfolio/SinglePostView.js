@@ -80,7 +80,8 @@ function SinglePostView(props) {
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
+          background: "#fff"
         }}
       >
         <div>
@@ -98,7 +99,7 @@ function SinglePostView(props) {
               to={`/portfolio/${photo.user_id}/posts`}
               style={{
                 display: "flex",
-                padding: "8px 0",
+                padding: "8px",
                 textDecoration: "none",
                 color: "#000"
               }}
@@ -125,8 +126,10 @@ function SinglePostView(props) {
               ) : null}
             </Link>
           </div>
-          <h1>{photo.title}</h1>
-          <p>{photo.description}</p>
+          <div style={{ padding: "8px" }}>
+            <h1>{photo.title}</h1>
+            <p>{photo.description}</p>
+          </div>
         </div>
         <div>
           <span
@@ -143,7 +146,8 @@ function SinglePostView(props) {
                 style={{
                   color: "#D4AF43",
                   cursor: "pointer",
-                  marginRight: "5px"
+                  marginRight: "5px",
+                  marginLeft: "5px"
                 }}
               />
             ) : (
@@ -152,7 +156,8 @@ function SinglePostView(props) {
                 style={{
                   color: "gray",
                   cursor: "pointer",
-                  marginRight: "5px"
+                  marginRight: "5px",
+                  marginLeft: "5px"
                 }}
               />
             )}
@@ -188,7 +193,8 @@ function SinglePostView(props) {
           style={{
             overflowY: "scroll",
             maxHeight: "200px",
-            margin: "20px 0 0 0"
+            margin: "20px 0 0 0",
+            background: "#fff"
           }}
           className="scroll"
         >
