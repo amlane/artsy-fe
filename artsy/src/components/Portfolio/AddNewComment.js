@@ -31,10 +31,10 @@ function AddNewComment({ photoId }) {
   return (
     <form
       style={{
-        width: "100%",
+        width: "99%",
         border: "1px solid silver",
-        padding: "10px 15px",
-        margin: "5px 0",
+        padding: "10px 0 10px 15px",
+        margin: "0",
         background: "#fff",
         borderRadius: "5px"
       }}
@@ -48,7 +48,10 @@ function AddNewComment({ photoId }) {
           setNewComment(e.target.value);
         }}
       />
-      <button style={{ border: "none", background: "none", color: "#17A2B8" }}>
+      <button
+        disabled={newComment === "" ? true : false}
+        className="add-comment"
+      >
         Post
       </button>
     </form>

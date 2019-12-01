@@ -1,26 +1,29 @@
-/* html {
-  --scrollbarBG: #cfd8dc;
-  --thumbBG: #90a4ae;
+html {
+  background: #fafafa;
 }
-body::-webkit-scrollbar {
-  width: 15px;
+​ body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #fafafa;
+  /* -ms-overflow-style: none; */
 }
-body {
-  scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+
+.App {
+  margin: 0 auto 60px auto;
+  background: #fafafa;
 }
-body::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-}
-body::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG);
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG);
-} */
+
+/* comment scroll bar */
 
 .scroll {
-  --scrollbarBG: #fff;
-  --thumbBG: #85a3b3;
+  --scrollbarBG: #fafafa;
+  --thumbBG: #c1c1c1;
 }
 .scroll::-webkit-scrollbar {
   width: 15px;
@@ -38,23 +41,6 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid var(--scrollbarBG);
 }
 
-​ body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #fafafa;
-  /* -ms-overflow-style: none; */
-}
-
-.App {
-  margin: 0 auto 60px auto;
-}
-
 /* main navigation */
 
 .desktop-nav {
@@ -62,7 +48,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fafafa;
+  background-color: #fff;
   border-bottom: 1px solid silver;
   padding: 0 8%;
 }
@@ -148,6 +134,7 @@ nav .title {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #fafafa;
 }
 
 .home-page .photos {
@@ -310,6 +297,7 @@ nav .title {
   display: flex;
   justify-content: center;
   margin: 5%;
+  background: #fafafa;
 }
 
 .single-photo-view .main {
@@ -337,6 +325,18 @@ nav .title {
   object-fit: cover;
   object-position: center;
   margin-right: 10px;
+}
+
+/* add new comment */
+
+.add-comment {
+  border: none;
+  background: none;
+  color: #17a2b8;
+}
+
+.add-comment:disabled {
+  color: gray;
 }
 
 /* my photos */
@@ -551,7 +551,7 @@ nav .title {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background: #fafafa;
+    background: #fff;
     width: 100%;
     border-top: 1px solid silver;
     height: 50px;

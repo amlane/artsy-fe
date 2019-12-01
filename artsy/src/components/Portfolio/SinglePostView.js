@@ -56,7 +56,7 @@ function SinglePostView(props) {
         console.log(err);
       });
   };
-
+  console.log("here", photo);
   if (!photo.title)
     return (
       <Loader
@@ -193,7 +193,13 @@ function SinglePostView(props) {
           className="scroll"
         >
           {photo.comments.map((comment, index) => {
-            return <Comment comment={comment} key={index + comment.id} />;
+            return (
+              <Comment
+                comment={comment}
+                key={index + comment.id}
+                photoId={photo.id}
+              />
+            );
           })}
         </div>
         {localStorage.getItem("token") && <AddNewComment photoId={photo.id} />}

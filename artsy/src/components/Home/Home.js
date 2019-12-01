@@ -62,7 +62,7 @@ function Home(props) {
       });
   };
 
-  if (photos.length === 0)
+  if (!photos)
     return (
       <Loader
         type="ThreeDots"
