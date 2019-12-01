@@ -41,7 +41,7 @@ function AddNewComment({ photoId }) {
       onSubmit={submitComment}
     >
       <input
-        style={{ width: "86%", border: "none" }}
+        style={{ width: "84%", border: "none" }}
         name="content"
         value={newComment}
         onChange={e => {

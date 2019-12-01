@@ -17,8 +17,9 @@ function Comment({ comment, photoId }) {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          margin: "0 5px",
-          alignItems: "flex-start"
+          margin: "0",
+          alignItems: "flex-start",
+          width: "100%"
         }}
       >
         <div
@@ -26,7 +27,7 @@ function Comment({ comment, photoId }) {
             display: "flex",
             width: "100%",
             alignItems: "flex-start",
-            marginRight: "10px"
+            marginRight: "0"
           }}
         >
           <img
@@ -41,7 +42,7 @@ function Comment({ comment, photoId }) {
               margin: "5px 10px 0 0"
             }}
           />
-          <div style={{ marginTop: "7px" }}>
+          <div style={{ marginTop: "7px", width: "100%" }}>
             <span style={{ fontWeight: "bolder" }}>{comment.username}</span>{" "}
             {comment.content}{" "}
           </div>
