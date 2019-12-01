@@ -120,7 +120,7 @@ function SinglePostView(props) {
             <Link to={`/edit-post/${photo.id}`}>
               {photo.user_id === decodedToken() ? (
                 <FaEllipsisH
-                  size="1.5em"
+                  size="1em"
                   style={{ color: "gray", cursor: "pointer" }}
                 />
               ) : null}
