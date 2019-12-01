@@ -1,35 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, setFavsID } from "../../actions";
+import { getUser, setFavsID, getPhotoById } from "../../actions";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { FaEllipsisH, FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
+import AddNewComment from "./AddNewComment";
+import Comment from "./Comment";
 
 function SinglePostView(props) {
+  const photo = useSelector(state => state.photo);
+
   const userFavorites = useSelector(state => state.userFavorites);
   const favsID = useSelector(state => state.favsID);
   const dispatch = useDispatch();
 
-  const [photo, setPhoto] = useState(null);
-
   useEffect(() => {
-    axios
-      .get(
-        `https://artsy-be.herokuapp.com/api/photos/${props.match.params.photoId}`
-      )
-      .then(res => {
-        console.log(res);
-        setPhoto(res.data.photo);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [userFavorites, props.match.params.photoId]);
+    console.log("I'm hungry");
+    dispatch(getPhotoById(props.match.params.photoId));
+  }, [dispatch, userFavorites, props.match.params.photoId]);
 
   useEffect(() => {
     dispatch(getUser());
@@ -64,8 +56,8 @@ function SinglePostView(props) {
         console.log(err);
       });
   };
-
-  if (!photo)
+  console.log("here", photo);
+  if (!photo.title)
     return (
       <Loader
         type="ThreeDots"
@@ -103,7 +95,7 @@ function SinglePostView(props) {
             }}
           >
             <Link
-              to={`/portfolio/${photo.user_id}`}
+              to={`/portfolio/${photo.user_id}/posts`}
               style={{
                 display: "flex",
                 padding: "8px 0",
@@ -127,7 +119,7 @@ function SinglePostView(props) {
             <Link to={`/edit-post/${photo.id}`}>
               {photo.user_id === decodedToken() ? (
                 <FaEllipsisH
-                  size="2em"
+                  size="1.5em"
                   style={{ color: "gray", cursor: "pointer" }}
                 />
               ) : null}
@@ -192,6 +184,25 @@ function SinglePostView(props) {
             {moment(photo.created_at).fromNow()}
           </div>
         </div>
+        <div
+          style={{
+            overflowY: "scroll",
+            maxHeight: "200px",
+            margin: "20px 0 0 0"
+          }}
+          className="scroll"
+        >
+          {photo.comments.map((comment, index) => {
+            return (
+              <Comment
+                comment={comment}
+                key={index + comment.id}
+                photoId={photo.id}
+              />
+            );
+          })}
+        </div>
+        {localStorage.getItem("token") && <AddNewComment photoId={photo.id} />}
       </section>
     </div>
   );

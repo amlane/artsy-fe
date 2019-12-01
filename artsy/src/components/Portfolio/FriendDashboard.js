@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { visitUser } from "../../actions";
-import { withRouter } from "react-router-dom";
+import { visitUser, logout } from "../../actions";
+import { withRouter, NavLink } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-import { Button, Jumbotron } from "react-bootstrap";
+import { Button, Jumbotron, Dropdown } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { FiCamera } from "react-icons/fi";
+import { GoGear, GoInfo } from "react-icons/go";
 import Loader from "react-loader-spinner";
 import moment from "moment";
 
@@ -80,8 +81,37 @@ function FriendDashboard(props) {
       />
     );
 
+  const signOut = () => {
+    dispatch(logout());
+    props.history.push("/");
+  };
+
   return (
     <>
+      {localStorage.getItem("token") &&
+      +props.match.params.id === decodedToken() ? (
+        <Dropdown alignRight className="settings-dropdown">
+          <Dropdown.Toggle
+            style={{
+              background: "none",
+              color: "gray",
+              border: "1px solid #FFF"
+            }}
+            variant="light"
+            id="dropdown-basic"
+          >
+            <GoGear size="1.5em" />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href={`/settings/${decodedToken()}`}>
+              Settings
+            </Dropdown.Item>
+            <Dropdown.Item onClick={signOut}>Log out</Dropdown.Item>
+            {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+          </Dropdown.Menu>
+        </Dropdown>
+      ) : null}
       <Jumbotron className="user-dashboard">
         <header>
           <img
@@ -183,8 +213,17 @@ function FriendDashboard(props) {
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">
-        {/* <NavLink to={`/portfolio/${friend.id}`}>Posts</NavLink> */}
-        {/* <NavLink to={`/user/${friend.id}/favorites`}>Favorites</NavLink> */}
+        <NavLink to={`/portfolio/${friend.id}/posts`}>
+          <FiCamera size="1.5em" /> <p style={{ marginLeft: "5px" }}>Artwork</p>
+        </NavLink>
+        <NavLink to={`/portfolio/${friend.id}/favorites`}>
+          <FaRegStar size="1.5em" />
+          <p style={{ marginLeft: "5px" }}>Favorites</p>
+        </NavLink>
+        <NavLink to={`/portfolio/${friend.id}/info`}>
+          <GoInfo size="1.5em" />
+          <p style={{ marginLeft: "5px" }}>Gallery Info</p>
+        </NavLink>
       </nav>
     </>
   );

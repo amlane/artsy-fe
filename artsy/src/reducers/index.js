@@ -3,7 +3,8 @@ import {
   VISIT_USER,
   REMOVE_USER,
   SET_USER_FAVORITES,
-  SET_FAVS_ID
+  SET_FAVS_ID,
+  SET_SINGLE_PHOTO_VIEW
 } from "../actions";
 
 const initialState = {
@@ -21,6 +22,9 @@ const initialState = {
     favorites: [],
     followers: [],
     following: []
+  },
+  photo: {
+    comments: []
   }
 };
 
@@ -60,6 +64,11 @@ function reducer(state = initialState, action) {
         favsID: state.userFavorites.map(favs => {
           return favs.id;
         })
+      };
+    case SET_SINGLE_PHOTO_VIEW:
+      return {
+        ...state,
+        photo: action.payload
       };
     default:
       return state;
