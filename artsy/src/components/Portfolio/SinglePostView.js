@@ -181,7 +181,7 @@ function SinglePostView(props) {
               color: "silver",
               fontSize: "12px",
               textTransform: "uppercase",
-              padding: "10px 0",
+              padding: "10px",
               borderTop: "1px solid silver",
               marginTop: "2%"
             }}
@@ -194,6 +194,7 @@ function SinglePostView(props) {
             overflowY: "scroll",
             maxHeight: "200px",
             margin: "20px 0 0 0",
+            padding: "0 0 0 8px",
             background: "#fff"
           }}
           className="scroll"
