@@ -14,7 +14,7 @@ function Home(props) {
   const favsID = useSelector(state => state.favsID);
   const dispatch = useDispatch();
 
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState(null);
 
   useEffect(() => {
     dispatch(getUser());
@@ -158,7 +158,7 @@ function Home(props) {
                       )}
                     </span>
                     <span>{photo.likes}</span>
-                    <span>
+                    <Link to={`/photo/${photo.id}`}>
                       <FaRegComment
                         size="1.5em"
                         style={{
@@ -168,7 +168,7 @@ function Home(props) {
                           transform: "scaleX(-1)"
                         }}
                       />
-                    </span>
+                    </Link>
                     <span>{photo.comments}</span>
                   </Card.Body>
                 </Card>

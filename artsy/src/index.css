@@ -85,7 +85,8 @@ nav .nav-search input {
 
 button:focus,
 input:focus {
-  outline: none;
+  outline: none !important;
+  outline-offset: none !important;
 }
 
 nav .title {
@@ -253,6 +254,29 @@ nav .title {
 .user-dashboard section h2 {
   font-weight: bolder;
   font-size: 18px;
+}
+
+/* modal for followers/following */
+.follow-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #17a2b8;
+  color: #fff;
+  background: #17a2b8;
+  border-radius: 25px;
+  padding: 7px 15px;
+  font-size: 12px;
+}
+
+.unfollow-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #17a2b8;
+  border-radius: 25px;
+  padding: 7px 15px;
+  font-size: 12px;
+  background: #fff;
+  color: #17a2b8;
 }
 
 .user-dashboard .desktop-add-btn {
@@ -639,10 +663,6 @@ nav .title {
     margin-top: 10px;
   }
 
-  .user-dashboard section .follows span {
-    margin-right: 3px;
-  }
-
   .user-dashboard section h1 {
     width: 100%;
   }
@@ -693,6 +713,10 @@ nav .title {
 
   .user-dashboard section div h1 {
     font-size: 28px;
+  }
+
+  .user-dashboard section .main .follows {
+    width: 70%;
   }
 
   .dashboard-nav {

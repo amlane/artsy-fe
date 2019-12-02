@@ -4,7 +4,7 @@ import { getPhotoById } from "../../actions";
 import moment from "moment";
 import { FaEllipsisV } from "react-icons/fa";
 import { Button, Modal } from "react-bootstrap";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decodedToken from "../utils/decodedToken";
 
@@ -30,20 +30,31 @@ function Comment({ comment, photoId }) {
             marginRight: "0"
           }}
         >
-          <img
-            src={comment.avatar_url}
-            alt={comment.username}
-            style={{
-              height: "35px",
-              width: "35px",
-              objectFit: "cover",
-              objectPosition: "center",
-              borderRadius: "50%",
-              margin: "5px 10px 0 0"
-            }}
-          />
+          <Link to={`/portfolio/${comment.user_id}/posts`}>
+            <img
+              src={comment.avatar_url}
+              alt={comment.username}
+              style={{
+                height: "35px",
+                width: "35px",
+                objectFit: "cover",
+                objectPosition: "center",
+                borderRadius: "50%",
+                margin: "5px 10px 0 0"
+              }}
+            />
+          </Link>
           <div style={{ marginTop: "7px", width: "100%" }}>
-            <span style={{ fontWeight: "bolder" }}>{comment.username}</span>{" "}
+            <Link
+              to={`/portfolio/${comment.user_id}/posts`}
+              style={{
+                fontWeight: "bolder",
+                color: "#333",
+                textDecoration: "none"
+              }}
+            >
+              {comment.username}
+            </Link>{" "}
             {comment.content}{" "}
           </div>
         </div>

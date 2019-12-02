@@ -13,6 +13,8 @@ import Loader from "react-loader-spinner";
 import "../../index.css";
 
 import moment from "moment";
+import Followers from "./Followers";
+import Following from "./Following";
 
 function UserDashboard(props) {
   const user = useSelector(state => state.user);
@@ -26,7 +28,7 @@ function UserDashboard(props) {
     }
   }, [dispatch, props.match.params.id, props.history]);
 
-  if (!user.username || user.photos.length === 0)
+  if (!user.username)
     return (
       <Loader
         type="ThreeDots"
@@ -113,12 +115,11 @@ function UserDashboard(props) {
               Joined {moment(user.created_at).fromNow()}
             </p>
             <div className="follows">
-              <p>
-                <span>{user.following && user.following.length}</span> following
-              </p>
-              <p>
-                <span>{user.followers && user.followers.length}</span> followers
-              </p>
+              <Following following={user.following} />
+              <Followers
+                followers={user.followers}
+                following={user.following}
+              />
             </div>
           </div>
 
