@@ -15,6 +15,8 @@ import Loader from "react-loader-spinner";
 import moment from "moment";
 
 import "../../index.css";
+import Followers from "../PrivateDashboard/Followers";
+import Following from "../PrivateDashboard/Following";
 
 function FriendDashboard(props) {
   const friend = useSelector(state => state.friend);
@@ -108,7 +110,6 @@ function FriendDashboard(props) {
               Settings
             </Dropdown.Item>
             <Dropdown.Item onClick={signOut}>Log out</Dropdown.Item>
-            {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
           </Dropdown.Menu>
         </Dropdown>
       ) : null}
@@ -194,22 +195,10 @@ function FriendDashboard(props) {
               Joined {moment(friend.created_at).fromNow()}
             </p>
             <div className="follows">
-              <p>
-                <span>{friend.following && friend.following.length}</span>{" "}
-                following
-              </p>
-              <p>
-                <span>{friend.followers && friend.followers.length}</span>{" "}
-                {friend.followers.length === 1 ? "follower" : "followers"}
-              </p>
+              <Following following={friend.following} />
+              <Followers followers={friend.followers} />
             </div>
           </div>
-
-          {/* {localStorage.getItem("token") && props.match.params.id.toString() === decodedToken().toString() ? (
-            <Button variant="info" href="/new-post" className="desktop-add-btn">
-              Add Post
-            </Button>
-          ) : null} */}
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">

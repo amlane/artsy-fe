@@ -133,8 +133,7 @@ function ExploreUsers() {
                 unfollowArtist={unfollowArtist}
               />
             );
-          })
-          .slice(0, 24)}
+          })}
       </div>
     </div>
   );

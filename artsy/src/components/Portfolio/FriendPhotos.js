@@ -2,25 +2,22 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import Loader from "react-loader-spinner";
 
-function FriendPhotos() {
+function FriendPhotos(props) {
   const friend = useSelector(state => state.friend);
 
-  if (!friend)
+  if (!friend || friend.id !== +props.match.params.id)
     return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
+      <h2
         style={{
+          color: "gray",
+          width: "100%",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
+          justifyContent: "center"
         }}
-      />
+      >
+        Loading...
+      </h2>
     );
 
   return (

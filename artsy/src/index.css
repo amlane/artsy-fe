@@ -85,7 +85,8 @@ nav .nav-search input {
 
 button:focus,
 input:focus {
-  outline: none;
+  outline: none !important;
+  outline-offset: none !important;
 }
 
 nav .title {
@@ -639,10 +640,6 @@ nav .title {
     margin-top: 10px;
   }
 
-  .user-dashboard section .follows span {
-    margin-right: 3px;
-  }
-
   .user-dashboard section h1 {
     width: 100%;
   }
@@ -693,6 +690,10 @@ nav .title {
 
   .user-dashboard section div h1 {
     font-size: 28px;
+  }
+
+  .user-dashboard section .main .follows {
+    width: 70%;
   }
 
   .dashboard-nav {
