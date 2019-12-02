@@ -115,14 +115,11 @@ function UserDashboard(props) {
               Joined {moment(user.created_at).fromNow()}
             </p>
             <div className="follows">
-              {/* <p>
-                <span>{user.following && user.following.length}</span> following
-              </p> */}
-              {/* <p>
-                <span>{user.followers && user.followers.length}</span> followers
-              </p> */}
               <Following following={user.following} />
-              <Followers followers={user.followers} />
+              <Followers
+                followers={user.followers}
+                following={user.following}
+              />
             </div>
           </div>
 

@@ -256,6 +256,29 @@ nav .title {
   font-size: 18px;
 }
 
+/* modal for followers/following */
+.follow-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #17a2b8;
+  color: #fff;
+  background: #17a2b8;
+  border-radius: 25px;
+  padding: 7px 15px;
+  font-size: 12px;
+}
+
+.unfollow-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #17a2b8;
+  border-radius: 25px;
+  padding: 7px 15px;
+  font-size: 12px;
+  background: #fff;
+  color: #17a2b8;
+}
+
 .user-dashboard .desktop-add-btn {
   float: right;
   display: flex;

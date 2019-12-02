@@ -20,6 +20,7 @@ import Following from "../PrivateDashboard/Following";
 
 function FriendDashboard(props) {
   const friend = useSelector(state => state.friend);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const [isFollowing, setIsFollowing] = useState(null);
@@ -130,19 +131,11 @@ function FriendDashboard(props) {
                 Edit Profile
               </Button>
             ) : isFollowing ? (
-              <button
-                className="mobile"
-                variant="outline-info"
-                onClick={unfollowArtist}
-              >
+              <button className="mobile" onClick={unfollowArtist}>
                 Unfollow
               </button>
             ) : (
-              <button
-                className="mobile follow"
-                variant="info"
-                onClick={followArtist}
-              >
+              <button className="mobile follow" onClick={followArtist}>
                 <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
               </button>
             )
@@ -196,7 +189,10 @@ function FriendDashboard(props) {
             </p>
             <div className="follows">
               <Following following={friend.following} />
-              <Followers followers={friend.followers} />
+              <Followers
+                followers={friend.followers}
+                following={user.following}
+              />
             </div>
           </div>
         </section>

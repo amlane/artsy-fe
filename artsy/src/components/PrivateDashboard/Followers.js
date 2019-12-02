@@ -1,13 +1,46 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../actions";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { IoMdPersonAdd } from "react-icons/io";
+import decodedToken from "../utils/decodedToken";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-function MyFollowers({ followers }) {
+function MyFollowers({ followers, following }) {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(followers);
+
+  const followingIDs = following.map(follow => follow.id);
+
+  const followArtist = (e, id) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .then(res => {
+        console.log(res);
+        dispatch(getUser());
+      })
+      .catch(err => {
+        console.log({ err });
+      });
+  };
+
+  const unfollowArtist = (e, id) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .delete(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .then(res => {
+        console.log(res);
+        dispatch(getUser());
+      })
+      .catch(err => {
+        console.log({ err });
+      });
+  };
   return (
     <>
       <div onClick={handleShow} style={{ cursor: "pointer" }}>
@@ -18,7 +51,7 @@ function MyFollowers({ followers }) {
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>People who follow you</Modal.Title>
+          <Modal.Title style={{ fontSize: "16px" }}>Followers</Modal.Title>
         </Modal.Header>
         <Modal.Body
           scrollable="true"
@@ -30,30 +63,55 @@ function MyFollowers({ followers }) {
         >
           {followers.map(follower => {
             return (
-              <Link
+              <div
                 key={follower.id}
-                to={`/portfolio/${follower.id}/posts`}
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  textDecoration: "none",
-                  color: "#333"
+                  justifyContent: "space-between"
                 }}
               >
-                <img
-                  src={follower.avatar_url}
-                  alt={follower.username}
+                <Link
+                  to={`/portfolio/${follower.id}/posts`}
                   style={{
-                    height: "45px",
-                    width: "45px",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    borderRadius: "50%",
-                    margin: "10px"
+                    display: "flex",
+                    alignItems: "center",
+                    textDecoration: "none",
+                    color: "#333"
                   }}
-                />
-                <span>{follower.username}</span>
-              </Link>
+                >
+                  <img
+                    src={follower.avatar_url}
+                    alt={follower.username}
+                    style={{
+                      height: "45px",
+                      width: "45px",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      borderRadius: "50%",
+                      margin: "10px"
+                    }}
+                  />
+                  <span>{follower.username}</span>
+                </Link>
+                {follower.id !== decodedToken() ? (
+                  followingIDs.includes(follower.id) ? (
+                    <button
+                      className="unfollow-btn"
+                      onClick={e => unfollowArtist(e, follower.id)}
+                    >
+                      Unfollow
+                    </button>
+                  ) : (
+                    <button
+                      className="follow-btn"
+                      onClick={e => followArtist(e, follower.id)}
+                    >
+                      <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
+                    </button>
+                  )
+                ) : null}
+              </div>
             );
           })}
         </Modal.Body>
