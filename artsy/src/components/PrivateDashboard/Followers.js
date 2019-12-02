@@ -92,7 +92,8 @@ function MyFollowers({ followers, following }) {
                   />
                   <span>{follower.username}</span>
                 </Link>
-                {follower.id !== decodedToken() ? (
+                {localStorage.getItem("token") &&
+                follower.id !== decodedToken() ? (
                   followingIDs.includes(follower.id) ? (
                     <button
                       className="unfollow-btn"

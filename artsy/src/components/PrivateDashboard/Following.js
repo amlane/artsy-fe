@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IoMdPersonAdd } from "react-icons/io";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import decodedToken from "../utils/decodedToken";
 
 function Following({ following }) {
   const list = useSelector(state => state.user.following);
@@ -46,7 +47,7 @@ function Following({ following }) {
     <>
       <div
         onClick={handleShow}
-        style={{ cursor: "pointer", marginRight: "1.5rem" }}
+        style={{ cursor: "pointer", marginRight: "1rem" }}
       >
         <span>{following && following.length}</span> following
       </div>
@@ -95,21 +96,24 @@ function Following({ following }) {
                   />
                   <span>{follow.username}</span>
                 </Link>
-                {followingIDs.includes(follow.id) ? (
-                  <button
-                    className="unfollow-btn"
-                    onClick={e => unfollowArtist(e, follow.id)}
-                  >
-                    Unfollow
-                  </button>
-                ) : (
-                  <button
-                    className="follow-btn"
-                    onClick={e => followArtist(e, follow.id)}
-                  >
-                    <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
-                  </button>
-                )}
+                {localStorage.getItem("token") &&
+                follow.id !== decodedToken() ? (
+                  followingIDs.includes(follow.id) ? (
+                    <button
+                      className="unfollow-btn"
+                      onClick={e => unfollowArtist(e, follow.id)}
+                    >
+                      Unfollow
+                    </button>
+                  ) : (
+                    <button
+                      className="follow-btn"
+                      onClick={e => followArtist(e, follow.id)}
+                    >
+                      <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
+                    </button>
+                  )
+                ) : null}
               </div>
             );
           })}
