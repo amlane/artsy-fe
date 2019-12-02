@@ -44,10 +44,11 @@ function Following({ following }) {
   console.log(following);
   return (
     <>
-      <div onClick={handleShow} style={{ cursor: "pointer" }}>
-        <p>
-          <span>{following && following.length}</span> following
-        </p>
+      <div
+        onClick={handleShow}
+        style={{ cursor: "pointer", marginRight: "1.5rem" }}
+      >
+        <span>{following && following.length}</span> following
       </div>
 
       <Modal show={show} onHide={handleClose} centered scrollable="true">

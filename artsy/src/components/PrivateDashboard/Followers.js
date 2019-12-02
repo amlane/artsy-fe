@@ -44,9 +44,7 @@ function MyFollowers({ followers, following }) {
   return (
     <>
       <div onClick={handleShow} style={{ cursor: "pointer" }}>
-        <p>
-          <span>{followers && followers.length}</span> followers
-        </p>
+        <span>{followers && followers.length}</span> followers
       </div>
 
       <Modal show={show} onHide={handleClose} centered>

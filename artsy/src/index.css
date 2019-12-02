@@ -224,11 +224,15 @@ nav .title {
 .user-dashboard section .main .follows {
   padding-left: 4px;
 }
-
+.user-dashboard section .main .follows {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+}
 .user-dashboard section .follows span {
   color: #000;
   font-weight: bolder;
-  margin-right: 3px;
+  margin-right: 5px;
 }
 
 .user-dashboard section .main {
@@ -716,7 +720,7 @@ nav .title {
   }
 
   .user-dashboard section .main .follows {
-    width: 70%;
+    /* width: 50%; */
   }
 
   .dashboard-nav {
