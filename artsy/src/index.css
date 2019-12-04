@@ -235,6 +235,11 @@ nav .title {
   margin-right: 5px;
 }
 
+.user-dashboard section .follows .following {
+  cursor: pointer;
+  margin-right: 1em;
+}
+
 .user-dashboard section .main {
   display: flex;
   flex-direction: column;
@@ -246,7 +251,7 @@ nav .title {
 }
 
 .user-dashboard section .main p {
-  margin-right: 40px;
+  margin-right: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -690,6 +695,10 @@ nav .title {
   .user-dashboard header .mobile.follow {
     color: #fff;
     background: #17a2b8;
+  }
+
+  .user-dashboard section .follows .following {
+    margin-right: 0;
   }
 
   .user-dashboard section .main {
