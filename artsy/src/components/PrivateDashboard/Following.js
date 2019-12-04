@@ -45,10 +45,7 @@ function Following({ following }) {
   console.log(following);
   return (
     <>
-      <div
-        onClick={handleShow}
-        style={{ cursor: "pointer", marginRight: "1rem" }}
-      >
+      <div onClick={handleShow} className="following">
         <span>{following && following.length}</span> following
       </div>
 
