@@ -18,7 +18,7 @@ import "../../index.css";
 import Followers from "./Followers";
 import Following from "./Following";
 
-function FriendDashboard(props) {
+function Dashboard(props) {
   const friend = useSelector(state => state.friend);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -215,4 +215,4 @@ function FriendDashboard(props) {
   );
 }
 
-export default withRouter(FriendDashboard);
+export default withRouter(Dashboard);

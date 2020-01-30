@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-function FriendPhotos(props) {
+function Photos(props) {
   const friend = useSelector(state => state.friend);
 
   if (!friend || friend.id !== +props.match.params.id)
@@ -45,4 +45,4 @@ function FriendPhotos(props) {
   );
 }
 
-export default FriendPhotos;
+export default Photos;

@@ -15,10 +15,10 @@ import EditPost from "./components/Forms/EditPost";
 import EditProfile from "./components/Forms/EditProfile";
 import SinglePostView from "./components/SinglePostView/SinglePostView";
 import Search from "./components/Home/Search";
-import FriendDashboard from "./components/Portfolio/Dashboard";
-import FriendPhotos from "./components/Portfolio/Photos";
-import FriendFavorites from "./components/Portfolio/Favorites";
-import FriendGalleryInfo from "./components/Portfolio/GalleryInfo";
+import Dashboard from "./components/Portfolio/Dashboard";
+import Photos from "./components/Portfolio/Photos";
+import Favorites from "./components/Portfolio/Favorites";
+import GalleryInfo from "./components/Portfolio/GalleryInfo";
 import ExploreUsers from "./components/Home/ExploreUsers";
 import UserSettings from "./components/Forms/UserSettings";
 
@@ -34,10 +34,10 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
-      <Route path="/portfolio/:id" component={FriendDashboard} />
-      <Route path="/portfolio/:id/posts" component={FriendPhotos} />
-      <Route path="/portfolio/:id/favorites" component={FriendFavorites} />
-      <Route path="/portfolio/:id/info" component={FriendGalleryInfo} />
+      <Route path="/portfolio/:id" component={Dashboard} />
+      <Route path="/portfolio/:id/posts" component={Photos} />
+      <Route path="/portfolio/:id/favorites" component={Favorites} />
+      <Route path="/portfolio/:id/info" component={GalleryInfo} />
       <PrivateRoute exact path="/connect" component={ExploreUsers} />
       <PrivateRoute path="/settings/:id" component={UserSettings} />
       <PrivateRoute path="/new-post" component={NewPost} />

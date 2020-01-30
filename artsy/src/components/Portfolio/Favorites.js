@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-function FriendFavorites() {
+function Favorites() {
   const friend = useSelector(state => state.friend);
   return (
     <div className="my-photos">
@@ -29,4 +29,4 @@ function FriendFavorites() {
   );
 }
 
-export default FriendFavorites;
+export default Favorites;
