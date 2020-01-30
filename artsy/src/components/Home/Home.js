@@ -21,7 +21,6 @@ function Home(props) {
     axios
       .get("https://artsy-be.herokuapp.com/api/photos")
       .then(res => {
-        console.log(res);
         setPhotos(res.data.photos);
       })
       .catch(err => {
@@ -40,7 +39,6 @@ function Home(props) {
       axiosWithAuth()
         .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like/`)
         .then(res => {
-          console.log(res);
           setPhotos(res.data.photos);
           dispatch(getUser());
         })

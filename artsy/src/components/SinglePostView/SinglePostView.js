@@ -19,7 +19,6 @@ function SinglePostView(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("I'm hungry");
     dispatch(getPhotoById(props.match.params.photoId));
   }, [dispatch, userFavorites, props.match.params.photoId]);
 
@@ -56,7 +55,6 @@ function SinglePostView(props) {
         console.log(err);
       });
   };
-  console.log("here", photo);
   if (!photo.title)
     return (
       <Loader

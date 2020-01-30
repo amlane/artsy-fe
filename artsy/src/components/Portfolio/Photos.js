@@ -2,31 +2,28 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import Loader from "react-loader-spinner";
 
-function MyPhotos() {
-  const user = useSelector(state => state.user);
+function Photos(props) {
+  const friend = useSelector(state => state.friend);
 
-  if (!user)
+  if (!friend || friend.id !== +props.match.params.id)
     return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
+      <h2
         style={{
+          color: "gray",
+          width: "100%",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
+          justifyContent: "center"
         }}
-      />
+      >
+        Loading...
+      </h2>
     );
 
   return (
     <div className="my-photos">
-      {user.photos.length !== 0 ? (
-        user.photos
+      {friend.photos.length !== 0 ? (
+        friend.photos
           .map(photo => {
             return (
               <Link
@@ -48,4 +45,4 @@ function MyPhotos() {
   );
 }
 
-export default MyPhotos;
+export default Photos;

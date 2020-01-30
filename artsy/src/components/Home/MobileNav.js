@@ -25,7 +25,7 @@ function MobileNav() {
       <NavLink to="/search/art">
         <IoIosSearch size="1.25em" />
       </NavLink>
-      <NavLink to={`/user/${decodedToken()}/posts`}>
+      <NavLink to={`/portfolio/${decodedToken()}/posts`}>
         <MdHome size="1.25em" />
       </NavLink>
     </nav>

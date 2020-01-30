@@ -41,6 +41,7 @@ function MyFollowers({ followers, following }) {
         console.log({ err });
       });
   };
+
   return (
     <>
       <div onClick={handleShow} style={{ cursor: "pointer" }}>

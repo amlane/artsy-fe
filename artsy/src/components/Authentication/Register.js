@@ -36,7 +36,7 @@ function Register(props) {
         .post("https://artsy-be.herokuapp.com/api/auth/register", newUser)
         .then(res => {
           localStorage.setItem("token", res.data.token);
-          props.history.push(`/user/${res.data.newUser.id}/posts`);
+          props.history.push(`/portfolio/${res.data.newUser.id}/posts`);
           setIsLoggingIn(false);
           setErrorMsg("");
         })

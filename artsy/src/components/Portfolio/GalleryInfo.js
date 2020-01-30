@@ -1,6 +1,6 @@
 import React from "react";
 
-function FriendGalleryInfo() {
+function GalleryInfo() {
   return (
     <div
       style={{
@@ -27,4 +27,4 @@ function FriendGalleryInfo() {
   );
 }
 
-export default FriendGalleryInfo;
+export default GalleryInfo;

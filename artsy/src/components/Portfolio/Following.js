@@ -19,6 +19,7 @@ function Following({ following }) {
 
   const followArtist = (e, id) => {
     e.preventDefault();
+    console.log(id);
     axiosWithAuth()
       .post(`https://artsy-be.herokuapp.com/api/follow/${id}`)
       .then(res => {
@@ -42,7 +43,7 @@ function Following({ following }) {
         console.log({ err });
       });
   };
-  console.log(following);
+
   return (
     <>
       <div onClick={handleShow} className="following">
