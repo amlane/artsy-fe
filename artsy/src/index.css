@@ -342,7 +342,7 @@ nav .title {
 }
 
 .single-photo-view .details {
-  width: 35%;
+  width: 25%;
   padding: 0;
 }
 
@@ -728,9 +728,9 @@ nav .title {
     font-size: 28px;
   }
 
-  .user-dashboard section .main .follows {
-    /* width: 50%; */
-  }
+  /* .user-dashboard section .main .follows {
+    width: 50%;
+  } */
 
   .dashboard-nav {
     width: 90%;

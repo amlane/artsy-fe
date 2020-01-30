@@ -99,7 +99,7 @@ function Navigation(props) {
         >
           {decodedToken() !== undefined ? (
             <>
-              <NavLink to={`/user/${decodedToken()}/posts`}>
+              <NavLink to={`/portfolio/${decodedToken()}/posts`}>
                 <MdHome style={{ fontSize: "35px", color: "gray" }} />
               </NavLink>
               <Dropdown>
@@ -117,7 +117,7 @@ function Navigation(props) {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href={`/user/${decodedToken()}/posts`}>
+                  <Dropdown.Item href={`/portfolio/${decodedToken()}/posts`}>
                     My Profile
                   </Dropdown.Item>
                   <Dropdown.Item href={`/settings/${decodedToken()}`}>
@@ -129,7 +129,7 @@ function Navigation(props) {
             </>
           ) : (
             <>
-              <NavLink to={`/user/${decodedToken()}/posts`}>
+              <NavLink to={`/portfolio/${decodedToken()}/posts`}>
                 <MdHome style={{ fontSize: "45px", color: "gray" }} />
               </NavLink>
               <p>You</p>

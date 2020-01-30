@@ -9,8 +9,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decodedToken from "../utils/decodedToken";
 
 function Comment({ comment, photoId }) {
-  console.log(comment);
-
   return (
     <>
       <div
@@ -70,7 +68,7 @@ function Comment({ comment, photoId }) {
             marginLeft: "50px"
           }}
         >
-          {moment(comment.created_at).fromNow(true)}
+          {moment(comment.created_at).fromNow()}
         </p>
       </div>
     </>

@@ -69,7 +69,7 @@ function EditPost(props) {
         `https://artsy-be.herokuapp.com/api/photos/${props.match.params.id}`
       )
       .then(res => {
-        props.history.push(`/user/${decodedToken()}/posts`);
+        props.history.push(`/portfolio/${decodedToken()}/posts`);
       })
       .catch(err => {
         console.log(err);

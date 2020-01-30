@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { visitUser, logout } from "../../actions";
+import { visitUser, getUser, logout } from "../../actions";
 import { withRouter, NavLink } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -15,8 +15,8 @@ import Loader from "react-loader-spinner";
 import moment from "moment";
 
 import "../../index.css";
-import Followers from "../PrivateDashboard/Followers";
-import Following from "../PrivateDashboard/Following";
+import Followers from "./Followers";
+import Following from "./Following";
 
 function FriendDashboard(props) {
   const friend = useSelector(state => state.friend);
@@ -27,6 +27,7 @@ function FriendDashboard(props) {
 
   useEffect(() => {
     dispatch(visitUser(props.match.params.id));
+    dispatch(getUser());
   }, [dispatch, props.match.params.id]);
 
   useEffect(() => {

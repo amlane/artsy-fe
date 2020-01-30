@@ -8,23 +8,19 @@ import PrivateRoute from "./components/utils/PrivateRoute";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import Home from "./components/Home/Home";
-import UserDashboard from "./components/PrivateDashboard/UserDashboard";
 import Navigation from "./components/Home/NavBar";
 import MobileNav from "./components/Home/MobileNav";
-import NewPost from "./components/PrivateDashboard/NewPost";
-import EditPost from "./components/PrivateDashboard/EditPost";
-import EditProfile from "./components/PrivateDashboard/EditProfile";
-import MyPhotos from "./components/PrivateDashboard/MyPhotos";
-import MyFavorites from "./components/PrivateDashboard/MyFavorites";
-import MyGalleryInfo from "./components/PrivateDashboard/MyGalleryInfo";
-import SinglePostView from "./components/Portfolio/SinglePostView";
+import NewPost from "./components/Forms/NewPost";
+import EditPost from "./components/Forms/EditPost";
+import EditProfile from "./components/Forms/EditProfile";
+import SinglePostView from "./components/SinglePostView/SinglePostView";
 import Search from "./components/Home/Search";
-import FriendDashboard from "./components/Portfolio/FriendDashboard";
-import FriendPhotos from "./components/Portfolio/FriendPhotos";
-import FriendFavorites from "./components/Portfolio/FriendFavorites";
-import FriendGalleryInfo from "./components/Portfolio/FriendGalleryInfo";
+import FriendDashboard from "./components/Portfolio/Dashboard";
+import FriendPhotos from "./components/Portfolio/Photos";
+import FriendFavorites from "./components/Portfolio/Favorites";
+import FriendGalleryInfo from "./components/Portfolio/GalleryInfo";
 import ExploreUsers from "./components/Home/ExploreUsers";
-import UserSettings from "./components/PrivateDashboard/UserSettings";
+import UserSettings from "./components/Forms/UserSettings";
 
 function App() {
   return (
@@ -43,11 +39,7 @@ function App() {
       <Route path="/portfolio/:id/favorites" component={FriendFavorites} />
       <Route path="/portfolio/:id/info" component={FriendGalleryInfo} />
       <PrivateRoute exact path="/connect" component={ExploreUsers} />
-      <PrivateRoute path="/user/:id" component={UserDashboard} />
       <PrivateRoute path="/settings/:id" component={UserSettings} />
-      <PrivateRoute exact path="/user/:id/posts" component={MyPhotos} />
-      <PrivateRoute exact path="/user/:id/favorites" component={MyFavorites} />
-      <PrivateRoute exact path="/user/:id/info" component={MyGalleryInfo} />
       <PrivateRoute path="/new-post" component={NewPost} />
       <PrivateRoute path="/edit-post/:id" component={EditPost} />
       <PrivateRoute path="/edit-profile" component={EditProfile} />

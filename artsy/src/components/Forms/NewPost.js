@@ -34,7 +34,7 @@ function NewPost(props) {
       .post("https://artsy-be.herokuapp.com/api/photos", newPost)
       .then(res => {
         dispatch(getUser());
-        props.history.push(`/user/${decodedToken()}/posts`);
+        props.history.push(`/portfolio/${decodedToken()}/posts`);
         setNewPost({
           photo_url: "",
           title: "",
@@ -103,7 +103,7 @@ function NewPost(props) {
             <Button
               block
               onClick={() => {
-                props.history.push(`/user/${decodedToken()}/posts`);
+                props.history.push(`/portfolio/${decodedToken()}/posts`);
               }}
               variant="outline-secondary"
             >

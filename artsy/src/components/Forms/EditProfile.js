@@ -53,7 +53,7 @@ function EditProfile(props) {
         inputValue
       )
       .then(res => {
-        props.history.push(`/user/${user.id}/posts`);
+        props.history.push(`/portfolio/${user.id}/posts`);
       })
       .catch(err => {
         console.log({ err });
@@ -144,7 +144,7 @@ function EditProfile(props) {
             <Button
               block
               onClick={() => {
-                props.history.push(`/user/${user.id}/posts`);
+                props.history.push(`/portfolio/${user.id}/posts`);
               }}
               variant="outline-secondary"
             >
