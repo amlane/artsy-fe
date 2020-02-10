@@ -109,7 +109,8 @@ function Navigation(props) {
                     background: "none",
                     color: "gray",
                     paddingTop: "0",
-                    marginTop: "0"
+                    marginTop: "1px",
+                    border: "none"
                   }}
                   variant="outline-light"
                 >
@@ -129,10 +130,15 @@ function Navigation(props) {
             </>
           ) : (
             <>
-              <NavLink to={`/portfolio/${decodedToken()}/posts`}>
-                <MdHome style={{ fontSize: "45px", color: "gray" }} />
+              <NavLink to={`/login`}>
+                <MdHome
+                  style={{
+                    fontSize: "45px",
+                    color: "gray"
+                  }}
+                />
+                <p style={{ textAlign: "center", color: "gray" }}>Profile</p>
               </NavLink>
-              <p>You</p>
             </>
           )}
         </div>
