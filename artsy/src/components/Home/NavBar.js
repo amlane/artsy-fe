@@ -137,7 +137,7 @@ function Navigation(props) {
                     color: "gray"
                   }}
                 />
-                <p style={{ textAlign: "center", color: "gray" }}>Profile</p>
+                <p style={{ textAlign: "center", color: "gray" }}>You</p>
               </NavLink>
             </>
           )}
