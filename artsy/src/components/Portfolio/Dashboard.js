@@ -4,7 +4,7 @@ import { visitUser, getUser, logout } from "../../actions";
 import { withRouter, NavLink } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import { baseURL } from "../utils/config";
 import { Button, Jumbotron, Dropdown } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
 import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
@@ -44,9 +44,7 @@ function Dashboard(props) {
   const followArtist = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post(
-        `https://artsy-be.herokuapp.com/api/follow/${props.match.params.id}`
-      )
+      .post(`${baseURL}/follow/${props.match.params.id}`)
       .then(res => {
         dispatch(visitUser(props.match.params.id));
       })
@@ -58,9 +56,7 @@ function Dashboard(props) {
   const unfollowArtist = e => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(
-        `https://artsy-be.herokuapp.com/api/follow/${props.match.params.id}`
-      )
+      .delete(`${baseURL}/follow/${props.match.params.id}`)
       .then(res => {
         dispatch(visitUser(props.match.params.id));
       })

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
@@ -31,7 +32,7 @@ function NewPost(props) {
     if (newPost.title === "" || newPost.photo_url === "") return;
 
     axiosWithAuth()
-      .post("https://artsy-be.herokuapp.com/api/photos", newPost)
+      .post(`${baseURL}/photos`, newPost)
       .then(res => {
         dispatch(getUser());
         props.history.push(`/portfolio/${decodedToken()}/posts`);

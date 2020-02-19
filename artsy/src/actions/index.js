@@ -1,5 +1,6 @@
 import axios from "axios";
 import decodedToken from "../components/utils/decodedToken";
+import { baseURL } from "../components/utils/config";
 
 export const FETCH_USER = "FETCH_USER";
 export const VISIT_USER = "VISIT_USER";
@@ -11,7 +12,7 @@ export const SET_SINGLE_PHOTO_VIEW = "SET_SINGLE_PHOTO_VIEW";
 export const getUser = () => dispatch => {
   if (decodedToken() !== undefined) {
     axios
-      .get(`https://artsy-be.herokuapp.com/api/users/${decodedToken()}`)
+      .get(`${baseURL}/users/${decodedToken()}`)
       .then(res => {
         dispatch({ type: FETCH_USER, payload: res.data.user });
         dispatch({
@@ -30,7 +31,7 @@ export const getUser = () => dispatch => {
 export const visitUser = userId => dispatch => {
   if (userId !== undefined) {
     axios
-      .get(`https://artsy-be.herokuapp.com/api/users/${userId}`)
+      .get(`${baseURL}/users/${userId}`)
       .then(res => {
         dispatch({ type: VISIT_USER, payload: res.data.user });
       })
@@ -48,7 +49,7 @@ export const logout = () => dispatch => {
 export const setUserFavorites = () => dispatch => {
   if (decodedToken() !== undefined) {
     axios
-      .get(`https://artsy-be.herokuapp.com/api/users/${decodedToken()}`)
+      .get(`${baseURL}/users/${decodedToken()}`)
       .then(res => {
         dispatch({
           type: SET_USER_FAVORITES,
@@ -67,7 +68,7 @@ export const setFavsID = () => dispatch => {
 
 export const getPhotoById = id => dispatch => {
   axios
-    .get(`https://artsy-be.herokuapp.com/api/photos/${id}`)
+    .get(`${baseURL}/photos/${id}`)
     .then(res => {
       // console.log(res);
       dispatch({ type: SET_SINGLE_PHOTO_VIEW, payload: res.data.photo });

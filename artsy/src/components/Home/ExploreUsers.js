@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../actions";
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import ExploreUsersCard from "./ExploreUsersCard";
 import decodedToken from "../utils/decodedToken";
 import Loader from "react-loader-spinner";
@@ -18,7 +19,7 @@ function ExploreUsers() {
   useEffect(() => {
     dispatch(getUser());
     axios
-      .get("https://artsy-be.herokuapp.com/api/users")
+      .get(`${baseURL}/users`)
       .then(res => {
         setUsers(res.data);
       })
@@ -37,7 +38,7 @@ function ExploreUsers() {
   const followArtist = (e, id) => {
     e.preventDefault();
     axiosWithAuth()
-      .post(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .post(`${baseURL}/follow/${id}`)
       .then(res => {
         dispatch(getUser());
       })
@@ -49,7 +50,7 @@ function ExploreUsers() {
   const unfollowArtist = (e, id) => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .delete(`${baseURL}/follow/${id}`)
       .then(res => {
         dispatch(getUser());
       })

@@ -4,6 +4,7 @@ import { getUser, setFavsID, getPhotoById } from "../../actions";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { FaEllipsisH, FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
@@ -35,7 +36,7 @@ function SinglePostView(props) {
       props.history.push("/login");
     } else {
       axiosWithAuth()
-        .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like/`)
+        .post(`${baseURL}/photos/${id}/like/`)
         .then(res => {
           dispatch(getUser());
         })
@@ -47,7 +48,7 @@ function SinglePostView(props) {
 
   const unLike = id => {
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike/`)
+      .delete(`${baseURL}/photos/${id}/unlike/`)
       .then(res => {
         dispatch(getUser());
       })

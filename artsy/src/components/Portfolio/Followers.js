@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { IoMdPersonAdd } from "react-icons/io";
 import decodedToken from "../utils/decodedToken";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 
 function MyFollowers({ followers, following }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function MyFollowers({ followers, following }) {
   const followArtist = (e, id) => {
     e.preventDefault();
     axiosWithAuth()
-      .post(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .post(`${baseURL}/follow/${id}`)
       .then(res => {
         console.log(res);
         dispatch(getUser());
@@ -32,7 +33,7 @@ function MyFollowers({ followers, following }) {
   const unfollowArtist = (e, id) => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .delete(`${baseURL}/follow/${id}`)
       .then(res => {
         console.log(res);
         dispatch(getUser());

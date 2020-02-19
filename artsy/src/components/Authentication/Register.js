@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Modal, Button, Form, Nav } from "react-bootstrap";
 import Loader from "react-loader-spinner";
+import { baseURL } from "../utils/config";
 
 function Register(props) {
   const [show, setShow] = useState(true);
@@ -33,7 +34,7 @@ function Register(props) {
     } else {
       setIsLoggingIn(true);
       axios
-        .post("https://artsy-be.herokuapp.com/api/auth/register", newUser)
+        .post(`${baseURL}/auth/register`, newUser)
         .then(res => {
           localStorage.setItem("token", res.data.token);
           props.history.push(`/portfolio/${res.data.newUser.id}/posts`);

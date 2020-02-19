@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
@@ -22,9 +23,7 @@ function Search(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(
-        `https://artsy-be.herokuapp.com/api/photos/search/${props.match.params.title}`
-      )
+      .get(`${baseURL}/photos/search/${props.match.params.title}`)
       .then(res => {
         setSearchResults(res.data);
         setInputValue("");

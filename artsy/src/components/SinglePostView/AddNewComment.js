@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPhotoById } from "../../actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 
 function AddNewComment({ photoId }) {
   const dispatch = useDispatch();
@@ -14,10 +15,7 @@ function AddNewComment({ photoId }) {
       content: newComment
     };
     axiosWithAuth()
-      .post(
-        `https://artsy-be.herokuapp.com/api/comments/${photoId}`,
-        requestBody
-      )
+      .post(`${baseURL}/comments/${photoId}`, requestBody)
       .then(res => {
         console.log(res);
         setNewComment("");
