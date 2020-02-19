@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IoMdPersonAdd } from "react-icons/io";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import decodedToken from "../utils/decodedToken";
 
 function Following({ following }) {
@@ -21,7 +22,7 @@ function Following({ following }) {
     e.preventDefault();
     console.log(id);
     axiosWithAuth()
-      .post(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .post(`${baseURL}/follow/${id}`)
       .then(res => {
         console.log(res);
         dispatch(getUser());
@@ -34,7 +35,7 @@ function Following({ following }) {
   const unfollowArtist = (e, id) => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/follow/${id}`)
+      .delete(`${baseURL}/follow/${id}`)
       .then(res => {
         console.log(res);
         dispatch(getUser());

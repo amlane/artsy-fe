@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import Loader from "react-loader-spinner";
 import decodedToken from "../utils/decodedToken";
 import { withRouter } from "react-router-dom";
@@ -48,10 +49,7 @@ function EditProfile(props) {
   const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .put(
-        `https://artsy-be.herokuapp.com/api/users/${decodedToken()}`,
-        inputValue
-      )
+      .put(`${baseURL}/users/${decodedToken()}`, inputValue)
       .then(res => {
         props.history.push(`/portfolio/${user.id}/posts`);
       })

@@ -7,6 +7,7 @@ import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decodedToken from "../utils/decodedToken";
+import { baseURL } from "../utils/config";
 
 function Comment({ comment, photoId }) {
   return (
@@ -88,7 +89,7 @@ function DeleteModal({ commentId, photoId }) {
     e.preventDefault();
 
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/comments/${commentId}`)
+      .delete(`${baseURL}/comments/${commentId}`)
       .then(res => {
         console.log(res);
         dispatch(getPhotoById(photoId));

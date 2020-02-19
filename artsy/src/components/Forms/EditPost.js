@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { baseURL } from "../utils/config";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
@@ -22,7 +23,7 @@ function EditPost(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`https://artsy-be.herokuapp.com/api/photos/${props.match.params.id}`)
+      .get(`${baseURL}/photos/${props.match.params.id}`)
       .then(res => {
         setUpdatedPost({
           photo_url:
@@ -51,10 +52,7 @@ function EditPost(props) {
     if (updatedPost.title === "" || updatedPost.photo_url === "") return;
 
     axiosWithAuth()
-      .put(
-        `https://artsy-be.herokuapp.com/api/photos/${props.match.params.id}`,
-        updatedPost
-      )
+      .put(`${baseURL}/photos/${props.match.params.id}`, updatedPost)
       .then(res => {
         props.history.push(`/photo/${props.match.params.id}`);
       })
@@ -65,9 +63,7 @@ function EditPost(props) {
 
   const deletePost = () => {
     axiosWithAuth()
-      .delete(
-        `https://artsy-be.herokuapp.com/api/photos/${props.match.params.id}`
-      )
+      .delete(`${baseURL}/photos/${props.match.params.id}`)
       .then(res => {
         props.history.push(`/portfolio/${decodedToken()}/posts`);
       })

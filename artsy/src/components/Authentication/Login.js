@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Modal, Button, Form, Nav } from "react-bootstrap";
 import Loader from "react-loader-spinner";
+import { baseURL } from "../utils/config";
 
 function Login(props) {
   const [show, setShow] = useState(true);
@@ -32,7 +33,7 @@ function Login(props) {
     } else {
       setIsLoggingIn(true);
       axios
-        .post("https://artsy-be.herokuapp.com/api/auth/login", user)
+        .post(`${baseURL}/auth/login`, user)
         .then(res => {
           localStorage.setItem("token", res.data.token);
           setIsLoggingIn(false);

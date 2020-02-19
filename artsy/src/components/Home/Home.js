@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
+import { baseURL } from "../utils/config";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -19,7 +20,7 @@ function Home(props) {
   useEffect(() => {
     dispatch(getUser());
     axios
-      .get("https://artsy-be.herokuapp.com/api/photos")
+      .get(`${baseURL}/photos`)
       .then(res => {
         setPhotos(res.data.photos);
       })
@@ -37,7 +38,7 @@ function Home(props) {
       props.history.push("/login");
     } else {
       axiosWithAuth()
-        .post(`https://artsy-be.herokuapp.com/api/photos/${id}/like/`)
+        .post(`${baseURL}/photos/${id}/like/`)
         .then(res => {
           setPhotos(res.data.photos);
           dispatch(getUser());
@@ -50,7 +51,7 @@ function Home(props) {
 
   const unLike = id => {
     axiosWithAuth()
-      .delete(`https://artsy-be.herokuapp.com/api/photos/${id}/unlike/`)
+      .delete(`${baseURL}/photos/${id}/unlike/`)
       .then(res => {
         setPhotos(res.data.photos);
         dispatch(getUser());
