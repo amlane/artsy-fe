@@ -56,7 +56,7 @@ function SinglePostView(props) {
         console.log(err);
       });
   };
-  if (!photo.title)
+  if (!photo.title || photo.id !== +props.match.params.photoId)
     return (
       <Loader
         type="ThreeDots"
@@ -71,6 +71,7 @@ function SinglePostView(props) {
         }}
       />
     );
+
   return (
     <div className="single-photo-view">
       <img src={photo.photo_url} alt={photo.title} className="main" />
