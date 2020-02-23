@@ -121,6 +121,7 @@ function Navigation(props) {
                   <Dropdown.Item href={`/portfolio/${decodedToken()}/posts`}>
                     My Profile
                   </Dropdown.Item>
+                  <Dropdown.Item href={`/new-post`}>Add New Post</Dropdown.Item>
                   <Dropdown.Item href={`/settings/${decodedToken()}`}>
                     Settings
                   </Dropdown.Item>

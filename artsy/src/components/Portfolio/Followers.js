@@ -22,7 +22,7 @@ function MyFollowers({ followers, following }) {
     axiosWithAuth()
       .post(`${baseURL}/follow/${id}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         dispatch(getUser());
       })
       .catch(err => {

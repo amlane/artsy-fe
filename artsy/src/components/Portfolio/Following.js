@@ -24,7 +24,7 @@ function Following({ following }) {
     axiosWithAuth()
       .post(`${baseURL}/follow/${id}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         dispatch(getUser());
       })
       .catch(err => {
@@ -37,7 +37,7 @@ function Following({ following }) {
     axiosWithAuth()
       .delete(`${baseURL}/follow/${id}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         dispatch(getUser());
       })
       .catch(err => {

@@ -91,7 +91,7 @@ function DeleteModal({ commentId, photoId }) {
     axiosWithAuth()
       .delete(`${baseURL}/comments/${commentId}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         dispatch(getPhotoById(photoId));
         handleClose();
       })
