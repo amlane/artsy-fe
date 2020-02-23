@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "./actions";
 
 import "./App.css";
 
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import PrivateRoute from "./components/utils/PrivateRoute";
+import jwt_decode from "jwt-decode";
 
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
@@ -22,7 +25,28 @@ import GalleryInfo from "./components/Portfolio/GalleryInfo";
 import ExploreUsers from "./components/Home/ExploreUsers";
 import UserSettings from "./components/Forms/UserSettings";
 
-function App() {
+function App(props) {
+  const dispatch = useDispatch();
+
+  // check that user's authorization isn't expired
+  useEffect(() => {
+    var token = localStorage.getItem("token");
+    if (token) {
+      var decoded = jwt_decode(token);
+      var current_time = Math.floor(new Date().getTime() / 1000);
+      // check if the token is expired...
+      if (decoded.exp <= current_time) {
+        // if it is...
+        // remove the token from local storage
+        localStorage.removeItem("token");
+        // log the user out
+        dispatch(logout());
+        // send them back to the home page
+        props.history.push("/");
+      }
+    }
+  }, [dispatch, props.history]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -47,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

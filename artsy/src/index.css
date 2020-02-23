@@ -296,6 +296,9 @@ nav .title {
   border-radius: 50%;
   height: 50px;
   width: 50px;
+  background: #17a2b8;
+  color: #fff;
+  border: none;
 }
 
 .dashboard-nav {
@@ -527,10 +530,6 @@ nav .title {
     height: 200px;
   }
 
-  .user-dashboard .desktop-add-btn {
-    display: none;
-  }
-
   /* single photo view */
   .single-photo-view {
     flex-direction: column;
@@ -596,6 +595,9 @@ nav .title {
   .mobile-nav div {
     color: #a7a7a7;
     font-size: 25px;
+  }
+  .user-dashboard section .desktop-add-btn {
+    display: none;
   }
 
   .mobile-nav .mobile-add-btn {

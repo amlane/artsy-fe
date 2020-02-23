@@ -17,7 +17,7 @@ function AddNewComment({ photoId }) {
     axiosWithAuth()
       .post(`${baseURL}/comments/${photoId}`, requestBody)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         setNewComment("");
         dispatch(getPhotoById(photoId));
       })

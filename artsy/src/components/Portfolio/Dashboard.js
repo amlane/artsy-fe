@@ -8,7 +8,7 @@ import { baseURL } from "../utils/config";
 import { Button, Jumbotron, Dropdown } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
 import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
+import { MdLocationOn, MdAdd } from "react-icons/md";
 import { FiCamera } from "react-icons/fi";
 import { GoGear, GoInfo } from "react-icons/go";
 import Loader from "react-loader-spinner";
@@ -192,6 +192,16 @@ function Dashboard(props) {
               />
             </div>
           </div>
+          {localStorage.getItem("token") &&
+          +props.match.params.id === decodedToken() ? (
+            <Button
+              className="desktop-add-btn"
+              variant="outline-secondary"
+              href="/new-post"
+            >
+              <MdAdd size="28" />
+            </Button>
+          ) : null}
         </section>
       </Jumbotron>
       <nav className="dashboard-nav">
