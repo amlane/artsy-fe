@@ -43,18 +43,22 @@ function Comment({ comment, photoId }) {
               }}
             />
           </Link>
-          <div style={{ marginTop: "7px", width: "100%" }}>
+          <div style={{ width: "100%" }}>
             <Link
               to={`/portfolio/${comment.user_id}/posts`}
               style={{
-                fontWeight: "bolder",
                 color: "#333",
-                textDecoration: "none"
+                fontWeight: "bolder",
+                textDecoration: "none",
+                margin: "0 5px 0 0",
+                fontSize: "14px"
               }}
             >
               {comment.username}
-            </Link>{" "}
-            {comment.content}{" "}
+            </Link>
+            <span style={{ color: "gray", fontSize: "12px" }}>
+              {moment(comment.created_at).fromNow()}
+            </span>
           </div>
         </div>
         {comment.user_id === decodedToken() ? (
@@ -64,12 +68,12 @@ function Comment({ comment, photoId }) {
       <div>
         <p
           style={{
-            fontSize: "12px",
-            color: "gray",
-            marginLeft: "50px"
+            fontSize: "14px",
+            color: "#000",
+            margin: "-15px 0 20px 45px"
           }}
         >
-          {moment(comment.created_at).fromNow()}
+          {comment.content}
         </p>
       </div>
     </>
