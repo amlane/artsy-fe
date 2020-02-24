@@ -10,7 +10,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
 import { MdLocationOn, MdAdd } from "react-icons/md";
 import { FiCamera } from "react-icons/fi";
-import { GoGear, GoInfo } from "react-icons/go";
+import { GoGear } from "react-icons/go";
 import Loader from "react-loader-spinner";
 import moment from "moment";
 
@@ -212,10 +212,10 @@ function Dashboard(props) {
           <FaRegStar size="1.5em" />
           <p style={{ marginLeft: "5px" }}>Favorites</p>
         </NavLink>
-        <NavLink to={`/portfolio/${friend.id}/info`}>
+        {/* <NavLink to={`/portfolio/${friend.id}/info`}>
           <GoInfo size="1.5em" />
           <p style={{ marginLeft: "5px" }}>Gallery Info</p>
-        </NavLink>
+        </NavLink> */}
       </nav>
     </>
   );

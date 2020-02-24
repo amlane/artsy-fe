@@ -49,7 +49,7 @@ html {
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid #e9ecef;
   padding: 0 8%;
 }
 nav a {
@@ -303,11 +303,10 @@ nav .title {
 
 .dashboard-nav {
   display: flex;
-  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid silver;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -586,7 +585,7 @@ nav .title {
     align-items: center;
     background: #fff;
     width: 100%;
-    border-top: 1px solid silver;
+    border-top: 1px solid #e9ecef;
     height: 50px;
     padding: 0;
   }
@@ -647,8 +646,20 @@ nav .title {
     height: 180px;
     margin-top: 20px;
   }
+
+  .home-page .photos {
+    padding: 0;
+  }
+
+  .home-page .photos .card:first-child {
+    margin-top: 10px;
+  }
+
   .home-page .photos .card {
     width: 100%;
+    margin: 5px 0;
+    border-left: none;
+    border-right: none;
   }
 
   .home-page .photos .card .main {
