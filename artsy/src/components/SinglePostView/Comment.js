@@ -103,7 +103,7 @@ function DeleteModal({ commentId, photoId }) {
   return (
     <>
       <Button variant="none" onClick={handleShow}>
-        <FaEllipsisV style={{ color: "gray" }} />
+        <FaEllipsisV style={{ color: "silver" }} />
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>
