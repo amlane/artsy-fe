@@ -74,6 +74,63 @@ function SinglePostView(props) {
 
   return (
     <div className="single-photo-view">
+      <div className="user-mobile">
+        <Link
+          to={`/portfolio/${photo.user_id}/posts`}
+          style={{
+            display: "flex",
+            padding: "8px",
+            textDecoration: "none",
+            color: "#000"
+          }}
+        >
+          <Image
+            roundedCircle
+            src={photo.avatar_url}
+            alt={photo.username}
+            style={{
+              height: "40px",
+              width: "40px",
+              objectFit: "cover",
+              objectPosition: "center"
+            }}
+          />
+        </Link>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%"
+          }}
+        >
+          <p style={{ margin: "0 5px" }}>{photo.username}</p>
+          <p
+            style={{
+              color: "silver",
+              fontSize: "10px",
+              textTransform: "uppercase",
+              margin: "0 5px"
+            }}
+          >
+            {moment(photo.created_at).fromNow()}
+          </p>
+        </div>
+        <Link to={`/edit-post/${photo.id}`}>
+          {photo.user_id === decodedToken() ? (
+            <FaEllipsisH
+              size="1em"
+              style={{ color: "silver", cursor: "pointer" }}
+            />
+          ) : null}
+        </Link>
+      </div>
+      <div
+        style={{ padding: "8px 10px", width: "100%" }}
+        className="mobile-details"
+      >
+        <h2 style={{ fontSize: "20px" }}>{photo.title}</h2>
+        <p>{photo.description}</p>
+      </div>
       <img src={photo.photo_url} alt={photo.title} className="main" />
       <section
         className="details"
@@ -85,16 +142,7 @@ function SinglePostView(props) {
         }}
       >
         <div>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0 15px 0 0",
-              borderBottom: "1px solid #e9ecef"
-            }}
-          >
+          <div className="user-desktop">
             <Link
               to={`/portfolio/${photo.user_id}/posts`}
               style={{
@@ -115,8 +163,26 @@ function SinglePostView(props) {
                   objectPosition: "center"
                 }}
               />
-              <p style={{ margin: "5px" }}>{photo.username}</p>
             </Link>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%"
+              }}
+            >
+              <p style={{ margin: "0 5px" }}>{photo.username}</p>
+              <p
+                style={{
+                  color: "silver",
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                  margin: "0 5px"
+                }}
+              >
+                {moment(photo.created_at).fromNow()}
+              </p>
+            </div>
             <Link to={`/edit-post/${photo.id}`}>
               {photo.user_id === decodedToken() ? (
                 <FaEllipsisH
@@ -126,8 +192,8 @@ function SinglePostView(props) {
               ) : null}
             </Link>
           </div>
-          <div style={{ padding: "8px" }}>
-            <h1>{photo.title}</h1>
+          <div style={{ padding: "8px" }} className="desktop-details">
+            <h2 style={{ fontSize: "18px" }}>{photo.title}</h2>
             <p>{photo.description}</p>
           </div>
         </div>
@@ -138,7 +204,11 @@ function SinglePostView(props) {
                 ? unLike(photo.id)
                 : addLike(photo.id)
             }
-            style={{ display: "flex" }}
+            style={{
+              display: "flex",
+              padding: "10px 0",
+              borderBottom: "1px solid #e9ecef"
+            }}
           >
             {favsID && favsID.includes(photo.id) ? (
               <FaStar
@@ -161,7 +231,9 @@ function SinglePostView(props) {
                 }}
               />
             )}
-            <span style={{ marginRight: "15px" }}>{photo.likes.count}</span>
+            <span style={{ marginRight: "15px" }}>
+              {photo.likes.count} likes
+            </span>
             <span>
               <FaRegComment
                 size="1.5em"
@@ -173,28 +245,15 @@ function SinglePostView(props) {
                 }}
               />
             </span>
-            <span>{photo.comments.length}</span>
+            <span>{photo.comments.length} comments</span>
           </span>
-          <div
-            style={{
-              width: "100%",
-              color: "silver",
-              fontSize: "12px",
-              textTransform: "uppercase",
-              padding: "10px",
-              borderTop: "1px solid #e9ecef",
-              marginTop: "2%"
-            }}
-          >
-            {moment(photo.created_at).fromNow()}
-          </div>
         </div>
         <div
           style={{
             overflowY: "scroll",
             maxHeight: "200px",
-            margin: "20px 0 0 0",
-            padding: "0 0 0 8px",
+            margin: "0px 0 0 0",
+            padding: "10px 0 0 8px",
             background: "#fff"
           }}
           className="scroll"
