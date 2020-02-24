@@ -15,7 +15,7 @@ html {
 }
 
 .App {
-  margin: 0 auto 60px auto;
+  margin: 0 auto 50px auto;
   background: #fafafa;
 }
 
@@ -331,21 +331,36 @@ nav .title {
 .single-photo-view {
   display: flex;
   justify-content: center;
-  margin: 5%;
+  margin: 4% auto;
   background: #fafafa;
+}
+
+.single-photo-view .user-mobile,
+.single-photo-view .mobile-details {
+  display: none;
 }
 
 .single-photo-view .main {
   max-height: 600px;
   max-width: 600px;
-  height: 600px;
   object-fit: cover;
   object-position: center;
 }
 
+.single-photo-view .user-desktop {
+  display: flex;
+  align-items: center;
+  padding: 0 15px 0 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* .single-photo-view .desktop-details {
+} */
+
 .single-photo-view .details {
-  width: 25%;
   padding: 0;
+  display: flex;
+  width: 600px;
 }
 
 .single-photo-view .artist {
@@ -824,5 +839,21 @@ nav .title {
   /* single page view */
   .single-photo-view {
     margin: 0;
+  }
+
+  .single-photo-view .user-mobile {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px 15px 0 8px;
+  }
+  .single-photo-view .mobile-details {
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .single-photo-view .user-desktop,
+  .single-photo-view .desktop-details {
+    display: none;
   }
 }

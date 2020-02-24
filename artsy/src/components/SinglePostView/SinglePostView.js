@@ -74,27 +74,78 @@ function SinglePostView(props) {
 
   return (
     <div className="single-photo-view">
+      <div className="user-mobile">
+        <Link
+          to={`/portfolio/${photo.user_id}/posts`}
+          style={{
+            display: "flex",
+            padding: "8px",
+            textDecoration: "none",
+            color: "#000"
+          }}
+        >
+          <Image
+            roundedCircle
+            src={photo.avatar_url}
+            alt={photo.username}
+            style={{
+              height: "40px",
+              width: "40px",
+              objectFit: "cover",
+              objectPosition: "center"
+            }}
+          />
+        </Link>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            justifyContent: "flex-start",
+            alignItems: "flex-start"
+          }}
+        >
+          <p style={{ margin: "0 2px", fontSize: "16px", fontWeight: "bold" }}>
+            {photo.username}
+          </p>
+          <p
+            style={{
+              color: "gray",
+              fontSize: "10px",
+              textTransform: "uppercase",
+              margin: "0 2px"
+            }}
+          >
+            {moment(photo.created_at).fromNow()}
+          </p>
+        </div>
+        <Link to={`/edit-post/${photo.id}`}>
+          {photo.user_id === decodedToken() ? (
+            <FaEllipsisH
+              size="1em"
+              style={{ color: "silver", cursor: "pointer" }}
+            />
+          ) : null}
+        </Link>
+      </div>
+      <div
+        style={{ padding: "10px 20px", width: "100%" }}
+        className="mobile-details"
+      >
+        <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>{photo.title}</h2>
+        <p style={{ color: "gray" }}>{photo.description}</p>
+      </div>
       <img src={photo.photo_url} alt={photo.title} className="main" />
       <section
         className="details"
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           background: "#fff"
         }}
       >
-        <div>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0 15px 0 0",
-              borderBottom: "1px solid #e9ecef"
-            }}
-          >
+        <div style={{ flex: 1 }}>
+          <div className="user-desktop">
             <Link
               to={`/portfolio/${photo.user_id}/posts`}
               style={{
@@ -115,8 +166,28 @@ function SinglePostView(props) {
                   objectPosition: "center"
                 }}
               />
-              <p style={{ margin: "5px" }}>{photo.username}</p>
             </Link>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%"
+              }}
+            >
+              <p style={{ margin: "0 5px", fontWeight: "bold" }}>
+                {photo.username}
+              </p>
+              <p
+                style={{
+                  color: "silver",
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                  margin: "0 5px"
+                }}
+              >
+                {moment(photo.created_at).fromNow()}
+              </p>
+            </div>
             <Link to={`/edit-post/${photo.id}`}>
               {photo.user_id === decodedToken() ? (
                 <FaEllipsisH
@@ -126,90 +197,107 @@ function SinglePostView(props) {
               ) : null}
             </Link>
           </div>
-          <div style={{ padding: "8px" }}>
-            <h1>{photo.title}</h1>
-            <p>{photo.description}</p>
+          <div style={{ padding: "8px" }} className="desktop-details">
+            <h2 style={{ fontSize: "24px" }}>{photo.title}</h2>
+            <p style={{ color: "gray", fontSize: "14px" }}>
+              {photo.description}
+            </p>
+          </div>
+
+          <div>
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "10px 25px 10px 10px",
+                borderBottom: "1px solid #e9ecef"
+              }}
+            >
+              <div
+                style={{ display: "flex", alignItems: "center" }}
+                onClick={() =>
+                  localStorage.getItem("token") && favsID.includes(photo.id)
+                    ? unLike(photo.id)
+                    : addLike(photo.id)
+                }
+              >
+                {favsID && favsID.includes(photo.id) ? (
+                  <FaStar
+                    size="1.5em"
+                    style={{
+                      color: "#D4AF43",
+                      cursor: "pointer",
+                      marginRight: "5px",
+                      marginLeft: "5px"
+                    }}
+                  />
+                ) : (
+                  <FaRegStar
+                    size="1.5em"
+                    style={{
+                      color: "#999999",
+                      cursor: "pointer",
+                      marginRight: "5px",
+                      marginLeft: "5px"
+                    }}
+                  />
+                )}
+                <span
+                  style={{
+                    marginRight: "15px",
+                    color: "gray",
+                    fontSize: "14px"
+                  }}
+                >
+                  {photo.likes.count} likes
+                </span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>
+                  <FaRegComment
+                    size="1.5em"
+                    style={{
+                      color: "#999999",
+                      cursor: "pointer",
+                      marginRight: "5px",
+                      transform: "scaleX(-1)"
+                    }}
+                  />
+                </span>
+                <span style={{ color: "gray", fontSize: "14px" }}>
+                  {photo.comments.length} comments
+                </span>
+              </div>
+            </span>
           </div>
         </div>
-        <div>
-          <span
-            onClick={() =>
-              localStorage.getItem("token") && favsID.includes(photo.id)
-                ? unLike(photo.id)
-                : addLike(photo.id)
-            }
-            style={{ display: "flex" }}
-          >
-            {favsID && favsID.includes(photo.id) ? (
-              <FaStar
-                size="1.5em"
-                style={{
-                  color: "#D4AF43",
-                  cursor: "pointer",
-                  marginRight: "5px",
-                  marginLeft: "5px"
-                }}
-              />
-            ) : (
-              <FaRegStar
-                size="1.5em"
-                style={{
-                  color: "gray",
-                  cursor: "pointer",
-                  marginRight: "5px",
-                  marginLeft: "5px"
-                }}
-              />
-            )}
-            <span style={{ marginRight: "15px" }}>{photo.likes.count}</span>
-            <span>
-              <FaRegComment
-                size="1.5em"
-                style={{
-                  color: "gray",
-                  cursor: "pointer",
-                  marginRight: "5px",
-                  transform: "scaleX(-1)"
-                }}
-              />
-            </span>
-            <span>{photo.comments.length}</span>
-          </span>
+        <div style={{ flex: 1 }}>
           <div
             style={{
-              width: "100%",
-              color: "silver",
-              fontSize: "12px",
-              textTransform: "uppercase",
-              padding: "10px",
-              borderTop: "1px solid #e9ecef",
-              marginTop: "2%"
+              overflowY: "scroll",
+              maxHeight: "300px",
+              margin: 0,
+              padding: "10px 0 0 8px",
+              background: "#fff"
             }}
+            className="scroll"
           >
-            {moment(photo.created_at).fromNow()}
+            {photo.comments.map((comment, index) => {
+              return (
+                <Comment
+                  comment={comment}
+                  key={index + comment.id}
+                  photoId={photo.id}
+                />
+              );
+            })}
+          </div>
+          <div style={{ position: "relative", bottom: 0 }}>
+            {localStorage.getItem("token") && (
+              <AddNewComment photoId={photo.id} />
+            )}
           </div>
         </div>
-        <div
-          style={{
-            overflowY: "scroll",
-            maxHeight: "200px",
-            margin: "20px 0 0 0",
-            padding: "0 0 0 8px",
-            background: "#fff"
-          }}
-          className="scroll"
-        >
-          {photo.comments.map((comment, index) => {
-            return (
-              <Comment
-                comment={comment}
-                key={index + comment.id}
-                photoId={photo.id}
-              />
-            );
-          })}
-        </div>
-        {localStorage.getItem("token") && <AddNewComment photoId={photo.id} />}
       </section>
     </div>
   );

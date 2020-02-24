@@ -123,52 +123,72 @@ function Home(props) {
                   <Card.Body
                     style={{
                       display: "flex",
-                      justifyContent: "flex-start",
+                      justifyContent: "space-between",
                       alignItems: "flex-start"
                     }}
                   >
-                    <span
-                      onClick={() =>
-                        localStorage.getItem("token") &&
-                        favsID.includes(photo.id)
-                          ? unLike(photo.id)
-                          : addLike(photo.id)
-                      }
-                      style={{ display: "flex" }}
-                    >
-                      {favsID && favsID.includes(photo.id) ? (
-                        <FaStar
-                          size="1.5em"
-                          style={{
-                            color: "#D4AF43",
-                            cursor: "pointer",
-                            marginRight: "5px"
-                          }}
-                        />
-                      ) : (
-                        <FaRegStar
-                          size="1.5em"
-                          style={{
-                            color: "gray",
-                            cursor: "pointer",
-                            marginRight: "5px"
-                          }}
-                        />
-                      )}
-                    </span>
-                    <span>{photo.likes}</span>
-                    <Link to={`/photo/${photo.id}`}>
-                      <FaRegComment
-                        size="1.5em"
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <span
+                        onClick={() =>
+                          localStorage.getItem("token") &&
+                          favsID.includes(photo.id)
+                            ? unLike(photo.id)
+                            : addLike(photo.id)
+                        }
+                        style={{ display: "flex" }}
+                      >
+                        {favsID && favsID.includes(photo.id) ? (
+                          <FaStar
+                            size="1.5em"
+                            style={{
+                              color: "#D4AF43",
+                              cursor: "pointer",
+                              marginRight: "5px"
+                            }}
+                          />
+                        ) : (
+                          <FaRegStar
+                            size="1.5em"
+                            style={{
+                              color: "#999999",
+                              cursor: "pointer",
+                              marginRight: "5px"
+                            }}
+                          />
+                        )}
+                      </span>
+                      <span
                         style={{
+                          marginRight: "15px",
                           color: "gray",
-                          cursor: "pointer",
-                          margin: "0 5px 0 15px",
-                          transform: "scaleX(-1)"
+                          fontSize: "14px"
                         }}
-                      />
-                    </Link>
-                    <span>{photo.comments}</span>
+                      >
+                        {photo.likes} likes
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <Link to={`/photo/${photo.id}`}>
+                        <FaRegComment
+                          size="1.5em"
+                          style={{
+                            color: "#999999",
+                            cursor: "pointer",
+                            margin: "0 5px 0 15px",
+                            transform: "scaleX(-1)"
+                          }}
+                        />
+                      </Link>
+                      <span
+                        style={{
+                          marginRight: "15px",
+                          color: "gray",
+                          fontSize: "14px"
+                        }}
+                      >
+                        {photo.comments} comments
+                      </span>
+                    </div>
                   </Card.Body>
                 </Card>
               );
