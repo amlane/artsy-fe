@@ -372,7 +372,7 @@ nav .title {
 }
 
 .add-comment:disabled {
-  color: gray;
+  color: silver;
 }
 
 /* my photos */
@@ -819,5 +819,10 @@ nav .title {
   .edit-profile form {
     width: 90%;
     margin-right: 0;
+  }
+
+  /* single page view */
+  .single-photo-view {
+    margin: 0;
   }
 }

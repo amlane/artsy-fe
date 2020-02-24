@@ -92,7 +92,7 @@ function SinglePostView(props) {
               justifyContent: "space-between",
               alignItems: "center",
               padding: "0 15px 0 0",
-              borderBottom: "1px solid silver"
+              borderBottom: "1px solid #e9ecef"
             }}
           >
             <Link
@@ -121,7 +121,7 @@ function SinglePostView(props) {
               {photo.user_id === decodedToken() ? (
                 <FaEllipsisH
                   size="1em"
-                  style={{ color: "gray", cursor: "pointer" }}
+                  style={{ color: "silver", cursor: "pointer" }}
                 />
               ) : null}
             </Link>
@@ -182,7 +182,7 @@ function SinglePostView(props) {
               fontSize: "12px",
               textTransform: "uppercase",
               padding: "10px",
-              borderTop: "1px solid silver",
+              borderTop: "1px solid #e9ecef",
               marginTop: "2%"
             }}
           >

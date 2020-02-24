@@ -30,7 +30,7 @@ function AddNewComment({ photoId }) {
     <form
       style={{
         width: "100%",
-        border: "1px solid silver",
+        border: "1px solid #e9ecef",
         padding: "10px 0 10px 15px",
         margin: "0",
         background: "#fff",
