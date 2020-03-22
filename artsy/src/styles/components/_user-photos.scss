@@ -1,0 +1,46 @@
+/* my photos */
+
+.my-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 25px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.photo-card {
+  cursor: pointer;
+  border: 1px solid #e9ecef;
+  background: #fff;
+  height: 350px;
+  width: 31.5%;
+  padding: 20px;
+  margin: 3px;
+}
+
+.photo-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  .photo-card {
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  /* my photos */
+  .my-photos {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .photo-card {
+    height: 18vh;
+    padding: 0;
+  }
+}

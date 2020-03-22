@@ -1,3 +1,11 @@
 @import "base/variables";
 
-@import "components/index";
+@import "components/global";
+@import "components/nav";
+@import "components/home";
+@import "components/dashboard";
+@import "components/single-photo";
+@import "components/search";
+@import "components/user-photos";
+@import "components/new-post-form";
+@import "components/edit-profile-form";
