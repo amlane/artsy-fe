@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "./actions";
 
-import "./App.css";
-
 import { Route, withRouter } from "react-router-dom";
 import PrivateRoute from "./components/utils/PrivateRoute";
 import jwt_decode from "jwt-decode";

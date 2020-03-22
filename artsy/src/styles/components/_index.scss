@@ -53,7 +53,7 @@ html {
   padding: 0 8%;
 }
 nav a {
-  color: #17a2b8;
+  color: $main-blue;
   transition: 0.2s;
 }
 
@@ -90,7 +90,7 @@ input:focus {
 }
 
 nav .title {
-  font-family: Megrim, cursive;
+  font-family: $accent-font;
   font-size: 64px;
   margin: 0 3% 0 3%;
 }

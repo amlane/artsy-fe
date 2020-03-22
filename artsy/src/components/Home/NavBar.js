@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../actions";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import "../../index.css";
+import "../../styles/app.scss";
 import decodedToken from "./../utils/decodedToken";
 import { Dropdown } from "react-bootstrap";
 import { WiStars } from "react-icons/wi";
