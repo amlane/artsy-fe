@@ -54,51 +54,54 @@ function Navigation(props) {
 
       <div
         className="icons"
-        style={{ display: "flex", width: "25%", justifyContent: "center" }}
+        style={{
+          display: "flex",
+          width: "25%",
+          justifyContent: "center"
+        }}
       >
-        <NavLink
-          style={{
-            color: "gray",
-            padding: "0 15px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRight: "1px solid #ece9e7"
-          }}
-          to="/"
-        >
-          <WiStars style={{ fontSize: "45px" }} />
-          <p>Explore</p>
-        </NavLink>
-        <NavLink
-          style={{
-            color: "gray",
-            padding: "0 15px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRight: "1px solid #ece9e7"
-          }}
-          to="/connect"
-        >
-          <IoIosPeople style={{ fontSize: "45px" }} />
-          <p>Connect</p>
-        </NavLink>
-        <div
-          style={{
-            color: "gray",
-            padding: "0 15px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-          // to={`/user/${decodedToken()}/posts`}
-        >
-          {decodedToken() !== undefined ? (
-            <>
+        {localStorage.getItem("token") ? (
+          <>
+            <NavLink
+              style={{
+                color: "gray",
+                padding: "0 15px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRight: "1px solid #ece9e7"
+              }}
+              to="/"
+            >
+              <WiStars style={{ fontSize: "45px" }} />
+              <p>Explore</p>
+            </NavLink>
+            <NavLink
+              style={{
+                color: "gray",
+                padding: "0 15px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRight: "1px solid #ece9e7"
+              }}
+              to="/connect"
+            >
+              <IoIosPeople style={{ fontSize: "45px" }} />
+              <p>Connect</p>
+            </NavLink>
+            <div
+              style={{
+                color: "gray",
+                padding: "0 15px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
               <NavLink to={`/portfolio/${decodedToken()}/posts`}>
                 <MdHome style={{ fontSize: "35px", color: "gray" }} />
               </NavLink>
@@ -128,35 +131,24 @@ function Navigation(props) {
                   <Dropdown.Item onClick={signOut}>Log out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            </>
-          ) : (
-            <>
-              <NavLink to={`/login`}>
-                <MdHome
-                  style={{
-                    fontSize: "45px",
-                    color: "gray"
-                  }}
-                />
-                <p style={{ textAlign: "center", color: "gray" }}>You</p>
-              </NavLink>
-            </>
-          )}
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            top: "0",
-            right: "0",
-            fontSize: "12px"
-          }}
-        >
-          {localStorage.getItem("token") ? null : (
-            <Nav.Link style={{ color: "gray" }} href="/login">
-              Login/SignUp
-            </Nav.Link>
-          )}
-        </div>
+            </div>
+          </>
+        ) : null}
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          right: "0",
+          fontSize: "12px"
+        }}
+      >
+        {localStorage.getItem("token") ? null : (
+          <Nav.Link style={{ color: "gray" }} href="/login">
+            Login/SignUp
+          </Nav.Link>
+        )}
       </div>
     </nav>
   );

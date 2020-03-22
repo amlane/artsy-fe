@@ -49,7 +49,11 @@ function App(props) {
     <div className="App">
       <header className="App-header">
         <Navigation />
-        <MobileNav />
+        {localStorage.getItem("token") ? (
+          <>
+            <MobileNav />
+          </>
+        ) : null}
       </header>
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />

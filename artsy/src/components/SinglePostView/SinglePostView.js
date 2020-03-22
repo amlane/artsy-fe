@@ -240,9 +240,11 @@ function SinglePostView(props) {
                 </span>
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <span style={{ color: "gray", fontSize: "14px" }}>
-                  {photo.comments.length} comments
-                </span>
+                {photo.comments.length > 0 ? (
+                  <span style={{ color: "gray", fontSize: "14px" }}>
+                    {photo.comments.length} comments
+                  </span>
+                ) : null}
               </div>
             </span>
           </div>

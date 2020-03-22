@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-import Loader from "react-loader-spinner";
+import ThreeDotLoader from "../utils/ThreeDotLoader";
 import decodedToken from "../utils/decodedToken";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
@@ -58,21 +58,7 @@ function EditProfile(props) {
       });
   };
 
-  if (!user.username)
-    return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
-        }}
-      />
-    );
+  if (!user.username) return <ThreeDotLoader />;
   return (
     <div className="edit-profile">
       <div className="image-preview">
