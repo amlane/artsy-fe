@@ -4,11 +4,11 @@ import { getUser, setFavsID } from "../../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Image } from "react-bootstrap";
-import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { baseURL } from "../utils/config";
+import ThreeDotLoader from "../utils/ThreeDotLoader";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -61,21 +61,7 @@ function Home(props) {
       });
   };
 
-  if (!photos)
-    return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
-        }}
-      />
-    );
+  if (!photos) return <ThreeDotLoader />;
 
   return (
     <div className="home-page">
@@ -88,29 +74,15 @@ function Home(props) {
                 <Card key={photo.id} className="card">
                   <Link
                     to={`/portfolio/${photo.user_id}/posts`}
-                    style={{
-                      display: "flex",
-                      padding: "3%",
-                      textDecoration: "none",
-                      color: "#000"
-                    }}
+                    className="intro"
                   >
                     <Image
                       roundedCircle
                       src={photo.avatar_url}
                       alt={photo.username}
-                      style={{
-                        height: "40px",
-                        width: "40px",
-                        objectFit: "cover",
-                        marginRight: "5px",
-                        objectPosition: "center",
-                        cursor: "pointer"
-                      }}
+                      className="profile"
                     />
-                    <p style={{ margin: "5px", cursor: "pointer" }}>
-                      {photo.username}
-                    </p>
+                    <p>{photo.username}</p>
                   </Link>
                   <Link to={`/photo/${photo.id}`}>
                     <Card.Img
@@ -120,14 +92,8 @@ function Home(props) {
                       className="main"
                     />
                   </Link>
-                  <Card.Body
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start"
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                  <Card.Body className="footer">
+                    <div className="likes">
                       <span
                         onClick={() =>
                           localStorage.getItem("token") &&
@@ -135,60 +101,18 @@ function Home(props) {
                             ? unLike(photo.id)
                             : addLike(photo.id)
                         }
-                        style={{ display: "flex" }}
                       >
                         {favsID && favsID.includes(photo.id) ? (
-                          <FaStar
-                            size="1.5em"
-                            style={{
-                              color: "#D4AF43",
-                              cursor: "pointer",
-                              marginRight: "5px"
-                            }}
-                          />
+                          <FaHeart size="1.25em" className="red-heart" />
                         ) : (
-                          <FaRegStar
-                            size="1.5em"
-                            style={{
-                              color: "#999999",
-                              cursor: "pointer",
-                              marginRight: "5px"
-                            }}
-                          />
+                          <FaRegHeart size="1.25em" className="heart-outline" />
                         )}
                       </span>
-                      <span
-                        style={{
-                          marginRight: "15px",
-                          color: "gray",
-                          fontSize: "14px"
-                        }}
-                      >
-                        {photo.likes} likes
-                      </span>
+                      <span className="text">{photo.likes} likes</span>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <Link to={`/photo/${photo.id}`}>
-                        <FaRegComment
-                          size="1.5em"
-                          style={{
-                            color: "#999999",
-                            cursor: "pointer",
-                            margin: "0 5px 0 15px",
-                            transform: "scaleX(-1)"
-                          }}
-                        />
-                      </Link>
-                      <span
-                        style={{
-                          marginRight: "15px",
-                          color: "gray",
-                          fontSize: "14px"
-                        }}
-                      >
-                        {photo.comments} comments
-                      </span>
-                    </div>
+                    <Link to={`/photo/${photo.id}`} className="comments">
+                      <span>{photo.comments} comments</span>
+                    </Link>
                   </Card.Body>
                 </Card>
               );

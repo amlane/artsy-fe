@@ -1,7 +1,7 @@
 /* Jumbotron */
 .home-hero {
   text-align: center;
-  background: #fafafa;
+  background: $main-bg-color;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .home-hero h1 span {
-  font-family: Megrim, cursive;
+  font-family: $accent-font;
 }
 
 .home-hero .container {
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fafafa;
+  background: $main-bg-color;
 }
 
 .home-page .photos {
@@ -44,15 +44,71 @@
 }
 
 .home-page .photos .card {
-  width: 31%;
+  width: 18%;
   border: 1px solid #e9ecef;
-  margin: 10px;
+  margin: 8px;
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .likes {
+      display: flex;
+      align-items: center;
+
+      .red-heart {
+        color: crimson;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .heart-outline {
+        color: #999999;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .text {
+        margin-right: 15px;
+        color: gray;
+        font-size: 12px;
+      }
+    }
+
+    .comments {
+      display: flex;
+      align-items: center;
+      span {
+        color: gray;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.home-page .photos .card .intro {
+  display: flex;
+  padding: 3%;
+  text-decoration: none;
+  color: #000;
+
+  .profile {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin-right: 5px;
+    object-position: center;
+    cursor: pointer;
+  }
+  p {
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: center;
+  }
 }
 
 .home-page .photos .card .main {
-  height: 45vh;
-  max-height: 400px;
-  min-height: 350px;
+  max-height: 175px;
   object-fit: cover;
   object-position: center;
 }
@@ -60,6 +116,12 @@
 @media only screen and (max-width: 1200px) {
   .home-hero .container {
     padding: 0;
+  }
+  .home-page .photos .card {
+    width: 45%;
+  }
+  .home-page .photos .card .main {
+    min-height: 300px;
   }
 }
 
@@ -72,10 +134,6 @@
 
   .home-hero .container img {
     height: 200px;
-  }
-
-  .home-page .photos .card {
-    width: 45%;
   }
 }
 
@@ -107,6 +165,6 @@
   }
 
   .home-page .photos .card .main {
-    min-height: 0;
+    min-height: 350px;
   }
 }

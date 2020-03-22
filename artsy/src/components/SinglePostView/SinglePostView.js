@@ -6,11 +6,11 @@ import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
-import Loader from "react-loader-spinner";
-import { FaEllipsisH, FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
+import { FaEllipsisH, FaRegHeart, FaHeart } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
 import AddNewComment from "./AddNewComment";
 import Comment from "./Comment";
+import ThreeDotLoader from "../utils/ThreeDotLoader";
 
 function SinglePostView(props) {
   const photo = useSelector(state => state.photo);
@@ -57,20 +57,7 @@ function SinglePostView(props) {
       });
   };
   if (!photo.title || photo.id !== +props.match.params.photoId)
-    return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
-        }}
-      />
-    );
+    return <ThreeDotLoader />;
 
   return (
     <div className="single-photo-view">
@@ -222,17 +209,17 @@ function SinglePostView(props) {
                 }
               >
                 {favsID && favsID.includes(photo.id) ? (
-                  <FaStar
+                  <FaHeart
                     size="1.5em"
                     style={{
-                      color: "#D4AF43",
+                      color: "crimson",
                       cursor: "pointer",
                       marginRight: "5px",
                       marginLeft: "5px"
                     }}
                   />
                 ) : (
-                  <FaRegStar
+                  <FaRegHeart
                     size="1.5em"
                     style={{
                       color: "#999999",
@@ -253,17 +240,6 @@ function SinglePostView(props) {
                 </span>
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <span>
-                  <FaRegComment
-                    size="1.5em"
-                    style={{
-                      color: "#999999",
-                      cursor: "pointer",
-                      marginRight: "5px",
-                      transform: "scaleX(-1)"
-                    }}
-                  />
-                </span>
                 <span style={{ color: "gray", fontSize: "14px" }}>
                   {photo.comments.length} comments
                 </span>

@@ -11,7 +11,7 @@ import { FaRegCalendarAlt, FaRegStar } from "react-icons/fa";
 import { MdLocationOn, MdAdd } from "react-icons/md";
 import { FiCamera } from "react-icons/fi";
 import { GoGear } from "react-icons/go";
-import Loader from "react-loader-spinner";
+import ThreeDotLoader from "../utils/ThreeDotLoader";
 import moment from "moment";
 
 import "../../styles/app.scss";
@@ -66,20 +66,7 @@ function Dashboard(props) {
   };
 
   if (!friend || friend.id !== +props.match.params.id)
-    return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
-        }}
-      />
-    );
+    return <ThreeDotLoader />;
 
   const signOut = () => {
     dispatch(logout());

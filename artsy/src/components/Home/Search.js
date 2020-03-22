@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
+import ThreeDotLoader from "../utils/ThreeDotLoader";
 
 function Search(props) {
   const [searchResults, setSearchResults] = useState(null);
@@ -32,21 +32,7 @@ function Search(props) {
         console.log(err);
       });
   }, [props.match.params.title]);
-  if (!searchResults)
-    return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
-        }}
-      />
-    );
+  if (!searchResults) return <ThreeDotLoader />;
   return (
     <div className="search-page">
       <form onSubmit={submitSearch} className="mobile-search">
