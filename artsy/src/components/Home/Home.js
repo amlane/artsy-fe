@@ -74,29 +74,15 @@ function Home(props) {
                 <Card key={photo.id} className="card">
                   <Link
                     to={`/portfolio/${photo.user_id}/posts`}
-                    style={{
-                      display: "flex",
-                      padding: "3%",
-                      textDecoration: "none",
-                      color: "#000"
-                    }}
+                    className="intro"
                   >
                     <Image
                       roundedCircle
                       src={photo.avatar_url}
                       alt={photo.username}
-                      style={{
-                        height: "40px",
-                        width: "40px",
-                        objectFit: "cover",
-                        marginRight: "5px",
-                        objectPosition: "center",
-                        cursor: "pointer"
-                      }}
+                      className="profile"
                     />
-                    <p style={{ margin: "5px", cursor: "pointer" }}>
-                      {photo.username}
-                    </p>
+                    <p>{photo.username}</p>
                   </Link>
                   <Link to={`/photo/${photo.id}`}>
                     <Card.Img
@@ -106,19 +92,8 @@ function Home(props) {
                       className="main"
                     />
                   </Link>
-                  <Card.Body
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center"
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center"
-                      }}
-                    >
+                  <Card.Body className="footer">
+                    <div className="likes">
                       <span
                         onClick={() =>
                           localStorage.getItem("token") &&
@@ -126,50 +101,18 @@ function Home(props) {
                             ? unLike(photo.id)
                             : addLike(photo.id)
                         }
-                        style={{ display: "flex" }}
                       >
                         {favsID && favsID.includes(photo.id) ? (
-                          <FaHeart
-                            size="1.25em"
-                            style={{
-                              color: "crimson",
-                              cursor: "pointer",
-                              marginRight: "5px"
-                            }}
-                          />
+                          <FaHeart size="1.25em" className="red-heart" />
                         ) : (
-                          <FaRegHeart
-                            size="1.25em"
-                            style={{
-                              color: "#999999",
-                              cursor: "pointer",
-                              marginRight: "5px"
-                            }}
-                          />
+                          <FaRegHeart size="1.25em" className="heart-outline" />
                         )}
                       </span>
-                      <span
-                        style={{
-                          marginRight: "15px",
-                          color: "gray",
-                          fontSize: "12px"
-                        }}
-                      >
-                        {photo.likes} likes
-                      </span>
+                      <span className="text">{photo.likes} likes</span>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <Link to={`/photo/${photo.id}`}>
-                        <span
-                          style={{
-                            color: "gray",
-                            fontSize: "12px"
-                          }}
-                        >
-                          {photo.comments} comments
-                        </span>
-                      </Link>
-                    </div>
+                    <Link to={`/photo/${photo.id}`} className="comments">
+                      <span>{photo.comments} comments</span>
+                    </Link>
                   </Card.Body>
                 </Card>
               );

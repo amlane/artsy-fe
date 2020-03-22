@@ -47,6 +47,64 @@
   width: 18%;
   border: 1px solid #e9ecef;
   margin: 8px;
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .likes {
+      display: flex;
+      align-items: center;
+
+      .red-heart {
+        color: crimson;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .heart-outline {
+        color: #999999;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .text {
+        margin-right: 15px;
+        color: gray;
+        font-size: 12px;
+      }
+    }
+
+    .comments {
+      display: flex;
+      align-items: center;
+      span {
+        color: gray;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.home-page .photos .card .intro {
+  display: flex;
+  padding: 3%;
+  text-decoration: none;
+  color: #000;
+
+  .profile {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin-right: 5px;
+    object-position: center;
+    cursor: pointer;
+  }
+  p {
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: center;
+  }
 }
 
 .home-page .photos .card .main {
