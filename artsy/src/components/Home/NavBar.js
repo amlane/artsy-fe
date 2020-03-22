@@ -42,13 +42,13 @@ function Navigation(props) {
       <form onSubmit={submitSearch} className="nav-search">
         <input
           type="text"
-          placeholder="Search for titles"
+          placeholder="Search for items or shops"
           className="search-input"
           value={inputValue}
           onChange={handleChange}
         />
         <button type="search">
-          <IoIosSearch size="1.5em" style={{ color: "gray" }} />
+          <IoIosSearch size="1.5em" style={{ color: "#000" }} />
         </button>
       </form>
 
@@ -141,9 +141,9 @@ function Navigation(props) {
 
       <div
         style={{
-          position: "absolute",
-          top: "0",
-          right: "0",
+          // position: "absolute",
+          // top: "0",
+          // right: "0",
           fontSize: "12px"
         }}
       >

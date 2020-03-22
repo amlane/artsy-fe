@@ -23,11 +23,11 @@ nav .nav-search {
   margin: 0 3% 0 0;
   border: 1px solid silver;
   border-radius: 25px;
-  padding: 5px 15px;
+  padding: 8px 20px;
   width: 50%;
   display: flex;
   justify-content: space-between;
-  background: #fff;
+  background: #f5f5f5;
 }
 
 nav .nav-search input,
@@ -37,7 +37,7 @@ nav .nav-search button {
 }
 
 nav .nav-search input {
-  // width: 100%;
+  width: 100%;
 }
 
 button:focus,
