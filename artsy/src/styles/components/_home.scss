@@ -1,7 +1,7 @@
 /* Jumbotron */
 .home-hero {
   text-align: center;
-  background: #fafafa;
+  background: $main-bg-color;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .home-hero h1 span {
-  font-family: Megrim, cursive;
+  font-family: $accent-font;
 }
 
 .home-hero .container {
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fafafa;
+  background: $main-bg-color;
 }
 
 .home-page .photos {
@@ -44,15 +44,13 @@
 }
 
 .home-page .photos .card {
-  width: 31%;
+  width: 18%;
   border: 1px solid #e9ecef;
-  margin: 10px;
+  margin: 8px;
 }
 
 .home-page .photos .card .main {
-  height: 45vh;
-  max-height: 400px;
-  min-height: 350px;
+  max-height: 150px;
   object-fit: cover;
   object-position: center;
 }
@@ -60,6 +58,12 @@
 @media only screen and (max-width: 1200px) {
   .home-hero .container {
     padding: 0;
+  }
+  .home-page .photos .card {
+    width: 45%;
+  }
+  .home-page .photos .card .main {
+    min-height: 300px;
   }
 }
 
@@ -72,10 +76,6 @@
 
   .home-hero .container img {
     height: 200px;
-  }
-
-  .home-page .photos .card {
-    width: 45%;
   }
 }
 
@@ -107,6 +107,6 @@
   }
 
   .home-page .photos .card .main {
-    min-height: 0;
+    min-height: 350px;
   }
 }

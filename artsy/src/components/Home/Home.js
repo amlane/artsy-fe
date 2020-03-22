@@ -9,6 +9,7 @@ import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { baseURL } from "../utils/config";
+import ThreeDotLoader from "../utils/ThreeDotLoader";
 
 function Home(props) {
   const userFavorites = useSelector(state => state.userFavorites);
@@ -61,21 +62,7 @@ function Home(props) {
       });
   };
 
-  if (!photos)
-    return (
-      <Loader
-        type="ThreeDots"
-        color="#1C93B9"
-        height={150}
-        width={150}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15vh"
-        }}
-      />
-    );
+  if (!photos) return <ThreeDotLoader />;
 
   return (
     <div className="home-page">
@@ -124,10 +111,15 @@ function Home(props) {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
-                      alignItems: "flex-start"
+                      alignItems: "center"
                     }}
                   >
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center"
+                      }}
+                    >
                       <span
                         onClick={() =>
                           localStorage.getItem("token") &&
@@ -139,7 +131,7 @@ function Home(props) {
                       >
                         {favsID && favsID.includes(photo.id) ? (
                           <FaHeart
-                            size="1.5em"
+                            size="1.25em"
                             style={{
                               color: "crimson",
                               cursor: "pointer",
@@ -148,7 +140,7 @@ function Home(props) {
                           />
                         ) : (
                           <FaRegHeart
-                            size="1.5em"
+                            size="1.25em"
                             style={{
                               color: "#999999",
                               cursor: "pointer",
@@ -161,7 +153,7 @@ function Home(props) {
                         style={{
                           marginRight: "15px",
                           color: "gray",
-                          fontSize: "14px"
+                          fontSize: "12px"
                         }}
                       >
                         {photo.likes} likes
@@ -171,9 +163,8 @@ function Home(props) {
                       <Link to={`/photo/${photo.id}`}>
                         <span
                           style={{
-                            marginRight: "15px",
                             color: "gray",
-                            fontSize: "14px"
+                            fontSize: "12px"
                           }}
                         >
                           {photo.comments} comments

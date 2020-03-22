@@ -7,13 +7,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import {
-  FaEllipsisH,
-  FaStar,
-  FaRegStar,
-  FaRegHeart,
-  FaHeart
-} from "react-icons/fa";
+import { FaEllipsisH, FaRegHeart, FaHeart } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
 import AddNewComment from "./AddNewComment";
 import Comment from "./Comment";
