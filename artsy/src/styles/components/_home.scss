@@ -127,10 +127,7 @@
     padding: 0;
   }
   .home-page .photos .card {
-    width: 45%;
-  }
-  .home-page .photos .card .main {
-    min-height: 300px;
+    width: 25%;
   }
 }
 
@@ -143,6 +140,9 @@
 
   .home-hero .container img {
     height: 200px;
+  }
+  .home-page .photos .card {
+    width: 40%;
   }
 }
 

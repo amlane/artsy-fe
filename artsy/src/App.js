@@ -58,9 +58,9 @@ function App(props) {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      <Route exact path="/photo/:photoId" component={SinglePostView} />
+      <PrivateRoute exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
-      <Route path="/portfolio/:id" component={Dashboard} />
+      <PrivateRoute path="/portfolio/:id" component={Dashboard} />
       <Route path="/portfolio/:id/posts" component={Photos} />
       <Route path="/portfolio/:id/favorites" component={Favorites} />
       <Route path="/portfolio/:id/info" component={GalleryInfo} />
