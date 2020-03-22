@@ -67,7 +67,7 @@ function HomeHero() {
               }}
               variant="info"
               size="lg"
-              href="/register"
+              href="/login"
             >
               Sign In
             </Button>
