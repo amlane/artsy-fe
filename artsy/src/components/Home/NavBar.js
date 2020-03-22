@@ -74,7 +74,7 @@ function Navigation(props) {
               }}
               to="/"
             >
-              <WiStars style={{ fontSize: "45px" }} />
+              <WiStars style={{ fontSize: "35px" }} />
               <p>Explore</p>
             </NavLink>
             <NavLink
@@ -89,7 +89,7 @@ function Navigation(props) {
               }}
               to="/connect"
             >
-              <IoIosPeople style={{ fontSize: "45px" }} />
+              <IoIosPeople style={{ fontSize: "35px" }} />
               <p>Connect</p>
             </NavLink>
             <div
@@ -103,7 +103,7 @@ function Navigation(props) {
               }}
             >
               <NavLink to={`/portfolio/${decodedToken()}/posts`}>
-                <MdHome style={{ fontSize: "35px", color: "gray" }} />
+                <MdHome style={{ fontSize: "30px", color: "gray" }} />
               </NavLink>
               <Dropdown>
                 <Dropdown.Toggle

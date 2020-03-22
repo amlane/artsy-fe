@@ -25,15 +25,17 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
   padding: 40px;
+
+  h3 {
+    font-size: 20px;
+    margin: 20px 0 0 0;
+  }
 }
 
 .home-hero .container img {
-  height: 250px;
-}
-
-.home-hero .container h3 {
-  margin: 20px 0 0 0;
+  height: 200px;
 }
 
 .home-page {
@@ -133,13 +135,36 @@
 
 @media only screen and (max-width: 900px) {
   /* home hero */
+  .home-hero {
+    .mobile-header {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      padding: 5px 15px;
+      width: 100%;
+
+      h2 {
+        text-align: start;
+        font-family: $accent-font;
+        color: $main-blue;
+      }
+    }
+  }
   .home-hero .container {
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-top: 10%;
   }
 
   .home-hero .container img {
     height: 200px;
+    margin: 0 20px;
+  }
+
+  .artist,
+  .camera,
+  .share {
+    margin: 10px;
   }
   .home-page .photos .card {
     width: 40%;
@@ -152,45 +177,26 @@
     h1 {
       display: none;
     }
-
-    .mobile-header {
-      display: inline-block;
-      margin: -20px 0 30px 0;
-      padding-top: 0;
-      width: 100%;
-
-      h2 {
-        text-align: start;
-        font-family: $accent-font;
-        color: $main-blue;
-      }
-    }
   }
   .home-hero .container {
-    flex-direction: column;
-    padding: 0 20px;
+    justify-content: space-around;
+    padding: 0 1%;
 
-    .artist {
-      align-self: flex-start;
-    }
-
-    .camera {
-      align-self: flex-end;
-    }
-
+    .artist,
+    .camera,
     .share {
-      align-self: flex-start;
+      margin: 15px 5px;
     }
   }
   .home-hero .container img {
-    height: 125px;
+    height: 7.5em;
     margin: 0;
     padding: 0;
   }
 
   .home-hero .container h3 {
-    font-size: 14px;
-    margin: 10px 0 0 0;
+    font-size: 16px;
+    margin: 10px 0 0 -10px;
   }
 
   .home-page .photos {

@@ -58,7 +58,7 @@ function App(props) {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      <PrivateRoute exact path="/photo/:photoId" component={SinglePostView} />
+      <Route exact path="/photo/:photoId" component={SinglePostView} />
       <Route exact path="/search/:title" component={Search} />
       <PrivateRoute path="/portfolio/:id" component={Dashboard} />
       <Route path="/portfolio/:id/posts" component={Photos} />
