@@ -51,11 +51,12 @@ function Following({ following }) {
         <span>{following && following.length}</span> following
       </div>
 
-      <Modal show={show} onHide={handleClose} centered scrollable="true">
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title style={{ fontSize: "16px" }}>Following</Modal.Title>
         </Modal.Header>
         <Modal.Body
+          scrollable="true"
           style={{
             display: "flex",
             flexDirection: "column",
