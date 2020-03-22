@@ -7,7 +7,7 @@ import { Card, Image } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { FaStar, FaRegStar, FaRegComment } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { baseURL } from "../utils/config";
 
 function Home(props) {
@@ -138,16 +138,16 @@ function Home(props) {
                         style={{ display: "flex" }}
                       >
                         {favsID && favsID.includes(photo.id) ? (
-                          <FaStar
+                          <FaHeart
                             size="1.5em"
                             style={{
-                              color: "#D4AF43",
+                              color: "crimson",
                               cursor: "pointer",
                               marginRight: "5px"
                             }}
                           />
                         ) : (
-                          <FaRegStar
+                          <FaRegHeart
                             size="1.5em"
                             style={{
                               color: "#999999",
@@ -169,25 +169,16 @@ function Home(props) {
                     </div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <Link to={`/photo/${photo.id}`}>
-                        <FaRegComment
-                          size="1.5em"
+                        <span
                           style={{
-                            color: "#999999",
-                            cursor: "pointer",
-                            margin: "0 5px 0 15px",
-                            transform: "scaleX(-1)"
+                            marginRight: "15px",
+                            color: "gray",
+                            fontSize: "14px"
                           }}
-                        />
+                        >
+                          {photo.comments} comments
+                        </span>
                       </Link>
-                      <span
-                        style={{
-                          marginRight: "15px",
-                          color: "gray",
-                          fontSize: "14px"
-                        }}
-                      >
-                        {photo.comments} comments
-                      </span>
                     </div>
                   </Card.Body>
                 </Card>
