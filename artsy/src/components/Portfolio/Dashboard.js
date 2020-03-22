@@ -14,7 +14,7 @@ import { GoGear } from "react-icons/go";
 import Loader from "react-loader-spinner";
 import moment from "moment";
 
-import "../../index.css";
+import "../../styles/app.scss";
 import Followers from "./Followers";
 import Following from "./Following";
 

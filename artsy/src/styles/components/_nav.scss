@@ -1,0 +1,128 @@
+/* main navigation */
+
+.desktop-nav {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0 8%;
+}
+nav a {
+  color: $main-blue;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: #0f7585;
+}
+
+nav .nav-search {
+  margin: 0 3% 0 3%;
+  border: 1px solid silver;
+  border-radius: 25px;
+  padding: 5px 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+
+nav .nav-search input,
+nav .nav-search button {
+  border: none;
+  background: none;
+}
+
+nav .nav-search input {
+  width: 100%;
+}
+
+button:focus,
+input:focus {
+  outline: none !important;
+  outline-offset: none !important;
+}
+
+nav .title {
+  font-family: $accent-font;
+  font-size: 64px;
+  margin: 0 3% 0 3%;
+}
+
+/* mobile nav */
+.mobile-nav,
+.mobile-search {
+  display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  /* desktop navigation */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* mobile nav */
+
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #fff;
+    width: 100%;
+    border-top: 1px solid #e9ecef;
+    height: 50px;
+    padding: 0;
+  }
+
+  .mobile-nav a,
+  .mobile-nav div {
+    color: #a7a7a7;
+    font-size: 25px;
+  }
+  .user-dashboard section .desktop-add-btn {
+    display: none;
+  }
+
+  .mobile-nav .mobile-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 1.75em;
+    width: 1.75em;
+    border: none;
+    background: #17a2b8;
+    color: #fff;
+  }
+
+  .mobile-search {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 5%;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 25px auto;
+  }
+
+  .mobile-search input,
+  .mobile-search button {
+    border: none;
+    background: none;
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  /* mobile search */
+
+  .mobile-search {
+    width: 70%;
+  }
+}

@@ -1,0 +1,112 @@
+/* Jumbotron */
+.home-hero {
+  text-align: center;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.home-hero h1 {
+  margin-bottom: 30px;
+  font-weight: lighter;
+}
+
+.home-hero h1 span {
+  font-family: Megrim, cursive;
+}
+
+.home-hero .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.home-hero .container img {
+  height: 250px;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fafafa;
+}
+
+.home-page .photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-width: 1400px;
+  padding: 3%;
+}
+
+.home-page .photos .card {
+  width: 31%;
+  border: 1px solid #e9ecef;
+  margin: 10px;
+}
+
+.home-page .photos .card .main {
+  height: 45vh;
+  max-height: 400px;
+  min-height: 350px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  .home-hero .container {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  /* home hero */
+  .home-hero .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-hero .container img {
+    height: 200px;
+  }
+
+  .home-page .photos .card {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  /* home hero */
+  .home-hero .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  .home-hero .container img {
+    height: 180px;
+    margin-top: 20px;
+  }
+
+  .home-page .photos {
+    padding: 0;
+  }
+
+  .home-page .photos .card:first-child {
+    margin-top: 10px;
+  }
+
+  .home-page .photos .card {
+    width: 100%;
+    margin: 5px 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .home-page .photos .card .main {
+    min-height: 0;
+  }
+}
