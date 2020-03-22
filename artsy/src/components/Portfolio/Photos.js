@@ -6,19 +6,7 @@ import { Link } from "react-router-dom";
 function Photos(props) {
   const friend = useSelector(state => state.friend);
 
-  if (!friend || friend.id !== +props.match.params.id)
-    return (
-      <h2
-        style={{
-          color: "gray",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        Loading...
-      </h2>
-    );
+  if (!friend || friend.id !== +props.match.params.id) return null;
 
   return (
     <div className="my-photos">

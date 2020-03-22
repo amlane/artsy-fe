@@ -4,7 +4,6 @@ import { getUser, setFavsID } from "../../actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Image } from "react-bootstrap";
-import Loader from "react-loader-spinner";
 import HomeHero from "./HomeHero";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
