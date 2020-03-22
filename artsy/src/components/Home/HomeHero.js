@@ -1,5 +1,5 @@
 import React from "react";
-import { Jumbotron, Button } from "react-bootstrap";
+import { Jumbotron, Button, Nav } from "react-bootstrap";
 // photos
 import designer from "../../assets/designer.svg";
 import camera from "../../assets/camera.svg";
@@ -13,28 +13,65 @@ function HomeHero() {
           <h1>
             Are you <span>Artsy?</span>
           </h1>
+          <div className="mobile-header">
+            <h2>Artsy</h2>
+            <div
+              style={{
+                position: "absolute",
+                top: "15px",
+                right: "0",
+                fontSize: "12px"
+              }}
+            >
+              <Nav.Link style={{ color: "gray" }} href="/login">
+                Login/SignUp
+              </Nav.Link>
+            </div>
+          </div>
           <section className="container">
-            <div>
+            <div className="artist">
               <img src={designer} alt="designer" />
-              <h3 style={{ marginTop: "20px" }}>Create your art</h3>
+              <h3>Create your art</h3>
             </div>
-            <div>
+            <div className="camera">
               <img src={camera} alt="camera" />
-              <h3 style={{ marginTop: "20px" }}>Snap a photo</h3>
+              <h3>Snap a photo</h3>
             </div>
-            <div>
+            <div className="share">
               <img src={post_image} alt="sharing a post" />
-              <h3 style={{ marginTop: "20px" }}>Share with the world</h3>
+              <h3>Share with the world</h3>
             </div>
           </section>
-          <Button
-            style={{ marginTop: "30px", backgroundColor: "#1C93B9" }}
-            variant="info"
-            size="lg"
-            href="/register"
-          >
-            Get Started
-          </Button>
+          <div>
+            <Button
+              style={{
+                margin: "30px 20px 0 0",
+                border: "2px solid #1C93B9",
+                color: "#1C93B9",
+                borderRadius: "25px",
+                width: "120px"
+              }}
+              variant="outline"
+              size="lg"
+              href="/register"
+            >
+              Sign Up
+            </Button>
+            <Button
+              style={{
+                margin: "30px 0 0 0",
+                backgroundColor: "#1C93B9",
+                border: "2px solid #1C93B9",
+                borderRadius: "25px",
+                width: "120px"
+              }}
+              variant="info"
+              size="lg"
+              href="/register"
+            >
+              Sign In
+            </Button>
+          </div>
         </Jumbotron>
       ) : null}
     </>

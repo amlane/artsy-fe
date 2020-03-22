@@ -6,6 +6,10 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  .mobile-header {
+    display: none;
+  }
 }
 
 .home-hero h1 {
@@ -28,6 +32,10 @@
   height: 250px;
 }
 
+.home-hero .container h3 {
+  margin: 20px 0 0 0;
+}
+
 .home-page {
   display: flex;
   flex-direction: column;
@@ -38,13 +46,14 @@
 .home-page .photos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  max-width: 1400px;
-  padding: 3%;
+  justify-content: center;
+  max-width: 1800px;
+  padding: 0%;
+  margin: 0 auto;
 }
 
 .home-page .photos .card {
-  width: 18%;
+  width: 15%;
   border: 1px solid #e9ecef;
   margin: 8px;
 
@@ -139,14 +148,49 @@
 
 @media only screen and (max-width: 605px) {
   /* home hero */
+  .home-hero {
+    h1 {
+      display: none;
+    }
+
+    .mobile-header {
+      display: inline-block;
+      margin: -20px 0 30px 0;
+      padding-top: 0;
+      width: 100%;
+
+      h2 {
+        text-align: start;
+        font-family: $accent-font;
+        color: $main-blue;
+      }
+    }
+  }
   .home-hero .container {
     flex-direction: column;
-    align-items: center;
-    padding: 0;
+    padding: 0 20px;
+
+    .artist {
+      align-self: flex-start;
+    }
+
+    .camera {
+      align-self: flex-end;
+    }
+
+    .share {
+      align-self: flex-start;
+    }
   }
   .home-hero .container img {
-    height: 180px;
-    margin-top: 20px;
+    height: 125px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-hero .container h3 {
+    font-size: 14px;
+    margin: 10px 0 0 0;
   }
 
   .home-page .photos {
