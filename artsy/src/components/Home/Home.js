@@ -111,7 +111,9 @@ function Home(props) {
                       <span className="text">{photo.likes} likes</span>
                     </div>
                     <Link to={`/photo/${photo.id}`} className="comments">
-                      <span>{photo.comments} comments</span>
+                      {photo.comments > 0 ? (
+                        <span>{photo.comments} comments</span>
+                      ) : null}
                     </Link>
                   </Card.Body>
                 </Card>
