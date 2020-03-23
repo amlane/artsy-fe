@@ -250,7 +250,7 @@ function SinglePostView(props) {
         </div>
         <div
           style={{
-            border: "1px solid #e9ecef",
+            borderTop: "1px solid #e9ecef",
             height: "100%",
             display: "flex",
             flexDirection: "column",
