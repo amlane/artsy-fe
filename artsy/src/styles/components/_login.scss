@@ -1,0 +1,23 @@
+.modal {
+  .header {
+    border: none;
+  }
+
+  label {
+    margin-top: 15px;
+  }
+
+  .btn {
+    margin-top: 20px;
+    background-color: $main-blue;
+    border: none;
+  }
+
+  .footer {
+    border: none;
+    a {
+      display: inline;
+      padding: 0;
+    }
+  }
+}

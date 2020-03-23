@@ -49,9 +49,15 @@ function Login(props) {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Log in</Modal.Title>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+        className="modal"
+        size="sm"
+      >
+        <Modal.Header closeButton className="header">
+          <Modal.Title>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -75,8 +81,7 @@ function Login(props) {
             <Button
               block
               size="lg"
-              style={{ marginTop: "20px", backgroundColor: "#1C93B9" }}
-              variant="info"
+              className="btn"
               type="submit"
               onClick={e => handleSubmit(e)}
             >
@@ -88,16 +93,9 @@ function Login(props) {
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="footer">
           <p>
-            New to Artsy? Sign up{" "}
-            <Nav.Link
-              style={{ display: "inline", padding: "0" }}
-              href="/register"
-            >
-              here
-            </Nav.Link>
-            .
+            New to Artsy? Sign up <Nav.Link href="/register">here</Nav.Link>.
           </p>
         </Modal.Footer>
       </Modal>

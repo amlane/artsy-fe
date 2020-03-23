@@ -51,25 +51,17 @@ function Register(props) {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+        size="sm"
+        className="modal"
+      >
+        <Modal.Header closeButton className="header">
           <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label>email</Form.Label>
-          <Form.Control
-            type="email"
-            onChange={handleChange}
-            value={newUser.email}
-            name="email"
-          />
-          <Form.Label>password</Form.Label>
-          <Form.Control
-            type="password"
-            onChange={handleChange}
-            value={newUser.password}
-            name="password"
-          />
           <Form onSubmit={handleSubmit}>
             <Form.Label>username</Form.Label>
             <Form.Control
@@ -82,14 +74,27 @@ function Register(props) {
               Your username can include spaces, letters, numbers, punctuations
               and special characters.
             </Form.Text>
+            <Form.Label>email</Form.Label>
+            <Form.Control
+              type="email"
+              onChange={handleChange}
+              value={newUser.email}
+              name="email"
+            />
+            <Form.Label>password</Form.Label>
+            <Form.Control
+              type="password"
+              onChange={handleChange}
+              value={newUser.password}
+              name="password"
+            />
             {errorMsg ? (
               <Form.Text className="text-muted">{errorMsg}</Form.Text>
             ) : null}
             <Button
               block
               size="lg"
-              style={{ marginTop: "20px", backgroundColor: "#1C93B9" }}
-              variant="info"
+              className="btn"
               type="submit"
               onClick={e => handleSubmit(e)}
             >
@@ -101,13 +106,9 @@ function Register(props) {
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="footer">
           <p>
-            Already Artsy? Log in{" "}
-            <Nav.Link style={{ display: "inline", padding: "0" }} href="/login">
-              here
-            </Nav.Link>
-            .
+            Already Artsy? Log in <Nav.Link href="/login">here</Nav.Link>.
           </p>
         </Modal.Footer>
       </Modal>
