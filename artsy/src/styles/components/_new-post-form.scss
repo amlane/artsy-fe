@@ -1,4 +1,4 @@
-/* create new post  */
+/* create new post and edit post components */
 
 .add-new-post {
   display: flex;
@@ -30,6 +30,15 @@
 .add-new-post form .text-area {
   resize: none;
   height: 275px;
+}
+
+.cancel {
+  border: 1px solid $main-blue;
+  color: $main-blue;
+}
+
+.submit {
+  background-color: $main-blue;
 }
 
 @media only screen and (max-width: 900px) {
