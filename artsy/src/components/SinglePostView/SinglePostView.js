@@ -131,7 +131,7 @@ function SinglePostView(props) {
           background: "#fff"
         }}
       >
-        <div style={{ flex: 1 }}>
+        <div>
           <div className="user-desktop">
             <Link
               to={`/portfolio/${photo.user_id}/posts`}
@@ -196,8 +196,7 @@ function SinglePostView(props) {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "15px 25px 15px 10px",
-                borderBottom: "1px solid #e9ecef"
+                padding: "15px 25px 15px 10px"
               }}
             >
               <div
@@ -249,11 +248,19 @@ function SinglePostView(props) {
             </span>
           </div>
         </div>
-        <div style={{ flex: 1 }}>
+        <div
+          style={{
+            border: "1px solid #e9ecef",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+          }}
+        >
           <div
             style={{
               overflowY: "scroll",
-              maxHeight: "300px",
+              maxHeight: "350px",
               margin: 0,
               padding: "10px 0 0 8px",
               background: "#fff"
@@ -270,7 +277,7 @@ function SinglePostView(props) {
               );
             })}
           </div>
-          <div style={{ position: "relative", bottom: 0 }}>
+          <div>
             {localStorage.getItem("token") && (
               <AddNewComment photoId={photo.id} />
             )}
