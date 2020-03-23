@@ -91,7 +91,7 @@
       align-items: center;
 
       .red-heart {
-        color: crimson;
+        color: rgb(185, 19, 19);
         cursor: pointer;
         margin-right: 5px;
       }
@@ -249,6 +249,10 @@
     margin: 5px 0;
     border-left: none;
     border-right: none;
+
+    .footer {
+      padding: 15px;
+    }
   }
 
   .home-page .photos .card .main {

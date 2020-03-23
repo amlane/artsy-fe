@@ -115,13 +115,13 @@ function Dashboard(props) {
                 Edit Profile
               </Button>
             ) : isFollowing ? (
-              <button className="mobile" onClick={unfollowArtist}>
+              <Button className="mobile" onClick={unfollowArtist}>
                 Unfollow
-              </button>
+              </Button>
             ) : (
-              <button className="mobile follow" onClick={followArtist}>
+              <Button className="mobile follow" onClick={followArtist}>
                 <IoMdPersonAdd style={{ marginRight: "5px" }} /> Follow
-              </button>
+              </Button>
             )
           ) : null}
         </header>
@@ -138,17 +138,17 @@ function Dashboard(props) {
                   Edit Profile
                 </Button>
               ) : isFollowing ? (
-                <button
+                <Button
                   className="desktop"
                   variant="outline-info"
                   onClick={unfollowArtist}
                 >
                   Unfollow
-                </button>
+                </Button>
               ) : (
-                <button className="desktop follow" onClick={followArtist}>
+                <Button className="desktop follow" onClick={followArtist}>
                   <IoMdPersonAdd style={{ marginRight: "10px" }} /> Follow
-                </button>
+                </Button>
               )
             ) : null}
           </div>
