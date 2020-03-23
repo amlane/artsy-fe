@@ -196,7 +196,7 @@ function SinglePostView(props) {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "10px 25px 10px 10px",
+                padding: "15px 25px 15px 10px",
                 borderBottom: "1px solid #e9ecef"
               }}
             >

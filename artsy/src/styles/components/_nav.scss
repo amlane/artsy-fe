@@ -3,11 +3,11 @@
 .desktop-nav {
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid #e9ecef;
-  padding: 0 8%;
+  border-bottom: 2px solid #e9ecef;
+  padding: 5px 0;
 }
 nav a {
   color: $main-blue;
@@ -20,14 +20,14 @@ nav a:hover {
 }
 
 nav .nav-search {
-  margin: 0 3% 0 3%;
+  margin: 0 3% 0 0;
   border: 1px solid silver;
   border-radius: 25px;
-  padding: 5px 15px;
-  width: 100%;
+  padding: 8px 20px;
+  width: 50%;
   display: flex;
   justify-content: space-between;
-  background: #fff;
+  background: #f5f5f5;
 }
 
 nav .nav-search input,
@@ -48,8 +48,8 @@ input:focus {
 
 nav .title {
   font-family: $accent-font;
-  font-size: 64px;
-  margin: 0 3% 0 3%;
+  font-size: 40px;
+  margin: 0 1% 0 3%;
 }
 
 /* mobile nav */

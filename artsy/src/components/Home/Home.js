@@ -84,7 +84,13 @@ function Home(props) {
                     />
                     <p>{photo.username}</p>
                   </Link>
-                  <Link to={`/photo/${photo.id}`}>
+                  <Link
+                    to={
+                      localStorage.getItem("token")
+                        ? `/photo/${photo.id}`
+                        : `/login`
+                    }
+                  >
                     <Card.Img
                       variant="top"
                       src={photo.photo_url}
@@ -110,7 +116,14 @@ function Home(props) {
                       </span>
                       <span className="text">{photo.likes} likes</span>
                     </div>
-                    <Link to={`/photo/${photo.id}`} className="comments">
+                    <Link
+                      to={
+                        localStorage.getItem("token")
+                          ? `/photo/${photo.id}`
+                          : `/login`
+                      }
+                      className="comments"
+                    >
                       {photo.comments > 0 ? (
                         <span>{photo.comments} comments</span>
                       ) : null}

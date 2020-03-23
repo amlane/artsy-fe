@@ -42,13 +42,13 @@ function Navigation(props) {
       <form onSubmit={submitSearch} className="nav-search">
         <input
           type="text"
-          placeholder="Search for titles"
+          placeholder="Search for items or shops"
           className="search-input"
           value={inputValue}
           onChange={handleChange}
         />
         <button type="search">
-          <IoIosSearch size="1.5em" style={{ color: "gray" }} />
+          <IoIosSearch size="1.5em" style={{ color: "#000" }} />
         </button>
       </form>
 
@@ -56,7 +56,7 @@ function Navigation(props) {
         className="icons"
         style={{
           display: "flex",
-          width: "25%",
+          // width: "25%",
           justifyContent: "center"
         }}
       >
@@ -70,12 +70,13 @@ function Navigation(props) {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                borderRight: "1px solid #ece9e7"
+                borderRight: "1px solid #ece9e7",
+                marginTop: "5px"
               }}
               to="/"
             >
-              <WiStars style={{ fontSize: "45px" }} />
-              <p>Explore</p>
+              <WiStars style={{ fontSize: "35px" }} />
+              <p style={{ fontSize: "14px" }}>Explore</p>
             </NavLink>
             <NavLink
               style={{
@@ -85,12 +86,13 @@ function Navigation(props) {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                borderRight: "1px solid #ece9e7"
+                borderRight: "1px solid #ece9e7",
+                marginTop: "5px"
               }}
               to="/connect"
             >
-              <IoIosPeople style={{ fontSize: "45px" }} />
-              <p>Connect</p>
+              <IoIosPeople style={{ fontSize: "35px" }} />
+              <p style={{ fontSize: "14px" }}>Connect</p>
             </NavLink>
             <div
               style={{
@@ -103,24 +105,25 @@ function Navigation(props) {
               }}
             >
               <NavLink to={`/portfolio/${decodedToken()}/posts`}>
-                <MdHome style={{ fontSize: "35px", color: "gray" }} />
+                <MdHome style={{ fontSize: "30px", color: "gray" }} />
               </NavLink>
-              <Dropdown>
+              <Dropdown alignRight>
                 <Dropdown.Toggle
                   id="dropdown-desktop"
                   style={{
                     background: "none",
                     color: "gray",
                     paddingTop: "0",
-                    marginTop: "1px",
-                    border: "none"
+                    marginTop: "0",
+                    border: "none",
+                    fontSize: "14px"
                   }}
                   variant="outline-light"
                 >
                   You
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu style={{ fontSize: "14px", textAlign: "end" }}>
                   <Dropdown.Item href={`/portfolio/${decodedToken()}/posts`}>
                     My Profile
                   </Dropdown.Item>
@@ -138,9 +141,9 @@ function Navigation(props) {
 
       <div
         style={{
-          position: "absolute",
-          top: "0",
-          right: "0",
+          // position: "absolute",
+          // top: "0",
+          // right: "0",
           fontSize: "12px"
         }}
       >

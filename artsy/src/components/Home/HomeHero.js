@@ -1,5 +1,6 @@
 import React from "react";
 import { Jumbotron, Button, Nav } from "react-bootstrap";
+import { IoMdCheckmark } from "react-icons/io";
 // photos
 import designer from "../../assets/designer.svg";
 import camera from "../../assets/camera.svg";
@@ -31,15 +32,21 @@ function HomeHero() {
           <section className="container">
             <div className="artist">
               <img src={designer} alt="designer" />
-              <h3>Create your art</h3>
+              <h3>
+                <IoMdCheckmark color="#F1651F" /> Create
+              </h3>
             </div>
             <div className="camera">
               <img src={camera} alt="camera" />
-              <h3>Snap a photo</h3>
+              <h3>
+                <IoMdCheckmark color="#F1651F" /> Photograph
+              </h3>
             </div>
             <div className="share">
               <img src={post_image} alt="sharing a post" />
-              <h3>Share with the world</h3>
+              <h3>
+                <IoMdCheckmark color="#F1651F" /> Share
+              </h3>
             </div>
           </section>
           <div>
