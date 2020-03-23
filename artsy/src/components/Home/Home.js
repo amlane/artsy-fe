@@ -62,7 +62,7 @@ function Home(props) {
   };
 
   if (!photos) return <ThreeDotLoader />;
-
+  console.log(photos);
   return (
     <div className="home-page">
       <HomeHero />
