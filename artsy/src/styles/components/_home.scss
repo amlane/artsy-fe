@@ -10,15 +10,14 @@
   .mobile-header {
     display: none;
   }
-}
+  h1 {
+    margin-bottom: 30px;
+    font-weight: lighter;
 
-.home-hero h1 {
-  margin-bottom: 30px;
-  font-weight: lighter;
-}
-
-.home-hero h1 span {
-  font-family: $accent-font;
+    span {
+      font-family: $accent-font;
+    }
+  }
 }
 
 .home-hero .container {
@@ -32,10 +31,32 @@
     font-size: 20px;
     margin: 20px 0 0 0;
   }
+
+  img {
+    height: 200px;
+  }
+
+  .checkmark {
+    color: $secondary-accent;
+  }
 }
 
-.home-hero .container img {
-  height: 200px;
+.home-hero {
+  .sign-up-btn {
+    margin: 30px 20px 0 0;
+    border: 2px solid $main-blue;
+    color: $main-blue;
+    border-radius: 25px;
+    width: 120px;
+  }
+  .sign-in-btn {
+    margin: 30px 0 0 0;
+    background-color: $main-blue;
+    border: 2px solid $main-blue;
+    color: $pure-white;
+    border-radius: 25px;
+    width: 120px;
+  }
 }
 
 .home-page {
@@ -43,26 +64,27 @@
   flex-direction: column;
   align-items: center;
   background: $main-bg-color;
-}
 
-.home-page .photos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1800px;
-  padding: 0%;
-  margin: 0 auto;
+  .photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1800px;
+    padding: 0%;
+    margin: 0 auto;
+  }
 }
 
 .home-page .photos .card {
   width: 15%;
-  border: 1px solid #e9ecef;
+  border: 1px solid $main-border;
   margin: 8px;
 
   .footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 
     .likes {
       display: flex;
@@ -74,7 +96,7 @@
         margin-right: 5px;
       }
       .heart-outline {
-        color: #999999;
+        color: $outline;
         cursor: pointer;
         margin-right: 5px;
       }
@@ -101,7 +123,7 @@
   display: flex;
   padding: 3%;
   text-decoration: none;
-  color: #000;
+  color: $main-font;
 
   .profile {
     height: 30px;
@@ -151,6 +173,17 @@
         font-family: $accent-font;
         color: $main-blue;
       }
+
+      .login {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        font-size: 12px;
+
+        a {
+          color: gray;
+        }
+      }
     }
   }
   .home-hero .container {
@@ -169,6 +202,7 @@
   .share {
     margin: 10px;
   }
+
   .home-page .photos .card {
     width: 40%;
   }
