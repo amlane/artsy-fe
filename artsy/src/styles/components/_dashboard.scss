@@ -10,7 +10,7 @@
   max-width: 1000px;
   justify-content: center;
   align-items: flex-start;
-  background: $white-smoke;
+  background: $main-bg-color;
   margin: 0 auto;
 }
 
@@ -51,7 +51,7 @@
   color: #17a2b8;
   border-radius: 20px;
   padding: 8px 20px;
-  background: $white-smoke;
+  background: $main-bg-color;
 }
 
 .user-dashboard section div .desktop.follow {
@@ -225,7 +225,7 @@
     color: #17a2b8;
     border-radius: 20px;
     padding: 8px 20px;
-    background: $white-smoke;
+    background: $main-bg-color;
   }
 
   .user-dashboard header .mobile.follow {

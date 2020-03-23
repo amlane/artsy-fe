@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPhotoById } from "../../actions";
 import moment from "moment";
-import { FaEllipsisV } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -106,9 +106,13 @@ function DeleteModal({ commentId, photoId }) {
   // console.log(commentId);
   return (
     <>
-      <Button variant="none" onClick={handleShow}>
-        <FaEllipsisV style={{ color: "silver" }} />
-      </Button>
+      <span
+        variant="light"
+        onClick={handleShow}
+        style={{ marginRight: "15px", cursor: "pointer" }}
+      >
+        <TiDelete style={{ color: "silver", fontSize: "24px" }} />
+      </span>
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Body>
@@ -116,11 +120,11 @@ function DeleteModal({ commentId, photoId }) {
           and cannot be undone.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-secondary" onClick={handleClose}>
-            Cancel
-          </Button>
           <Button variant="danger" onClick={deleteComment}>
             Yes, delete
+          </Button>
+          <Button variant="outline-secondary" onClick={handleClose}>
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>
