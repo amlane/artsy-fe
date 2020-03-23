@@ -16,66 +16,35 @@ function HomeHero() {
           </h1>
           <div className="mobile-header">
             <h2>Artsy</h2>
-            <div
-              style={{
-                position: "absolute",
-                top: "15px",
-                right: "0",
-                fontSize: "12px"
-              }}
-            >
-              <Nav.Link style={{ color: "gray" }} href="/login">
-                Login/SignUp
-              </Nav.Link>
+            <div className="login">
+              <Nav.Link href="/login">Login/SignUp</Nav.Link>
             </div>
           </div>
           <section className="container">
             <div className="artist">
               <img src={designer} alt="designer" />
               <h3>
-                <IoMdCheckmark color="#F1651F" /> Create
+                <IoMdCheckmark className="checkmark" /> Create
               </h3>
             </div>
             <div className="camera">
               <img src={camera} alt="camera" />
               <h3>
-                <IoMdCheckmark color="#F1651F" /> Photograph
+                <IoMdCheckmark className="checkmark" /> Photograph
               </h3>
             </div>
             <div className="share">
               <img src={post_image} alt="sharing a post" />
               <h3>
-                <IoMdCheckmark color="#F1651F" /> Share
+                <IoMdCheckmark className="checkmark" /> Share
               </h3>
             </div>
           </section>
           <div>
-            <Button
-              style={{
-                margin: "30px 20px 0 0",
-                border: "2px solid #1C93B9",
-                color: "#1C93B9",
-                borderRadius: "25px",
-                width: "120px"
-              }}
-              variant="outline"
-              size="lg"
-              href="/register"
-            >
+            <Button className="sign-up-btn" variant="outline" href="/register">
               Sign Up
             </Button>
-            <Button
-              style={{
-                margin: "30px 0 0 0",
-                backgroundColor: "#1C93B9",
-                border: "2px solid #1C93B9",
-                borderRadius: "25px",
-                width: "120px"
-              }}
-              variant="info"
-              size="lg"
-              href="/login"
-            >
+            <Button className="sign-in-btn" variant="info" href="/login">
               Sign In
             </Button>
           </div>
