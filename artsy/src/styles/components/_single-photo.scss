@@ -48,6 +48,21 @@
   margin-right: 10px;
 }
 
+/* delete modal */
+.delete-mdl {
+  border-top: none !important;
+  padding-top: 0;
+}
+.delete-btn {
+  background: $red !important;
+}
+
+.cancel-btn {
+  border: 1px solid $dark-gray !important;
+  background: none !important;
+  color: $dark-gray !important;
+}
+
 /* comment scroll bar */
 
 .scroll {

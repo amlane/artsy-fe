@@ -114,16 +114,15 @@ function DeleteModal({ commentId, photoId }) {
         <TiDelete style={{ color: "silver", fontSize: "24px" }} />
       </span>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} centered size="sm">
         <Modal.Body>
-          Are you sure you want to delete your comment? This change is permanent
-          and cannot be undone.
+          Are you sure you want to delete your comment? This cannot be undone.
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={deleteComment}>
+        <Modal.Footer className="delete-mdl">
+          <Button onClick={deleteComment} className="delete-btn">
             Yes, delete
           </Button>
-          <Button variant="outline-secondary" onClick={handleClose}>
+          <Button onClick={handleClose} className="cancel-btn">
             Cancel
           </Button>
         </Modal.Footer>
