@@ -48,6 +48,41 @@
   margin-right: 10px;
 }
 
+/* dropdown */
+
+#dropdown-basic {
+  background: none;
+  border: none;
+}
+
+#dropdown-basic:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+}
+
+#dropdown-basic::after {
+  display: none !important;
+}
+
+/* delete modal */
+.delete-mdl {
+  border-top: none !important;
+  padding-top: 0;
+}
+.comment-box {
+  border: 1px solid $silver;
+  padding: 5px;
+}
+.delete-btn {
+  background: $red !important;
+}
+
+.cancel-btn {
+  border: 1px solid $dark-gray !important;
+  background: none !important;
+  color: $dark-gray !important;
+}
+
 /* comment scroll bar */
 
 .scroll {

@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-import { Image } from "react-bootstrap";
+import { Image, Dropdown } from "react-bootstrap";
 import { FaEllipsisH, FaRegHeart, FaHeart } from "react-icons/fa";
 import decodedToken from "../utils/decodedToken";
 import AddNewComment from "./AddNewComment";
 import Comment from "./Comment";
+import DeleteModal from "./DeleteModal";
 import ThreeDotLoader from "../utils/ThreeDotLoader";
 
 function SinglePostView(props) {
@@ -106,14 +107,23 @@ function SinglePostView(props) {
             {moment(photo.created_at).fromNow()}
           </p>
         </div>
-        <Link to={`/edit-post/${photo.id}`}>
-          {photo.user_id === decodedToken() ? (
-            <FaEllipsisH
-              size="1em"
-              style={{ color: "silver", cursor: "pointer" }}
-            />
-          ) : null}
-        </Link>
+        {photo.user_id === decodedToken() ? (
+          <Dropdown alignRight variant="info">
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <FaEllipsisH
+                size="1em"
+                style={{ color: "silver", cursor: "pointer" }}
+              />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href={`/edit-post/${photo.id}`}>
+                Edit
+              </Dropdown.Item>
+              <DeleteModal photoId={photo.id} />
+            </Dropdown.Menu>
+          </Dropdown>
+        ) : null}
       </div>
       <div
         style={{ padding: "10px 20px", width: "100%" }}
@@ -175,14 +185,23 @@ function SinglePostView(props) {
                 {moment(photo.created_at).fromNow()}
               </p>
             </div>
-            <Link to={`/edit-post/${photo.id}`}>
-              {photo.user_id === decodedToken() ? (
-                <FaEllipsisH
-                  size="1em"
-                  style={{ color: "silver", cursor: "pointer" }}
-                />
-              ) : null}
-            </Link>
+            {photo.user_id === decodedToken() ? (
+              <Dropdown alignRight variant="info">
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <FaEllipsisH
+                    size="1em"
+                    style={{ color: "silver", cursor: "pointer" }}
+                  />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href={`/edit-post/${photo.id}`}>
+                    Edit
+                  </Dropdown.Item>
+                  <DeleteModal photoId={photo.id} />
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : null}
           </div>
           <div style={{ padding: "8px" }} className="desktop-details">
             <h2 style={{ fontSize: "24px" }}>{photo.title}</h2>

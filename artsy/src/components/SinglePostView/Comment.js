@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getPhotoById } from "../../actions";
 import moment from "moment";
 import { TiDelete } from "react-icons/ti";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decodedToken from "../utils/decodedToken";
@@ -62,7 +62,11 @@ function Comment({ comment, photoId }) {
           </div>
         </div>
         {comment.user_id === decodedToken() ? (
-          <DeleteModal commentId={comment.id} photoId={photoId} />
+          <DeleteModal
+            commentId={comment.id}
+            photoId={photoId}
+            content={comment.content}
+          />
         ) : null}
       </div>
       <div>
@@ -82,7 +86,7 @@ function Comment({ comment, photoId }) {
 
 export default Comment;
 
-function DeleteModal({ commentId, photoId }) {
+function DeleteModal({ commentId, photoId, content }) {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -115,15 +119,20 @@ function DeleteModal({ commentId, photoId }) {
       </span>
 
       <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton className="header">
+          <Modal.Title>Delete message</Modal.Title>
+        </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete your comment? This change is permanent
-          and cannot be undone.
+          <div className="comment-box">{content}</div>
+          <Form.Text className="text-muted">
+            Are you sure you want to delete this comment? This cannot be undone.
+          </Form.Text>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={deleteComment}>
-            Yes, delete
+        <Modal.Footer className="delete-mdl">
+          <Button onClick={deleteComment} className="delete-btn">
+            Delete
           </Button>
-          <Button variant="outline-secondary" onClick={handleClose}>
+          <Button onClick={handleClose} className="cancel-btn">
             Cancel
           </Button>
         </Modal.Footer>
