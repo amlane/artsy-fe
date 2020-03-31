@@ -4,7 +4,6 @@ import { baseURL } from "../utils/config";
 import { withRouter } from "react-router-dom";
 import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
-import decodedToken from "../utils/decodedToken";
 import { FaRegImage } from "react-icons/fa";
 
 function EditPost(props) {
@@ -54,17 +53,6 @@ function EditPost(props) {
       .put(`${baseURL}/photos/${props.match.params.id}`, updatedPost)
       .then(res => {
         props.history.push(`/photo/${props.match.params.id}`);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const deletePost = () => {
-    axiosWithAuth()
-      .delete(`${baseURL}/photos/${props.match.params.id}`)
-      .then(res => {
-        props.history.push(`/portfolio/${decodedToken()}/posts`);
       })
       .catch(err => {
         console.log(err);
@@ -124,16 +112,6 @@ function EditPost(props) {
             />
           </Form.Group>
           <Row>
-            <Col>
-              <Button
-                block
-                onClick={deletePost}
-                className="delete"
-                variant="outline-danger"
-              >
-                Delete
-              </Button>
-            </Col>
             <Col>
               <Button
                 block
