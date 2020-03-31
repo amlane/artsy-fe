@@ -37,9 +37,9 @@ function Register(props) {
         .post(`${baseURL}/auth/register`, newUser)
         .then(res => {
           localStorage.setItem("token", res.data.token);
-          props.history.push(`/portfolio/${res.data.newUser.id}/posts`);
           setIsLoggingIn(false);
           setErrorMsg("");
+          props.history.push(`/portfolio/${res.data.newUser.id}/posts`);
         })
         .catch(err => {
           console.log({ err });

@@ -146,7 +146,8 @@
   object-fit: cover;
   object-position: center;
 }
-
+@media only screen and (max-width: 1200px) {
+}
 @media only screen and (max-width: 1200px) {
   .home-hero .container {
     padding: 0;

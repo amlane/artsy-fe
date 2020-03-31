@@ -106,7 +106,8 @@ function NewPost(props) {
               onClick={() => {
                 props.history.push(`/portfolio/${decodedToken()}/posts`);
               }}
-              variant="outline-secondary"
+              className="cancel"
+              variant="outline"
             >
               Cancel
             </Button>
@@ -115,7 +116,7 @@ function NewPost(props) {
             <Button
               block
               onClick={handleSubmit}
-              style={{ backgroundColor: "#1C93B9", marginRight: "20px" }}
+              className="submit"
               variant="info"
               type="submit"
             >
