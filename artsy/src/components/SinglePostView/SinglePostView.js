@@ -171,9 +171,17 @@ function SinglePostView(props) {
                 width: "100%"
               }}
             >
-              <p style={{ margin: "0 5px", fontWeight: "bold" }}>
+              <Link
+                to={`/portfolio/${photo.user_id}/posts`}
+                style={{
+                  margin: "0 5px",
+                  fontWeight: "bold",
+                  textDecoration: "none",
+                  color: "#000"
+                }}
+              >
                 {photo.username}
-              </p>
+              </Link>
               <p
                 style={{
                   color: "silver",
