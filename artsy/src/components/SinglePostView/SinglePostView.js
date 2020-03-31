@@ -185,14 +185,23 @@ function SinglePostView(props) {
                 {moment(photo.created_at).fromNow()}
               </p>
             </div>
-            <Link to={`/edit-post/${photo.id}`}>
-              {photo.user_id === decodedToken() ? (
-                <FaEllipsisH
-                  size="1em"
-                  style={{ color: "silver", cursor: "pointer" }}
-                />
-              ) : null}
-            </Link>
+            {photo.user_id === decodedToken() ? (
+              <Dropdown alignRight variant="info">
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <FaEllipsisH
+                    size="1em"
+                    style={{ color: "silver", cursor: "pointer" }}
+                  />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href={`/edit-post/${photo.id}`}>
+                    Edit
+                  </Dropdown.Item>
+                  <DeleteModal photoId={photo.id} />
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : null}
           </div>
           <div style={{ padding: "8px" }} className="desktop-details">
             <h2 style={{ fontSize: "24px" }}>{photo.title}</h2>
