@@ -6,7 +6,6 @@ import { useCloudinaryWidget } from "../hooks/useCloudinaryWidget";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
 import decodedToken from "../utils/decodedToken";
 import { FaRegImage } from "react-icons/fa";
-import { GoTrashcan } from "react-icons/go";
 
 function EditPost(props) {
   const [updatedPost, setUpdatedPost] = useState({
@@ -74,13 +73,6 @@ function EditPost(props) {
 
   return (
     <>
-      <div
-        onClick={deletePost}
-        style={{ cursor: "pointer", margin: "25px", textAlign: "end" }}
-      >
-        <GoTrashcan size="2em" style={{ color: "gray" }} />
-        <span>Delete this post</span>
-      </div>
       <div className="add-new-post">
         <div className="image-preview">
           {updatedPost.photo_url === "" ? (
@@ -135,10 +127,21 @@ function EditPost(props) {
             <Col>
               <Button
                 block
+                onClick={deletePost}
+                className="delete"
+                variant="outline-danger"
+              >
+                Delete
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                block
                 onClick={() => {
                   props.history.push(`/photo/${props.match.params.id}`);
                 }}
-                variant="outline-secondary"
+                className="cancel"
+                variant="outline"
               >
                 Cancel
               </Button>
@@ -147,7 +150,7 @@ function EditPost(props) {
               <Button
                 block
                 onClick={handleSubmit}
-                style={{ backgroundColor: "#1C93B9", marginRight: "20px" }}
+                className="submit"
                 variant="info"
                 type="submit"
               >
