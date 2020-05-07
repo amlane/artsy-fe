@@ -11,8 +11,8 @@ import { baseURL } from "../utils/config";
 import ThreeDotLoader from "../utils/ThreeDotLoader";
 
 function Home(props) {
-  const userFavorites = useSelector(state => state.userFavorites);
-  const favsID = useSelector(state => state.favsID);
+  const userFavorites = useSelector((state) => state.userFavorites);
+  const favsID = useSelector((state) => state.favsID);
   const dispatch = useDispatch();
 
   const [photos, setPhotos] = useState(null);
@@ -21,10 +21,10 @@ function Home(props) {
     dispatch(getUser());
     axios
       .get(`${baseURL}/photos`)
-      .then(res => {
+      .then((res) => {
         setPhotos(res.data.photos);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log({ err });
       });
   }, [dispatch]);
@@ -33,43 +33,42 @@ function Home(props) {
     dispatch(setFavsID());
   }, [userFavorites, dispatch]);
 
-  const addLike = id => {
+  const addLike = (id) => {
     if (!localStorage.getItem("token")) {
       props.history.push("/login");
     } else {
       axiosWithAuth()
         .post(`${baseURL}/photos/${id}/like/`)
-        .then(res => {
+        .then((res) => {
           setPhotos(res.data.photos);
           dispatch(getUser());
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
   };
 
-  const unLike = id => {
+  const unLike = (id) => {
     axiosWithAuth()
       .delete(`${baseURL}/photos/${id}/unlike/`)
-      .then(res => {
+      .then((res) => {
         setPhotos(res.data.photos);
         dispatch(getUser());
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
   if (!photos) return <ThreeDotLoader />;
-  console.log(photos);
   return (
     <div className="home-page">
       <HomeHero />
       <section>
         <div className="photos">
           {photos
-            .map(photo => {
+            .map((photo) => {
               return (
                 <Card key={photo.id} className="card">
                   <Link
@@ -84,13 +83,7 @@ function Home(props) {
                     />
                     <p>{photo.username}</p>
                   </Link>
-                  <Link
-                    to={
-                      localStorage.getItem("token")
-                        ? `/photo/${photo.id}`
-                        : `/login`
-                    }
-                  >
+                  <Link to={`/photo/${photo.id}`}>
                     <Card.Img
                       variant="top"
                       src={photo.photo_url}
